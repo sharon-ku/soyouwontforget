@@ -2,22 +2,22 @@
 
 ## Wednesday, July 7, 2021, at 4pm-ish
 
-**Jotting down ideas, theme of death**
+### Jotting down ideas, theme of death
 
 Fear of death
 
 Resuscitate a dying plant by rewinding time
 
-"I had a dream the other day."
-"Yeah? What was it about?"
-"It was about this box."
-...
+"I had a dream the other day."<br>
+"Yeah? What was it about?"<br>
+"It was about this box."<br>
+...<br>
 (visiting the dead through a dream? dream contains a physical box that stores keepsakes of the dead)
 
-When death becomes too much of a burden to handle, you have the option to forget about a person.
+When death becomes too much of a burden to handle, you have the option to forget about a person.<br>
 A game where we have the choice to forget about a loved one who passed away
 
-Trying desperately to preserve death
+Trying desperately to preserve death<br>
 A game for people who are unable to accept death --> choice of adding time to a life or freeze a moment
 
 ## Monday, July 12, 2021, sometime at night
@@ -38,16 +38,26 @@ So maybe I can present a scene where you witness a cherished memory being erased
 
 Ultimately, I want my game to show how grief is not necessarily worth destroying. And show how memories of the dead don't need to be thought of as sad.
 
+---
+
 ### Project goals
 
 I still haven't worked out how I want the game to play out. But I have some goals in mind:
+
+- I want my game to involve storytelling in some way.
+- I want my game to be sad.
+- I want my game to evoke the feeling of loss, not so much with the departed person, but rather with the lost memories.
+
+---
 
 ### Literal Brain Storms, Brain Hurdles I Need to Overcome
 
 I can't pinpoint what kind of game I want to create:
 
 - a storytelling game made with p5, or a Bitsy game?
-- should my game be driven by narrative or visuals?
+- should my game be driven by text or visuals?
+
+---
 
 ### Phone instead of snow globe
 
