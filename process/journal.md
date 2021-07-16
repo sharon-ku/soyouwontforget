@@ -68,3 +68,31 @@ I liked the idea of swapping the snow globe with a phone. The device's functions
 I need to rework this idea.
 
 ## Thursday, July 15, 2021
+
+NEED TO TYPE OUT NOTES HERE
+
+## Friday, July 16, 2021
+
+### Game idea in one sentence
+
+Player uses an app called "Memorywash" to delete memories of the dead and eliminate the feeling of grief
+
+### More deetz on actions
+
+1. In the app, you keep digging into your memories
+
+2. When you touch a sad memory (personified as a character), you get sucked into it and watch it play out
+
+3. When memory is done playing, you beat up the sad memory character in a battle --> brainwashing and elimination process
+
+4. After defeating memory, you toss it off a cliff, the sad memory bar goes down, then you repeat the process (will probably encounter about 2-3 memories in total)
+
+In the end: you have relinquished all memories of the dead and regret that you chose to forget
+
+### Aesthetics
+
+Very happy and cute (ironic as you don't normally associate this with death)
+
+Sad memory: blue character
+
+When you get sucked into the memory, it starts off looking bleak but gets more colorful (showing that you are becoming more comfortable with confronting the memory)
