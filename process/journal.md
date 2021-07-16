@@ -50,7 +50,7 @@ I still haven't worked out how I want the game to play out. But I have some goal
 
 ---
 
-### Literal Brain Storms, Brain Hurdles I Need to Overcome
+### Brain storms/hurdles I need to overcome
 
 I can't pinpoint what kind of game I want to create:
 
@@ -67,28 +67,66 @@ I liked the idea of swapping the snow globe with a phone. The device's functions
 
 I need to rework this idea.
 
-## Thursday, July 15, 2021
+## Thursday, July 15, 2021, at 10:30 A.M.
+
+I feel like my brain is a jumble of thoughts. I have this one idea that I am set on: obliterating grief through memory manipulation. For the rest, I had to sort out my thoughts with writing and sketches.
+
+### Speculative world
+
+This is a world where memory is selective, so maybe storefronts can feature posters that hint at the normalcy of people having the choice to select their memories?
+
+![Propaganda: selective memory](images/july15-propaganda-selective-memory.jpg)
 
 ### Sketches on the game's look
 
-Either I can create a video editing tool, where the video is the memory
+Either I can create a video editing tool, where the video is the memory...
 ![Video editing interface](images/july15-video-editing-ui.jpg)
 
-Or I can present a very bubble interface, which is ironic since the theme is death
+Or I can present a very bubbly interface, which is ironic since the theme is death.
 ![Bubbly and happy interface](images/july15-bubbly-ui.jpg)
+
+I like the bubbly interface approach because (1) it fits my art style, and (2) it contrasts nicely with death.
+
+Alrighty, with one decision out of the way, let's tackle the other 99.
 
 ### Choosing a technology to use
 
 Weighing the pros and cons, no decision yet
+
 ![Tool considerations](images/july15-tool-considerations.jpg)
 
 ### Reflecting on how to tell the story
 
-I ask myself:
+Methods of presenting the story:
+
+![Methods of presenting the story](images/july15-method-story1.jpg)
+![Methods of presenting the story continuation](images/july15-method-story2.jpg)
+
+Questions to ponder on:
 
 - Does the player know the story is about the dead?
+- Does the cute look interfere with the sad storytelling?
 
-## Friday, July 16, 2021
+### New idea! Game action
+
+What if one of the actions is to dig deeper into the network of memories to isolate the sad ones?
+
+Then once you capture the sad memory, you toss it into the abyss?
+
+I have to sketch this out:
+
+![Tool considerations](images/july15-game-idea-sketches.jpg)
+
+What I drew:
+
+1. Digging for sad memories, app character (orange potato character) guides you
+2. Say you captured a sad memory, it plays the memory of you spending time with the loved one
+3. Fades into flowers (bubbly interface of the app)
+4. App character tosses sad memory (green character) off a cliff
+
+## Friday, July 16, 2021, at 4:07 P.M.
+
+I had some time to solidify my thoughts.
 
 ### Game idea in one sentence
 
@@ -113,3 +151,16 @@ Very happy and cute (ironic as you don't normally associate this with death)
 Sad memory: blue character
 
 When you get sucked into the memory, it starts off looking bleak but gets more colorful (showing that you are becoming more comfortable with confronting the memory)
+
+### Fight actions against sad memory
+
+Actions centered around the idea of washing (cleaning up the memory + brainwashing):
+
+- Sprinkle with flowers
+- Shoot rainbow rays
+
+### Questions remaining:
+
+- Is scope too large considering time limit?
+- What are the 2-3 sad memories that I will present?
+- How do I present those memories? Image? Text? Video?
