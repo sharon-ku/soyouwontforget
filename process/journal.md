@@ -69,18 +69,18 @@ I need to rework this idea.
 
 ## Thursday, July 15, 2021
 
-### Sketches on the look
+### Sketches on the game's look
 
 Either I can create a video editing tool, where the video is the memory
-![Video editing interface](/assets/process/images/july15-video-editing-ui.jpg")
+![Video editing interface](process/images/july15-video-editing-ui.jpg)
 
 Or I can present a very bubble interface, which is ironic since the theme is death
-![Bubbly and happy interface](/assets/process/images/july15-bubbly-ui.jpg")
+![Bubbly and happy interface](process/images/july15-bubbly-ui.jpg)
 
 ### Choosing a technology to use
 
 Weighing the pros and cons, no decision yet
-![Tool considerations](/assets/process/images/july15-tool-considerations.jpg")
+![Tool considerations](process/images/july15-tool-considerations.jpg)
 
 ### Reflecting on how to tell the story
 
