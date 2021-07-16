@@ -69,7 +69,24 @@ I need to rework this idea.
 
 ## Thursday, July 15, 2021
 
-NEED TO TYPE OUT NOTES HERE
+### Sketches on the look
+
+Either I can create a video editing tool, where the video is the memory
+![Video editing interface](/assets/process/images/july15-video-editing-ui.jpg")
+
+Or I can present a very bubble interface, which is ironic since the theme is death
+![Bubbly and happy interface](/assets/process/images/july15-bubbly-ui.jpg")
+
+### Choosing a technology to use
+
+Weighing the pros and cons, no decision yet
+![Tool considerations](/assets/process/images/july15-tool-considerations.jpg")
+
+### Reflecting on how to tell the story
+
+I ask myself:
+
+- Does the player know the story is about the dead?
 
 ## Friday, July 16, 2021
 
