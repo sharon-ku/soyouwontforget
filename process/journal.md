@@ -1,5 +1,31 @@
 # Process Journal
 
+This journal teleports you into the behind-the-scenes of my game-making process (welcome!👋).
+
+I like documenting my thoughts using a mix of writing ✏️ and sketches 🖍️.
+
+I have approximately two months to create a game that combines speculative play and the theme of death.
+
+## Schedule
+
+To orient myself, I created this rough schedule of things to do per week:<br>
+(and yes, I start counting my weeks as of Saturdays)
+
+July:
+
+1. July 7-9: presentation of theme, brainstorming ideas
+2. July 10-16: brainstorming ideas
+3. [⭐ we are here] July 17-23: start prototyping idea and solidifying game concept, creating assets
+4. July 24-30: programming, creating assets
+
+August:
+
+1. July 31 - Aug 6: programming
+2. Aug 7-13: programming, midway playtests with team
+3. Aug 14-20: programming
+4. Aug 21-27: programming, tidying up
+5. Aug 28-31: refining + final playtests
+
 ## Wednesday, July 7, 2021, at 4pm-ish
 
 ### Jotting down ideas, theme of death
@@ -67,7 +93,7 @@ I liked the idea of swapping the snow globe with a phone. The device's functions
 
 I need to rework this idea.
 
-## Thursday, July 15, 2021, at 10:30 A.M.
+## Thursday, July 15, 2021, at 10:30am
 
 I feel like my brain is a jumble of thoughts. I have this one idea that I am set on: obliterating grief through memory manipulation. For the rest, I had to sort out my thoughts with writing and sketches.
 
@@ -124,7 +150,7 @@ What I drew:
 3. Fades into flowers (bubbly interface of the app)
 4. App character tosses sad memory (green character) off a cliff
 
-## Friday, July 16, 2021, at 4:07 P.M.
+## Friday, July 16, 2021, at 4:07pm
 
 I had some time to solidify my thoughts.
 
@@ -164,3 +190,54 @@ Actions centered around the idea of washing (cleaning up the memory + brainwashi
 - Is scope too large considering time limit?
 - What are the 2-3 sad memories that I will present?
 - How do I present those memories? Image? Text? Video?
+
+## Sunday, July 18, 2021, at 11:32am
+
+###Today's focus: Reflecting on the idea of play and storytelling approaches
+
+I researched some game design methods by fetching out my old notes from [Prof. Enric Llagostera](https://enric.llagostera.com.br/)'s Intro to Game Design course. His lectures were filled with gems and helped to guide my design choices for this game.
+
+Here are some of the notes I took:
+
+###Playtesting
+
+- Playtesting is important! (need to add this to my to-do list: make a playtesting schedule)
+
+###Play:
+
+- Play is **carnivalesque**. It seeks equilibrium between creation and destruction.
+  - My game: character digs out/replays memories with the goal of destroying it.
+- Play is **personal**, linked to our individual memories.
+- Success is determined by how well the player plays the game.
+  - A reminder to my game: if I create a good game, I can get the player emotionally invested in it.
+- Think back to an experience I've had with a well-played game.
+  - One game I really enjoyed playing is [Under a Star Called Sun](https://duckduckgo.com) by Cecile Richard. It also delves into the concept of grief, presenting it beautifully with storytelling, visuals, and music.
+- Play is **disruptive** + breaks the status quo.
+  - Guess this ties to the whole idea of speculative play. In my case, I'm reflecting on how manipulation of memory can be ruinous in the context of abolishing grief.
+
+###Storytelling:
+
+- Stories are connected to our **memories**.
+- Stories can be told using a variety of in-game elements.
+  - I want mine to use **images, setting, characters, and sound** as the main narrative elements:
+    - Images: in presenting the Memorywash app interface, setting, etc. --> need to figure out how abstract I want these to be
+    - Setting: the tunnel of memories (very cute), the memory setting (more emotional and relatable)
+    - Characters: app mascot, main character, sad memory personified, characters within the memory
+    - Sound: mix of happy and sad, piano playing
+- I want to use stories **as a quest and as a choice**:
+  - Player actions allow story to progress.
+  - The story becomes a source of tension and experience.
+- A thought I had: I can progress the story based on the kinds of memories that the player chooses to encounter.
+  - This can be tied in with the action of digging into the memories. Digging is a process that leads to choice.
+  - Ex of branching path: If you click A: a happy memory tugs at you, but you have to dig really deep to find it. If you click W: a really really sad force lingers nearby, drawing you in and overwhelming you.
+- Branching structure: I want to go with a reconverging branching structure.
+  - Why?
+    - I want to conclude with 1 ending.
+    - I want the player to choose between multiple memory paths along the way.
+    - Less complicated than "shrub" structure, where there are too many paths.
+
+### Reflections when designing game stories:
+
+1. Why does this game/story matter?
+2. Perspective: who is telling the story?
+3. Storyboarding
