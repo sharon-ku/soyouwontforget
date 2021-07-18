@@ -11,20 +11,20 @@ I have approximately two months to create a game that combines speculative play 
 To orient myself, I created this rough schedule of things to do per week:<br>
 (and yes, I start counting my weeks as of Saturdays)
 
-July:
+JULY:
 
-1. July 7-9: presentation of theme, brainstorming ideas
-2. July 10-16: brainstorming ideas
-3. [⭐ we are here] July 17-23: start prototyping idea and solidifying game concept, creating assets
-4. July 24-30: programming, creating assets
+1. **July 7-9:** presentation of theme, brainstorm ideas
+2. **July 10-16:** brainstorm ideas
+3. [⭐ we are here] **July 17-23:** research and solidify game concept, start prototyping idea, create assets
+4. **July 24-30:** code, create assets
 
-August:
+AUGUST:
 
-1. July 31 - Aug 6: programming
-2. Aug 7-13: programming, midway playtests with team
-3. Aug 14-20: programming
-4. Aug 21-27: programming, tidying up
-5. Aug 28-31: refining + final playtests
+1. **July 31 - Aug 6:** code
+2. **Aug 7-13:** code, conduct midway playtest with team
+3. **Aug 14-20:** code
+4. **Aug 21-27:** code, tidy up
+5. **Aug 28-31:** refine, conduct final playtests
 
 ## Wednesday, July 7, 2021, at 4pm-ish
 
@@ -193,17 +193,17 @@ Actions centered around the idea of washing (cleaning up the memory + brainwashi
 
 ## Sunday, July 18, 2021, at 11:32am
 
-###Today's focus: Reflecting on the idea of play and storytelling approaches
+### Today's focus: Reflecting on the idea of play and storytelling approaches
 
 I researched some game design methods by fetching out my old notes from [Prof. Enric Llagostera](https://enric.llagostera.com.br/)'s Intro to Game Design course. His lectures were filled with gems and helped to guide my design choices for this game.
 
 Here are some of the notes I took:
 
-###Playtesting
+### Playtesting
 
 - Playtesting is important! (need to add this to my to-do list: make a playtesting schedule)
 
-###Play:
+### Play:
 
 - Play is **carnivalesque**. It seeks equilibrium between creation and destruction.
   - My game: character digs out/replays memories with the goal of destroying it.
@@ -215,7 +215,7 @@ Here are some of the notes I took:
 - Play is **disruptive** + breaks the status quo.
   - Guess this ties to the whole idea of speculative play. In my case, I'm reflecting on how manipulation of memory can be ruinous in the context of abolishing grief.
 
-###Storytelling:
+### Storytelling:
 
 - Stories are connected to our **memories**.
 - Stories can be told using a variety of in-game elements.
