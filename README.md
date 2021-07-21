@@ -1,6 +1,9 @@
 # soyouwontforget
 
-Dive into a world where you can eliminate memories of your loved ones who passed away. Using an app called "Memorywash," you will no longer be haunted by grief!
+Running low on memory. Need more storage space.<br>
+Should I keep my memories of the beach or keep my memories of Grandma?<br>
+The MemoryWash app will help you decide where you should allocate your precious memory.<br>
+Let go of any dead weight and be a happier, burden-free person!<br>
 
 Check out my:
 

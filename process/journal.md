@@ -103,6 +103,8 @@ This is a world where memory is selective, so maybe storefronts can feature post
 
 ![Propaganda: selective memory](images/july15-propaganda-selective-memory.jpg)
 
+---
+
 ### Sketches on the game's look
 
 Either I can create a video editing tool, where the video is the memory...
@@ -115,11 +117,15 @@ I like the bubbly interface approach because (1) it fits my art style, and (2) i
 
 Alrighty, with one decision out of the way, let's tackle the other 99.
 
+---
+
 ### Choosing a technology to use
 
 Weighing the pros and cons, no decision yet
 
 ![Tool considerations](images/july15-tool-considerations.jpg)
+
+---
 
 ### Reflecting on how to tell the story
 
@@ -132,6 +138,8 @@ Questions to ponder on:
 
 - Does the player know the story is about the dead?
 - Does the cute look interfere with the sad storytelling?
+
+---
 
 ### New idea! Game action
 
@@ -158,6 +166,8 @@ I had some time to solidify my thoughts.
 
 Player uses an app called "Memorywash" to delete memories of the dead and eliminate the feeling of grief
 
+---
+
 ### More deetz on actions
 
 1. In the app, you keep digging into your memories
@@ -170,6 +180,8 @@ Player uses an app called "Memorywash" to delete memories of the dead and elimin
 
 In the end: you have relinquished all memories of the dead and regret that you chose to forget
 
+---
+
 ### Aesthetics
 
 Very happy and cute (ironic as you don't normally associate this with death)
@@ -178,12 +190,16 @@ Sad memory: blue character
 
 When you get sucked into the memory, it starts off looking bleak but gets more colorful (showing that you are becoming more comfortable with confronting the memory)
 
+---
+
 ### Fight actions against sad memory
 
 Actions centered around the idea of washing (cleaning up the memory + brainwashing):
 
 - Sprinkle with flowers
 - Shoot rainbow rays
+
+---
 
 ### Questions remaining:
 
@@ -199,9 +215,13 @@ I researched some game design methods by fetching out my old notes from [Prof. E
 
 Here are some of the notes I took:
 
+---
+
 ### Playtesting
 
 - Playtesting is important! (need to add this to my to-do list: make a playtesting schedule)
+
+---
 
 ### Play:
 
@@ -214,6 +234,8 @@ Here are some of the notes I took:
   - One game I really enjoyed playing is [Under a Star Called Sun](https://duckduckgo.com) by Cecile Richard. It also delves into the concept of grief, presenting it beautifully with storytelling, visuals, and music.
 - Play is **disruptive** + breaks the status quo.
   - Guess this ties to the whole idea of speculative play. In my case, I'm reflecting on how manipulation of memory can be ruinous in the context of abolishing grief.
+
+---
 
 ### Storytelling:
 
@@ -236,8 +258,64 @@ Here are some of the notes I took:
     - I want the player to choose between multiple memory paths along the way.
     - Less complicated than "shrub" structure, where there are too many paths.
 
+---
+
 ### Reflections when designing game stories:
 
 1. Why does this game/story matter?
 2. Perspective: who is telling the story?
 3. Storyboarding
+
+## Tuesday, July 20, 2021, at 4:16pm
+
+### A change in the idea
+
+After sharing my game idea with Pippin, he gave me some points to reflect on.
+
+1. The purpose of the battle mechanism: is it really essential?
+
+2. A possible twist in the game direction
+
+ENTER MISSING INFO HERE
+
+---
+
+### What is my game?
+
+The player manages their memory storage using an app called "MemoryWash" that proposes what is trendy and worth keeping versus what is irrelevant and should be deleted ASAP. Heads up! Memories of the dead fit in the latter category.
+
+---
+
+### Photoshop Mockup
+
+![Tool considerations](images/july20-mockup.jpg)
+
+Memories are stored in these cards. When you click "play," it shows you the memory. You can choose to delete it or scroll through the other memories to find one to delete.
+
+MB = memorybytes
+
+### Challenge
+
+Math. I'm not sure how to create a system that measures the amount of memorybytes used.
+
+If say a bad memory takes up 5MB while the happy ones take up 1MB, once you remove the bad memory, does the system automatically delete the 5 happy memories?
+
+## Wednesday, July 21, 2021, at 2:22pm
+
+### Notes about the mascot
+
+The mascot of the app acts like a game show host. In fact, the whole app is designed to look like a game show:
+
+"Which memory do you choose? One will die, the other will live on."
+
+The mascot (representative of the system) has a voice that communicates its biased feelings. Tries to push you towards keeping the "trendy, happy" memories. Berates you for keeping "negative" memories.
+
+---
+
+### Photoshop Mockup
+
+![Tool considerations](images/july21-mockup.jpg)
+
+Instead of showing multiple memory cards in the "current memory" pile, the system puts one pending memory against one bad memory.
+
+This one-on-one placement of memories allows me to bypass the math challenge discussed yesterday. It also reduces the amount of decision-making that the player needs to do, which is great because they can focus more on the content of the memory instead of being overwhelmed by the abundance of choices.
