@@ -7,6 +7,6 @@ Let go of any dead weight and be a happier, burden-free person!<br>
 
 Check out my:
 
-👉 game: coming soon to a computer near you
+👉 Game: coming soon to a computer near you
 
-👉 process journal: https://github.com/sharon-ku/soyouwontforget/blob/main/process/journal.md
+👉 Process journal: https://github.com/sharon-ku/soyouwontforget/blob/main/process/journal.md

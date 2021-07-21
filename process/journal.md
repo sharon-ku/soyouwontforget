@@ -286,13 +286,15 @@ The player manages their memory storage using an app called "MemoryWash" that pr
 
 ---
 
-### Photoshop Mockup
+### Photoshop mockup
 
 ![Tool considerations](images/july20-mockup.jpg)
 
 Memories are stored in these cards. When you click "play," it shows you the memory. You can choose to delete it or scroll through the other memories to find one to delete.
 
 MB = memorybytes
+
+---
 
 ### Challenge
 
@@ -312,7 +314,7 @@ The mascot (representative of the system) has a voice that communicates its bias
 
 ---
 
-### Photoshop Mockup
+### Photoshop mockup
 
 ![Tool considerations](images/july21-mockup.jpg)
 
