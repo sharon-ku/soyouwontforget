@@ -5,3 +5,20 @@
   padding: 0;
   margin: 0;
 }
+
+/* Align everything in body to center of window */
+body {
+  margin: auto;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* p5 canvas */
+/* #defaultCanvas0 {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
