@@ -13,18 +13,20 @@ To orient myself, I created this rough schedule of things to do per week:<br>
 
 JULY:
 
-1. **July 7-9:** presentation of theme, brainstorm ideas
-2. **July 10-16:** brainstorm ideas
-3. [⭐ we are here] **July 17-23:** research and solidify game concept, start prototyping idea, create assets
-4. **July 24-30:** code, create assets
+1. ✔️ **July 7-9:** presentation of theme, brainstorm ideas
+2. ✔️ **July 10-16:** brainstorm ideas
+3. ✔️ **July 17-23:** research and solidify game concept, start prototyping idea --> up to now, finished 13h
+4. [⭐ we are here] **July 24-30:** code, create assets --> 8h
 
 AUGUST:
 
-1. **July 31 - Aug 6:** code
-2. **Aug 7-13:** code, conduct midway playtest with team
-3. **Aug 14-20:** code
-4. **Aug 21-27:** code, tidy up
-5. **Aug 28-31:** refine, conduct final playtests
+1. **July 31 - Aug 6:** code --> 8h
+2. **Aug 7-13:** code, conduct midway playtest with team --> 10h
+3. **Aug 14-20:** code --> 8h
+4. **Aug 21-27:** code, refine, conduct final playtests --> 6h
+5. **Aug 28-31:** refine, write final thoughts in journal --> 2h
+
+PLUS 5 hours to place where needed
 
 ## Wednesday, July 7, 2021, at 4pm-ish
 
@@ -321,3 +323,9 @@ The mascot (representative of the system) has a voice that communicates its bias
 Instead of showing multiple memory cards in the "current memory" pile, the system puts one pending memory against one bad memory.
 
 This one-on-one placement of memories allows me to bypass the math challenge discussed yesterday. It also reduces the amount of decision-making that the player needs to do, which is great because they can focus more on the content of the memory instead of being overwhelmed by the abundance of choices.
+
+## Friday, July 23, 2021, at 10:35am
+
+### Bye bye mobile-friendliness
+
+I calculate the amount of time I have left to finish my tasks and updated the schedule at the top of the page. I initially wanted to make my game mobile-friendly but had to abandon the idea given the time limit.
