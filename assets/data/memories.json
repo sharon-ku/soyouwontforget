@@ -1,0 +1,66 @@
+{
+  "description": "List of pending and current memories",
+  "just-a-list-of-names-testing": [
+    "wash the dishes",
+    "deliver food to tables",
+    "wipe tables",
+    "clean windows",
+    "take orders",
+    "pour water",
+    "I can do anything!",
+    "I shine as bright as a star.",
+    "I can be anything I want to be.",
+    "I will be a superstar chef one day.",
+    "I will succeed at work tomorrow.",
+    "I will make some new friends tomorrow.",
+    "I am not a failure.",
+    "Tomorrow will be an amazing day.",
+    "I will exercise tomorrow.",
+    "I feel good about myself.",
+    "I am the best!"
+  ],
+  "pending-memories": [
+    {
+      "previewVideoTitle": "Instagram pic",
+      "memoryFileName": "MemoryInstagramPic"
+    },
+    {
+      "previewVideoTitle": "A Joke",
+      "memoryFileName": "MemoryAJoke"
+    },
+    {
+      "previewVideoTitle": "Happy song lyrics",
+      "memoryFileName": "MemoryHappySongLyrics"
+    },
+    {
+      "previewVideoTitle": "Buffet",
+      "memoryFileName": "MemoryBuffet"
+    },
+    {
+      "previewVideoTitle": "Karaoke",
+      "memoryFileName": "MemoryKaraoke"
+    }
+  ],
+  "current-memories": [
+    {
+      "previewVideoTitle": "Day at the beach",
+      "memoryFileName": "MemoryDayAtTheBeach"
+    },
+    {
+      "previewVideoTitle": "Dreaming about a special someone",
+      "memoryFileName": "MemoryDreamingAboutSpecialSomeone"
+    },
+    {
+      "previewVideoTitle": "Eating strawberries on parents' bed",
+      "memoryFileName": "MemoryEatingStrawberries"
+    },
+    {
+      "previewVideoTitle": "Looking at the clouds",
+      "memoryFileName": "MemoryLookingAtClouds"
+    },
+    {
+      "previewVideoTitle": "Playing music",
+      "memoryFileName": "MemoryPlayingMusic"
+    }
+  ]
+}

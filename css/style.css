@@ -10,15 +10,29 @@
 body {
   margin: auto;
   height: 100vh;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
 }
 
 /* p5 canvas */
-/* #defaultCanvas0 {
-  margin: auto;
+#defaultCanvas0 {
+  /* margin: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
+
+  position: fixed;
+  /* top: 50%; */
+  /* transform: translateX(-50%);
+  left: 50%;
+  z-index: -100; */
+  top: 0;
+  left: 0;
+  transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+  z-index: -100;
+}
+
+/* .memory-category {
+
 } */
