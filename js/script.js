@@ -46,20 +46,44 @@ let bgFill = {
 let leftPreviewVideo = undefined;
 let rightPreviewVideo = undefined;
 
+// Current memories displayed in game state
 let randomPendingMemory = undefined;
 let randomCurrentMemory = undefined;
 
+// Store memories.json data
+let memoriesList = undefined;
+
+// Store name of current memory that is playing
+let memoryPlaying = undefined;
+
+// preload()
+//
+// Preload assets
+function preload() {
+  // Load memories JSON file
+  memoriesList = loadJSON(`assets/data/memories.json`);
+}
+
 // setup()
 //
-// Description of setup() goes here.
+// Set up canvas and create game objects
 function setup() {
   createCanvas(1280, 720);
+
+  // Fetch the first pending and current memory
+  fetchRandomPendingMemory();
+  fetchRandomCurrentMemory();
 
   // left preview video
   let leftPreviewVideoProperties = {
     x: width / 4,
     y: height / 3,
   };
+  // leftPreviewVideo = new PreviewVideo(
+  //   leftPreviewVideoProperties.x,
+  //   leftPreviewVideoProperties.y,
+  //   randomPendingMemory.previewVideoTitle
+  // );
   leftPreviewVideo = new PreviewVideo(
     leftPreviewVideoProperties.x,
     leftPreviewVideoProperties.y,
@@ -71,11 +95,19 @@ function setup() {
     x: (width * 3) / 4,
     y: height / 3,
   };
+  // rightPreviewVideo = new PreviewVideo(
+  //   rightPreviewVideoProperties.x,
+  //   rightPreviewVideoProperties.y,
+  //   randomCurrentMemory.previewVideoTitle
+  // );
   rightPreviewVideo = new PreviewVideo(
     rightPreviewVideoProperties.x,
     rightPreviewVideoProperties.y,
     randomCurrentMemory
   );
+
+  // Create all objects in memories (game state)
+  createAllMemoryObjects();
 }
 
 // draw()
@@ -100,6 +132,9 @@ function draw() {
     bgFill.current = bgFill.end;
     end();
   }
+
+  // Cue memory based on which memory is playing
+  cueMemory();
 }
 
 // Here's where the player chooses their memories
@@ -123,6 +158,16 @@ function mousePressed() {
     leftPreviewVideo.mousePressed();
     rightPreviewVideo.mousePressed();
   }
+}
+
+// Fetch a random pending memory from memories.json
+function fetchRandomPendingMemory() {
+  randomPendingMemory = random(memoriesList.pendingMemories);
+}
+
+// Fetch a random current memory from memories.json
+function fetchRandomCurrentMemory() {
+  randomCurrentMemory = random(memoriesList.currentMemories);
 }
 
 // NOT USED YET

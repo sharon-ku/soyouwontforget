@@ -1,6 +1,6 @@
 {
   "description": "List of pending and current memories",
-  "just-a-list-of-names-testing": [
+  "testingListOfNames": [
     "wash the dishes",
     "deliver food to tables",
     "wipe tables",
@@ -19,7 +19,7 @@
     "I feel good about myself.",
     "I am the best!"
   ],
-  "pending-memories": [
+  "pendingMemories": [
     {
       "previewVideoTitle": "Instagram pic",
       "memoryFileName": "MemoryInstagramPic"
@@ -41,7 +41,7 @@
       "memoryFileName": "MemoryKaraoke"
     }
   ],
-  "current-memories": [
+  "currentMemories": [
     {
       "previewVideoTitle": "Day at the beach",
       "memoryFileName": "MemoryDayAtTheBeach"
