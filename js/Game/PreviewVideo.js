@@ -1,7 +1,7 @@
 // Preview of video memory in game state
 
 class PreviewVideo {
-  constructor(x, y, section, instructions, playIconImage, memoryName) {
+  constructor({ x, y, section, instructions, playIconImage, memoryName }) {
     // Positions of rectangle for preview video
     this.x = x;
     this.y = y;

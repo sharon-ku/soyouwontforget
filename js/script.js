@@ -63,6 +63,10 @@ let memoriesList = undefined;
 // Store name of current memory that is playing
 let memoryPlaying = undefined;
 
+// Buttons in game state
+let deleteButton = undefined;
+let keepButton = undefined;
+
 // preload()
 //
 // Preload assets
@@ -92,15 +96,10 @@ function setup() {
     y: height / 2,
     section: `PENDING MEMORIES`,
     instructions: `Make room for this memory.`,
+    playIconImage: playIconImage,
+    memoryName: randomPendingMemory,
   };
-  leftPreviewVideo = new PreviewVideo(
-    leftPreviewVideoProperties.x,
-    leftPreviewVideoProperties.y,
-    leftPreviewVideoProperties.section,
-    leftPreviewVideoProperties.instructions,
-    playIconImage,
-    randomPendingMemory
-  );
+  leftPreviewVideo = new PreviewVideo(leftPreviewVideoProperties);
 
   // Create right preview video
   let rightPreviewVideoProperties = {
@@ -108,18 +107,29 @@ function setup() {
     y: height / 2,
     section: `CURRENT MEMORIES`,
     instructions: `Delete memories that burden you.`,
+    playIconImage: playIconImage,
+    memoryName: randomCurrentMemory,
   };
-  rightPreviewVideo = new PreviewVideo(
-    rightPreviewVideoProperties.x,
-    rightPreviewVideoProperties.y,
-    rightPreviewVideoProperties.section,
-    rightPreviewVideoProperties.instructions,
-    playIconImage,
-    randomCurrentMemory
-  );
+  rightPreviewVideo = new PreviewVideo(rightPreviewVideoProperties);
 
   // // Store left and right preview videos in array
   // previewVideos.push(leftPreviewVideo, rightPreviewVideo);
+
+  let deleteButtonProperties = {
+    x: rightPreviewVideoProperties.x - 140,
+    y: height - 80,
+    string: `DELETE`,
+    memoryName: randomCurrentMemory,
+  };
+  deleteButton = new Button(deleteButtonProperties);
+
+  let keepButtonProperties = {
+    x: rightPreviewVideoProperties.x + 140,
+    y: height - 80,
+    string: `KEEP`,
+    memoryName: randomCurrentMemory,
+  };
+  keepButton = new Button(keepButtonProperties);
 
   // Create all objects in memories (game state)
   createAllMemoryObjects();
@@ -171,6 +181,10 @@ function game() {
   // for (let i = 0; i < previewVideos.length; i++) {
   //   previewVideos[i].update(mouse);
   // }
+
+  // Update delete and keep buttons
+  deleteButton.update(mouse);
+  keepButton.update(mouse);
 }
 
 function mousePressed() {
