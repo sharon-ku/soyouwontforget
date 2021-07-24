@@ -276,9 +276,13 @@ After sharing my game idea with Pippin, he gave me some points to reflect on.
 
 1. The purpose of the battle mechanism: is it really essential?
 
+Since the memory erasing tool is part of the world, the process of removing the memory should be trivial. There shouldn't be a complex battle involved.
+
+I thought a simple "Delete" button would be way more effective.
+
 2. A possible twist in the game direction
 
-ENTER MISSING INFO HERE
+Instead of focusing on the notion of escaping grief, the game can explore the action of selecting memories. For instance, when the user runs out of memory, the system can be biased and encourage the user to erase memories related to the dead.
 
 ---
 
@@ -290,7 +294,7 @@ The player manages their memory storage using an app called "MemoryWash" that pr
 
 ### Photoshop mockup
 
-![Tool considerations](images/july20-mockup.jpg)
+![Photoshop mockup](images/july20-mockup.jpg)
 
 Memories are stored in these cards. When you click "play," it shows you the memory. You can choose to delete it or scroll through the other memories to find one to delete.
 
@@ -318,7 +322,7 @@ The mascot (representative of the system) has a voice that communicates its bias
 
 ### Photoshop mockup
 
-![Tool considerations](images/july21-mockup.jpg)
+![Photoshop mockup](images/july21-mockup.jpg)
 
 Instead of showing multiple memory cards in the "current memory" pile, the system puts one pending memory against one bad memory.
 
@@ -329,3 +333,9 @@ This one-on-one placement of memories allows me to bypass the math challenge dis
 ### Bye bye mobile-friendliness
 
 I calculate the amount of time I have left to finish my tasks and updated the schedule at the top of the page. I initially wanted to make my game mobile-friendly but had to abandon the idea given the time limit.
+
+## Saturday, July 24, 2021, at 4:08pm
+
+### What I've accomplished so far
+
+![Coding process](images/july24-interface.jpg)

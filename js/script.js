@@ -77,32 +77,30 @@ function setup() {
   // left preview video
   let leftPreviewVideoProperties = {
     x: width / 4,
-    y: height / 3,
+    y: height / 2,
+    section: `PENDING MEMORIES`,
+    instructions: `Make room for this memory.`,
   };
-  // leftPreviewVideo = new PreviewVideo(
-  //   leftPreviewVideoProperties.x,
-  //   leftPreviewVideoProperties.y,
-  //   randomPendingMemory.previewVideoTitle
-  // );
   leftPreviewVideo = new PreviewVideo(
     leftPreviewVideoProperties.x,
     leftPreviewVideoProperties.y,
+    leftPreviewVideoProperties.section,
+    leftPreviewVideoProperties.instructions,
     randomPendingMemory
   );
 
   // right preview video
   let rightPreviewVideoProperties = {
     x: (width * 3) / 4,
-    y: height / 3,
+    y: height / 2,
+    section: `CURRENT MEMORIES`,
+    instructions: `Delete memories that burden you.`,
   };
-  // rightPreviewVideo = new PreviewVideo(
-  //   rightPreviewVideoProperties.x,
-  //   rightPreviewVideoProperties.y,
-  //   randomCurrentMemory.previewVideoTitle
-  // );
   rightPreviewVideo = new PreviewVideo(
     rightPreviewVideoProperties.x,
     rightPreviewVideoProperties.y,
+    rightPreviewVideoProperties.section,
+    rightPreviewVideoProperties.instructions,
     randomCurrentMemory
   );
 
