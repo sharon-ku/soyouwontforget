@@ -10,9 +10,11 @@
 body {
   margin: auto;
   height: 100vh;
-  /* display: flex;
+  /* TO COMMENT BOTTOM LINES OUT IF I KEEP DEFAULT CANVAS CSS (LINES 33-38) */
+  display: flex;
   align-items: center;
-  justify-content: center; */
+  justify-content: center;
+  background: red;
 }
 
 /* p5 canvas */
@@ -22,15 +24,18 @@ body {
   align-items: center;
   justify-content: center; */
 
-  position: fixed;
+  /* THIS DOES NOT WORK */
   /* top: 50%; */
   /* transform: translateX(-50%);
   left: 50%;
   z-index: -100; */
+
+  /* THIS WORKS, UNCOMMENT WHEN DONE TESTS */
+  /* position: fixed;
   top: 0;
   left: 0;
   transform: translate(calc(50vw - 50%), calc(50vh - 50%));
-  z-index: -100;
+  z-index: -100; */
 }
 
 /* .memory-category {

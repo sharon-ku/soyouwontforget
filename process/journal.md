@@ -338,4 +338,6 @@ I calculate the amount of time I have left to finish my tasks and updated the sc
 
 ### What I've accomplished so far
 
-![Coding process](images/july24-interface.jpg)
+![Coding process](images/july24-interface1.jpg)
+
+![Coding process](images/july24-interface2.jpg)

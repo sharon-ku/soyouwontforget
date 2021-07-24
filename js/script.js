@@ -42,9 +42,16 @@ let bgFill = {
   },
 };
 
+let playIconImage = undefined;
+
 // Preview video in game state
 let leftPreviewVideo = undefined;
 let rightPreviewVideo = undefined;
+
+// // Store all preview videos here
+// let previewVideos = [];
+// // Total number of preview videos
+// const NUM_PREVIEW_VIDEOS = 2;
 
 // Current memories displayed in game state
 let randomPendingMemory = undefined;
@@ -62,19 +69,24 @@ let memoryPlaying = undefined;
 function preload() {
   // Load memories JSON file
   memoriesList = loadJSON(`assets/data/memories.json`);
+
+  // Load play icon image
+  playIconImage = loadImage(`assets/images/play-icon.png`);
 }
 
 // setup()
 //
 // Set up canvas and create game objects
 function setup() {
+  // noCursor();
+
   createCanvas(1280, 720);
 
   // Fetch the first pending and current memory
   fetchRandomPendingMemory();
   fetchRandomCurrentMemory();
 
-  // left preview video
+  // Create left preview video
   let leftPreviewVideoProperties = {
     x: width / 4,
     y: height / 2,
@@ -86,10 +98,11 @@ function setup() {
     leftPreviewVideoProperties.y,
     leftPreviewVideoProperties.section,
     leftPreviewVideoProperties.instructions,
+    playIconImage,
     randomPendingMemory
   );
 
-  // right preview video
+  // Create right preview video
   let rightPreviewVideoProperties = {
     x: (width * 3) / 4,
     y: height / 2,
@@ -101,8 +114,12 @@ function setup() {
     rightPreviewVideoProperties.y,
     rightPreviewVideoProperties.section,
     rightPreviewVideoProperties.instructions,
+    playIconImage,
     randomCurrentMemory
   );
+
+  // // Store left and right preview videos in array
+  // previewVideos.push(leftPreviewVideo, rightPreviewVideo);
 
   // Create all objects in memories (game state)
   createAllMemoryObjects();
@@ -147,14 +164,23 @@ function game() {
   pop();
 
   // Update left and right preview videos
-  leftPreviewVideo.update();
-  rightPreviewVideo.update();
+  leftPreviewVideo.update(mouse);
+  rightPreviewVideo.update(mouse);
+
+  // // Update left and right preview videos
+  // for (let i = 0; i < previewVideos.length; i++) {
+  //   previewVideos[i].update(mouse);
+  // }
 }
 
 function mousePressed() {
   if (state === `game`) {
-    leftPreviewVideo.mousePressed();
-    rightPreviewVideo.mousePressed();
+    leftPreviewVideo.mousePressed(mouse);
+    rightPreviewVideo.mousePressed(mouse);
+    // // Update left and right preview videos
+    // for (let i = 0; i < previewVideos.length; i++) {
+    //   previewVideos[i].mousePressed(mouse);
+    // }
   }
 }
 

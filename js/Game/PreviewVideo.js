@@ -1,7 +1,7 @@
 // Preview of video memory in game state
 
 class PreviewVideo {
-  constructor(x, y, section, instructions, memoryName) {
+  constructor(x, y, section, instructions, playIconImage, memoryName) {
     // Positions of rectangle for preview video
     this.x = x;
     this.y = y;
@@ -13,6 +13,22 @@ class PreviewVideo {
       r: 0,
       g: 0,
       b: 0,
+    };
+
+    // Play icon
+    this.playIcon = {
+      image: playIconImage,
+      // position offset from rectangle's position
+      xOffset: 0,
+      yOffset: 0,
+      // used in tint function
+      grayValue: 255,
+      // opacity
+      opacity: {
+        current: 80,
+        min: 80,
+        max: 255,
+      },
     };
 
     // Section that this preview video fits under
@@ -64,19 +80,31 @@ class PreviewVideo {
     };
   }
 
-  update() {
+  update(mouse) {
     this.display();
+
+    // When hovering on preview video, change the play icon's opacity and cursor type
+    this.hoverOnPreviewVideo(mouse);
   }
 
   // Display preview video
   display() {
-    // Display text containing section name
-
     // Display rectangle
     push();
     fill(this.fill.r, this.fill.g, this.fill.b);
     rectMode(CENTER);
     rect(this.x, this.y, this.width, this.height);
+    pop();
+
+    //Display play icon image and update its opacity based on hover
+    push();
+    tint(this.playIcon.grayValue, this.playIcon.opacity.current);
+    imageMode(CENTER);
+    image(
+      this.playIcon.image,
+      this.x + this.playIcon.xOffset,
+      this.y + this.playIcon.yOffset
+    );
     pop();
 
     // Display section and instructions
@@ -105,8 +133,23 @@ class PreviewVideo {
     pop();
   }
 
+  // When hovering on preview video, change the play icon's opacity and cursor type
+  hoverOnPreviewVideo(mouse) {
+    if (this.mouseOverlapsRectangle(mouse)) {
+      // Increase opacity of play icon
+      this.playIcon.opacity.current = this.playIcon.opacity.max;
+      // Change cursor to pointer
+      cursor(`pointer`);
+    } else {
+      // Diminish opacity of play icon
+      this.playIcon.opacity.current = this.playIcon.opacity.min;
+      // Change cursor to default
+      cursor(`default`);
+    }
+  }
+
   // When mouse pressed on preview video, play the memory
-  mousePressed() {
+  mousePressed(mouse) {
     if (this.mouseOverlapsRectangle(mouse)) {
       this.playMemory();
     }
