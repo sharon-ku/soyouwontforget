@@ -6,13 +6,24 @@ class PreviewVideo {
     this.x = x;
     this.y = y;
     // Size of rectangle
-    this.width = width / 2.3;
-    this.height = height / 2.3;
-    // Color of rectangle
+    this.width = width / 2.5 - 40;
+    this.height = height / 2.5;
+    // Rounded corner
+    this.cornerRadius = 10;
+    // Color of rectangle: light blue
     this.fill = {
-      r: 0,
-      g: 0,
-      b: 0,
+      r: 142,
+      g: 207,
+      b: 201,
+    };
+    // Stroke properties of rectangle
+    this.stroke = {
+      weight: 5,
+      fill: {
+        r: 213,
+        g: 73,
+        b: 97,
+      },
     };
 
     // Play icon
@@ -25,8 +36,8 @@ class PreviewVideo {
       grayValue: 255,
       // opacity
       opacity: {
-        current: 80,
-        min: 80,
+        current: 120,
+        min: 120,
         max: 255,
       },
     };
@@ -35,30 +46,44 @@ class PreviewVideo {
     this.section = {
       name: section,
       fill: {
-        r: 0,
-        g: 0,
-        b: 0,
+        // r: 213,
+        // g: 73,
+        // b: 97,
+        r: 255,
+        g: 255,
+        b: 255,
       },
-      size: 18,
-      style: BOLD,
+      size: 20,
       // position offset from rectangle's position
       xOffset: 0,
-      yOffset: -120,
+      yOffset: -140,
+      // rectangle behind the section text
+      rectangle: {
+        fill: {
+          r: 213,
+          g: 73,
+          b: 97,
+        },
+        width: 255,
+        height: 35,
+        // position offset from rectangle's position
+        xOffset: 0,
+        yOffset: -273,
+      },
     };
 
     // Instructions accompanying the video
     this.instructions = {
       name: instructions,
       fill: {
-        r: 0,
-        g: 0,
-        b: 0,
+        r: 213,
+        g: 73,
+        b: 97,
       },
-      size: 25,
-      style: NORMAL,
+      size: 28,
       // position offset from rectangle's position
       xOffset: 0,
-      yOffset: -70,
+      yOffset: -90,
     };
 
     // Memory to be played when video clicked
@@ -68,15 +93,14 @@ class PreviewVideo {
     this.title = {
       name: memoryName.previewVideoTitle,
       fill: {
-        r: 255,
-        g: 0,
-        b: 0,
+        r: 213,
+        g: 73,
+        b: 97,
       },
-      size: 20,
-      style: BOLD,
+      size: 25,
       // position offset from rectangle's position
       xOffset: 0,
-      yOffset: this.height + 20,
+      yOffset: 50,
     };
   }
 
@@ -89,14 +113,16 @@ class PreviewVideo {
 
   // Display preview video
   display() {
-    // Display rectangle
+    // Display rectangle for preview video
     push();
     fill(this.fill.r, this.fill.g, this.fill.b);
+    strokeWeight(this.stroke.weight);
+    stroke(this.stroke.fill.r, this.stroke.fill.g, this.stroke.fill.b);
     rectMode(CENTER);
-    rect(this.x, this.y, this.width, this.height);
+    rect(this.x, this.y, this.width, this.height, this.cornerRadius);
     pop();
 
-    //Display play icon image and update its opacity based on hover
+    // Display play icon image and update its opacity based on hover
     push();
     tint(this.playIcon.grayValue, this.playIcon.opacity.current);
     imageMode(CENTER);
@@ -104,6 +130,25 @@ class PreviewVideo {
       this.playIcon.image,
       this.x + this.playIcon.xOffset,
       this.y + this.playIcon.yOffset
+    );
+    pop();
+
+    // Display rectangle behind section text
+    push();
+    fill(
+      this.section.rectangle.fill.r,
+      this.section.rectangle.fill.g,
+      this.section.rectangle.fill.b
+    );
+    // strokeWeight(this.stroke.weight);
+    // stroke(this.stroke.fill.r, this.stroke.fill.g, this.stroke.fill.b);
+    rectMode(CENTER);
+    noStroke();
+    rect(
+      this.x + this.section.rectangle.xOffset,
+      this.y + this.section.rectangle.yOffset,
+      this.section.rectangle.width,
+      this.section.rectangle.height
     );
     pop();
 
@@ -122,7 +167,7 @@ class PreviewVideo {
     textAlign(CENTER);
     rectMode(CENTER);
     textSize(string.size);
-    textStyle(string.style);
+    textFont(fontStyleBold);
     text(
       string.name,
       this.x + string.xOffset,

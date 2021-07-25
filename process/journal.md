@@ -343,3 +343,9 @@ I calculate the amount of time I have left to finish my tasks and updated the sc
 ![Coding process](images/july24-interface2.jpg)
 
 ![Coding process](images/july24-interface3.jpg)
+
+## Sunday, July 25, 2021, at 5:36pm
+
+![Coding process](images/july25-interface4.jpg)
+
+![Coding process](images/july25-interface5.jpg)

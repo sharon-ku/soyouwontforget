@@ -1,5 +1,8 @@
 /* CSS Styles */
 
+/* Import Balsamiq Sans font */
+@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
 * {
   box-sizing: border;
   padding: 0;
@@ -8,6 +11,7 @@
 
 /* Align everything in body to center of window */
 body {
+  font-family: "Balsamiq Sans", cursive;
   margin: auto;
   height: 100vh;
   /* TO COMMENT BOTTOM LINES OUT IF I KEEP DEFAULT CANVAS CSS (LINES 33-38) */

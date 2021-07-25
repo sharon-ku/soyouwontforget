@@ -18,6 +18,10 @@ let mouse = {
   y: undefined,
 };
 
+// Font
+let fontStyleNormal = undefined;
+let fontStyleBold = undefined;
+
 // Background color for different states
 let bgFill = {
   current: {
@@ -31,15 +35,22 @@ let bgFill = {
     b: 249,
   },
   game: {
-    r: 226,
-    g: 248,
-    b: 249,
+    r: 255,
+    g: 249,
+    b: 230,
   },
   end: {
     r: 244,
     g: 208,
     b: 220,
   },
+};
+
+// Stroke color
+let strokeFill = {
+  r: 213,
+  g: 73,
+  b: 97,
 };
 
 let playIconImage = undefined;
@@ -71,6 +82,10 @@ let keepButton = undefined;
 //
 // Preload assets
 function preload() {
+  // Load text font
+  fontStyleNormal = loadFont(`assets/fonts/BalsamiqSans-Regular.ttf`);
+  fontStyleBold = loadFont(`assets/fonts/BalsamiqSans-Bold.ttf`);
+
   // Load memories JSON file
   memoriesList = loadJSON(`assets/data/memories.json`);
 
@@ -85,6 +100,12 @@ function setup() {
   // noCursor();
 
   createCanvas(1280, 720);
+
+  // Set up font for everything
+  textFont(fontStyleNormal);
+
+  // // Set color to all strokes
+  // stroke(strokeFill.r, strokeFill.g, strokeFill.b);
 
   // Fetch the first pending and current memory
   fetchRandomPendingMemory();
@@ -115,21 +136,21 @@ function setup() {
   // // Store left and right preview videos in array
   // previewVideos.push(leftPreviewVideo, rightPreviewVideo);
 
+  // Create delete button
   let deleteButtonProperties = {
-    x: rightPreviewVideoProperties.x - 140,
-    y: height - 80,
-    string: `DELETE`,
+    x: rightPreviewVideoProperties.x - 110,
+    y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
     memoryName: randomCurrentMemory,
   };
-  deleteButton = new Button(deleteButtonProperties);
+  deleteButton = new DeleteButton(deleteButtonProperties);
 
+  // Create keep button
   let keepButtonProperties = {
-    x: rightPreviewVideoProperties.x + 140,
-    y: height - 80,
-    string: `KEEP`,
+    x: rightPreviewVideoProperties.x + 110,
+    y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
     memoryName: randomCurrentMemory,
   };
-  keepButton = new Button(keepButtonProperties);
+  keepButton = new KeepButton(keepButtonProperties);
 
   // Create all objects in memories (game state)
   createAllMemoryObjects();
@@ -162,15 +183,26 @@ function draw() {
   cueMemory();
 }
 
+// let separationLine = {
+//   x1:
+// }
+
 // Here's where the player chooses their memories
 function game() {
-  // Drawing rectangle guides
+  // // Drawing rectangle guides
+  // push();
+  // noFill();
+  // // left rectangle
+  // rect(0, 0, width / 2, height);
+  // // right rectangle
+  // rect(width / 2, 0, width / 2, height);
+  // pop();
+
+  // Draw separation line
   push();
-  noFill();
-  // left rectangle
-  rect(0, 0, width / 2, height);
-  // right rectangle
-  rect(width / 2, 0, width / 2, height);
+  strokeWeight(5);
+  stroke(strokeFill.r, strokeFill.g, strokeFill.b);
+  line(width / 2, 40, width / 2, height - 40);
   pop();
 
   // Update left and right preview videos
