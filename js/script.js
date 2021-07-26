@@ -53,6 +53,12 @@ let strokeFill = {
   b: 97,
 };
 
+// Line separating left and right preview videos
+let separationLine = {
+  x: undefined,
+  yPadding: 40,
+};
+
 let playIconImage = undefined;
 
 // Preview video in game state
@@ -198,11 +204,17 @@ function game() {
   // rect(width / 2, 0, width / 2, height);
   // pop();
 
+  separationLine.x = width / 2;
   // Draw separation line
   push();
   strokeWeight(5);
   stroke(strokeFill.r, strokeFill.g, strokeFill.b);
-  line(width / 2, 40, width / 2, height - 40);
+  line(
+    separationLine.x,
+    separationLine.yPadding,
+    separationLine.x,
+    height - separationLine.yPadding
+  );
   pop();
 
   // Update left and right preview videos
