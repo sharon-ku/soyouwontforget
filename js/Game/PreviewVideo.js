@@ -1,7 +1,11 @@
 // Preview of video memory in game state
+// Attribution: Pippin Barr helped me with the cursor hovering code
 
 class PreviewVideo {
   constructor({ x, y, section, instructions, playIconImage, memoryName }) {
+    // True if mouse hovering over video rectangle; sets cursor type
+    this.hovered = undefined;
+
     // Positions of rectangle for preview video
     this.x = x;
     this.y = y;
@@ -183,13 +187,13 @@ class PreviewVideo {
     if (this.mouseOverlapsRectangle(mouse)) {
       // Increase opacity of play icon
       this.playIcon.opacity.current = this.playIcon.opacity.max;
-      // Change cursor to pointer
-      cursor(`pointer`);
+      // When hovered is true, set cursor type to pointer
+      this.hovered = true;
     } else {
       // Diminish opacity of play icon
       this.playIcon.opacity.current = this.playIcon.opacity.min;
-      // Change cursor to default
-      cursor(`default`);
+      // Set cursor to default
+      this.hovered = false;
     }
   }
 

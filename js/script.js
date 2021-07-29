@@ -221,6 +221,13 @@ function game() {
   leftPreviewVideo.update(mouse);
   rightPreviewVideo.update(mouse);
 
+  // Change cursor to pointer when mouse hovers over preview video
+  if (leftPreviewVideo.hovered || rightPreviewVideo.hovered) {
+    cursor(`pointer`);
+  } else {
+    cursor(`default`);
+  }
+
   // // Update left and right preview videos
   // for (let i = 0; i < previewVideos.length; i++) {
   //   previewVideos[i].update(mouse);

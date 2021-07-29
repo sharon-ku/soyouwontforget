@@ -349,3 +349,27 @@ I calculate the amount of time I have left to finish my tasks and updated the sc
 ![Coding process](images/july25-interface4.jpg)
 
 ![Coding process](images/july25-interface5.jpg)
+
+## Thursday, July 29, 2021, at 5:31pm
+
+### Goal setting
+
+One thing I need to remind myself is to not get carried away with prettifying things too early. There is no harm in low fidelity, Sharon!!
+
+After reading _The New One Minute Manager_, I am convinced that the best way to manage my time is to set clear goals.
+
+So here goes my goals... My next goal is to complete a quick prototype of the interactions between the app and the memories.
+
+To break this down:
+
+- Write a memory I want to implement
+- Prototype two quick memories, one in the "Pending memories" pile and one in the "Current memories" pile
+- Code the "Delete" and "Keep" buttons to allow users to manage memories in "Current memories" pile
+
+### Design of the memories
+
+I want the memories to be represented using abstraction and dialog. The memories that are better stored have stronger outlines and shapes, while faded memories have foggy and vague shapes. I wonder what emotions arise when users see abstract shapes that tell a story.
+
+### Terms & Conditions
+
+Since the context of the game is that it's a memory-management app, I want to introduce the app with a series of terms and conditions. At the very bottom of the list, the fine print will disclose of some unfavorable consequences of using the app.
