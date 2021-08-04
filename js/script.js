@@ -9,8 +9,12 @@ Lengthier description will be provided once I actually have stuff in here!
 "use strict";
 
 // State
-// All possibilities: intro, game, end
+// All possibilities: intro, game, memory, end
 let state = `game`;
+
+// Store name of current memory that is playing
+let memoryPlaying = undefined;
+// let memoryPlaying = `testMemory`;
 
 // Mouse positions
 let mouse = {
@@ -35,6 +39,11 @@ let bgFill = {
     b: 249,
   },
   game: {
+    r: 255,
+    g: 249,
+    b: 230,
+  },
+  memory: {
     r: 255,
     g: 249,
     b: 230,
@@ -77,8 +86,11 @@ let randomCurrentMemory = undefined;
 // Store memories.json data
 let memoriesList = undefined;
 
-// Store name of current memory that is playing
-let memoryPlaying = undefined;
+// Store dialogs.json data
+let dialogsList = undefined;
+
+// Dialog box in game state
+let dialogBox = undefined;
 
 // Buttons in game state
 let deleteButton = undefined;
@@ -94,6 +106,9 @@ function preload() {
 
   // Load memories JSON file
   memoriesList = loadJSON(`assets/data/memories.json`);
+
+  // Load dialogs JSON file
+  dialogsList = loadJSON(`assets/data/dialogs.json`);
 
   // Load play icon image
   playIconImage = loadImage(`assets/images/play-icon.png`);
@@ -180,6 +195,9 @@ function draw() {
   } else if (state === `game`) {
     bgFill.current = bgFill.game;
     game();
+  } else if (state === `memory`) {
+    bgFill.current = bgFill.memory;
+    memory();
   } else if (state === `end`) {
     bgFill.current = bgFill.end;
     end();
@@ -238,6 +256,9 @@ function game() {
   keepButton.update(mouse);
 }
 
+// Here's where a memory plays
+function memory() {}
+
 function mousePressed() {
   if (state === `game`) {
     leftPreviewVideo.mousePressed(mouse);
@@ -246,6 +267,10 @@ function mousePressed() {
     // for (let i = 0; i < previewVideos.length; i++) {
     //   previewVideos[i].mousePressed(mouse);
     // }
+  }
+
+  if (state === `memory`) {
+    dialogBox.mousePressed(mouse);
   }
 }
 

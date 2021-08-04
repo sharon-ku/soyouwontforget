@@ -16,11 +16,11 @@ JULY:
 1. ✔️ **July 7-9:** presentation of theme, brainstorm ideas
 2. ✔️ **July 10-16:** brainstorm ideas
 3. ✔️ **July 17-23:** research and solidify game concept, start prototyping idea --> up to now, finished 13h
-4. [⭐ we are here] **July 24-30:** code, create assets --> 8h
+4. ✔️ **July 24-30:** code, create assets --> 8h
 
 AUGUST:
 
-1. **July 31 - Aug 6:** code --> 8h
+1. [⭐ we are here] **July 31 - Aug 6:** code --> 8h
 2. **Aug 7-13:** code, conduct midway playtest with team --> 10h
 3. **Aug 14-20:** code --> 8h
 4. **Aug 21-27:** code, refine, conduct final playtests --> 6h
@@ -366,10 +366,35 @@ To break this down:
 - Prototype two quick memories, one in the "Pending memories" pile and one in the "Current memories" pile
 - Code the "Delete" and "Keep" buttons to allow users to manage memories in "Current memories" pile
 
+---
+
 ### Design of the memories
 
-I want the memories to be represented using abstraction and dialog. The memories that are better stored have stronger outlines and shapes, while faded memories have foggy and vague shapes. I wonder what emotions arise when users see abstract shapes that tell a story.
+I want the memories to be represented using abstracted shapes and dialogs. The memories that are better stored have stronger outlines and shapes, while faded memories have foggy and vague shapes. I wonder what emotions arise when users see abstract shapes that tell a story.
+
+---
 
 ### Terms & Conditions
 
 Since the context of the game is that it's a memory-management app, I want to introduce the app with a series of terms and conditions. At the very bottom of the list, the fine print will disclose of some unfavorable consequences of using the app.
+
+## Wednesday, August 3, 2021, at 9:20pm
+
+### New name for memory sections
+
+I had an idea. Instead of categorizing the memories under "Pending memories" and "Current memories," I can label them as "Fresh memories" and "Old memories." I think this will reduce confusion for the user in terms of what types of memories they're looking at.
+
+---
+
+### New button for preview videos
+
+I originally wanted the player to only have the option of managing the old memories. Therefore, there was a "Delete" and "Keep" button for the old memory section, and the user was unable to change the pending Memory until they delete an old memory.
+
+These buttons needed change. What I really needed was to allow the user to choose between an old memory and a fresh memory. The solution was to replace the "Delete" and "Keep" buttons to "Choose Me!" buttons that fall under both the Old Memory and Fresh Memory sections. Once the user clicks on "Choose Me!", the system will randomly select another old and fresh memory for the user to choose. Also, the app mascot will respond depending on the choices that the user makes. For instance, if the user keeps choosing old memories over the fresh ones, then the mascot will be disappointed. On the other hand, if the user opts for the fresher memories, the mascot will be happier. This reaction reveals the system's biased nature.
+
+---
+
+### Update on dialog boxes
+
+Here's how they're looking so far:
+![Coding process: Dialog box](images/august3-dialog-box.jpg)

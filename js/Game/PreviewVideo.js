@@ -206,6 +206,7 @@ class PreviewVideo {
 
   // Play the memory
   playMemory() {
+    state = `memory`;
     memoryPlaying = this.memoryFileName;
     console.log(`playing a memory, ${memoryPlaying}`);
 

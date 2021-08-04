@@ -2,28 +2,60 @@
 
 class MemoryTest {
   constructor(memoryName) {
-    this.x = width / 2;
-    this.y = height / 2;
-    this.width = width;
-    this.height = height;
-    this.memory = memoryName;
-    this.fill = {
-      r: 0,
-      g: 0,
-      b: 0,
+    // this.x = width / 2;
+    // this.y = height / 2;
+    // this.width = width;
+    // this.height = height;
+    // this.memory = memoryName;
+    // this.fill = {
+    //   r: 0,
+    //   g: 0,
+    //   b: 0,
+    // };
+
+    this.lu = {
+      x: 30,
+      y: height / 2,
+      size: 50,
+      fill: {
+        r: 255,
+        g: 0,
+        b: 0,
+      },
+    };
+
+    this.zai = {
+      x: 60,
+      y: height / 2,
+      size: 50,
+      fill: {
+        r: 0,
+        g: 255,
+        b: 0,
+      },
     };
   }
 
   update() {
-    this.display();
+    this.displayBlurryCircle(this.lu);
+    this.displayBlurryCircle(this.zai);
   }
 
   // Display rectangle
   display() {
+    // push();
+    // fill(this.fill.r, this.fill.g, this.fill.b);
+    // rectMode(CENTER);
+    // rect(this.x, this.y, this.width, this.height);
+    // pop();
+  }
+
+  // Display circle
+  displayBlurryCircle(character) {
     push();
-    fill(this.fill.r, this.fill.g, this.fill.b);
-    rectMode(CENTER);
-    rect(this.x, this.y, this.width, this.height);
+    fill(character.fill.r, character.fill.g, character.fill.b);
+    ellipse(character.x, character.y, character.size);
+    // filter(BLUR, 6);
     pop();
   }
 

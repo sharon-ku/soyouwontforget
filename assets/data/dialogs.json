@@ -1,0 +1,88 @@
+{
+  "description": "List of dialogs played in memories",
+  "testingListOfNames": [
+    "wash the dishes",
+    "deliver food to tables",
+    "wipe tables",
+    "clean windows",
+    "take orders",
+    "pour water",
+    "I can do anything!",
+    "I shine as bright as a star.",
+    "I can be anything I want to be.",
+    "I will be a superstar chef one day.",
+    "I will succeed at work tomorrow.",
+    "I will make some new friends tomorrow.",
+    "I am not a failure.",
+    "Tomorrow will be an amazing day.",
+    "I will exercise tomorrow.",
+    "I feel good about myself.",
+    "I am the best!"
+  ],
+  "pendingMemories": [
+    {
+      "previewVideoTitle": "Instagram pic",
+      "memoryFileName": "MemoryInstagramPic",
+      "dialogs": [
+        {
+          "number": 1,
+          "speaker": "Me",
+          "dialog": "I want to play too!"
+        },
+        {
+          "number": 2,
+          "speaker": "Daddy",
+          "dialog": "Lu, come join us!"
+        },
+        {
+          "number": 3,
+          "speaker": "Zai",
+          "dialog": "Lu, come to my side."
+        },
+        {
+          "number": 4,
+          "speaker": "Daddy",
+          "dialog": "Alright, two versus one."
+        }
+      ]
+    },
+    {
+      "previewVideoTitle": "A Joke",
+      "memoryFileName": "MemoryAJoke"
+    },
+    {
+      "previewVideoTitle": "Happy song lyrics",
+      "memoryFileName": "MemoryHappySongLyrics"
+    },
+    {
+      "previewVideoTitle": "Buffet",
+      "memoryFileName": "MemoryBuffet"
+    },
+    {
+      "previewVideoTitle": "Karaoke",
+      "memoryFileName": "MemoryKaraoke"
+    }
+  ],
+  "currentMemories": [
+    {
+      "previewVideoTitle": "Day at the beach",
+      "memoryFileName": "MemoryDayAtTheBeach"
+    },
+    {
+      "previewVideoTitle": "Dreaming about a special someone",
+      "memoryFileName": "MemoryDreamingAboutSpecialSomeone"
+    },
+    {
+      "previewVideoTitle": "Eating strawberries on parents' bed",
+      "memoryFileName": "MemoryEatingStrawberries"
+    },
+    {
+      "previewVideoTitle": "Looking at the clouds",
+      "memoryFileName": "MemoryLookingAtClouds"
+    },
+    {
+      "previewVideoTitle": "Playing music",
+      "memoryFileName": "MemoryPlayingMusic"
+    }
+  ]
+}
