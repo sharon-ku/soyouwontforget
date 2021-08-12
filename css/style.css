@@ -21,6 +21,17 @@ body {
   /* background: red; */
 }
 
+/* Download button in intro */
+/* #download-button {
+  display: flex;
+
+  position: fixed;
+  top: 70%;
+  left: 40%;
+  text-align: center;
+  background: red;
+} */
+
 /* p5 canvas */
 #defaultCanvas0 {
   /* margin: auto;

@@ -10,7 +10,7 @@ Lengthier description will be provided once I actually have stuff in here!
 
 // State
 // All possibilities: intro, game, memory, end
-let state = `game`;
+let state = `intro`;
 
 // Store name of current memory that is playing
 let memoryPlaying = undefined;
@@ -54,6 +54,14 @@ let bgFill = {
     b: 220,
   },
 };
+
+// Memorywash app thumbnails
+let memorywashThumbnail = undefined;
+let memorywashThumbnailImages = [];
+const NUM_MEMORYWASH_THUMBNAIL_IMAGES = 2;
+
+// Buttons in intro state
+let downloadButton = undefined;
 
 // Stroke color
 let strokeFill = {
@@ -104,6 +112,14 @@ function preload() {
   fontStyleNormal = loadFont(`assets/fonts/BalsamiqSans-Regular.ttf`);
   fontStyleBold = loadFont(`assets/fonts/BalsamiqSans-Bold.ttf`);
 
+  // Load Memorywash thumbnail images
+  for (let i = 0; i < NUM_MEMORYWASH_THUMBNAIL_IMAGES; i++) {
+    let thumbnailImage = loadImage(
+      `assets/images/intro/memorywash-thumbnail${i}.png`
+    );
+    memorywashThumbnailImages.push(thumbnailImage);
+  }
+
   // Load memories JSON file
   memoriesList = loadJSON(`assets/data/memories.json`);
 
@@ -124,6 +140,9 @@ function setup() {
 
   // Set up font for everything
   textFont(fontStyleNormal);
+
+  // Set up all intro elements
+  setUpIntro();
 
   // // Set color to all strokes
   // stroke(strokeFill.r, strokeFill.g, strokeFill.b);
@@ -179,6 +198,22 @@ function setup() {
   createAllMemoryObjects();
 }
 
+// Set up all intro elements
+function setUpIntro() {
+  memorywashThumbnail = new MemorywashThumbnail(
+    width / 2,
+    height / 2,
+    memorywashThumbnailImages
+  );
+
+  // Create download button
+  let downloadButtonProperties = {
+    x: memorywashThumbnail.x,
+    y: memorywashThumbnail.y + 200,
+  };
+  downloadButton = new DownloadButton(downloadButtonProperties);
+}
+
 // draw()
 //
 // Description of draw() goes here.
@@ -209,9 +244,48 @@ function draw() {
   cueMemory();
 }
 
-// let separationLine = {
-//   x1:
+// Intro scene
+function intro() {
+  // Update memorywash thumbnail
+  memorywashThumbnail.update();
+
+  // Update download button
+  downloadButton.update(mouse);
+
+  // // Display "Download" text
+  // let downloadStringProperties = {
+  //   string: `Download`,
+  //   fill: {
+  //     r: 0,
+  //     g: 0,
+  //     b: 0,
+  //   },
+  //   size: 20,
+  //   x: width / 2,
+  //   y: height / 2 + 200,
+  //   width: 300,
+  //   height: 100,
+  // };
+  //
+  // displayText(downloadStringProperties);
+}
+
+// // Display text
+// function displayText(string) {
+//   push();
+//   fill(string.fill.r, string.fill.g, string.fill.b);
+//   textAlign(CENTER);
+//   rectMode(CENTER);
+//   textSize(string.size);
+//   textFont(fontStyleBold);
+//   text(string.string, string.x, string.y, string.width, string.height);
+//   pop();
 // }
+
+// Download app
+function downloadApp() {
+  console.log(`App is downloading`);
+}
 
 // Here's where the player chooses their memories
 function game() {
@@ -262,16 +336,16 @@ function game() {
 function memory() {}
 
 function mousePressed() {
-  if (state === `game`) {
+  if (state === `intro`) {
+    downloadButton.mousePressed(mouse);
+  } else if (state === `game`) {
     leftPreviewVideo.mousePressed(mouse);
     rightPreviewVideo.mousePressed(mouse);
     // // Update left and right preview videos
     // for (let i = 0; i < previewVideos.length; i++) {
     //   previewVideos[i].mousePressed(mouse);
     // }
-  }
-
-  if (state === `memory`) {
+  } else if (state === `memory`) {
     dialogBox.mousePressed(mouse);
   }
 }

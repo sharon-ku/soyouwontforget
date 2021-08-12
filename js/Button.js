@@ -111,18 +111,18 @@ class Button {
   //   // memoryPlaying = `testMemory`;
   // }
   //
-  // // SHOULD MAKE A PARENT FOR OVERLAP METHOD
-  // // Returns true if mouse overlaps preview video
-  // mouseOverlapsRectangle(mouse) {
-  //   if (
-  //     mouse.x < this.x + this.width / 2 &&
-  //     mouse.x > this.x - this.width / 2 &&
-  //     mouse.y < this.y + this.height / 2 &&
-  //     mouse.y > this.y - this.height / 2
-  //   ) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+  // SHOULD MAKE A PARENT FOR OVERLAP METHOD
+  // Returns true if mouse overlaps preview video
+  mouseOverlapsRectangle(mouse) {
+    if (
+      mouse.x < this.x + this.width / 2 &&
+      mouse.x > this.x - this.width / 2 &&
+      mouse.y < this.y + this.height / 2 &&
+      mouse.y > this.y - this.height / 2
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
