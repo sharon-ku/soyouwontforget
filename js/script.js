@@ -80,8 +80,8 @@ let rightPreviewVideo = undefined;
 // const NUM_PREVIEW_VIDEOS = 2;
 
 // Current memories displayed in game state
-let randomPendingMemory = undefined;
-let randomCurrentMemory = undefined;
+let randomFreshMemory = undefined;
+let randomOldMemory = undefined;
 
 // Store memories.json data
 let memoriesList = undefined;
@@ -128,18 +128,19 @@ function setup() {
   // // Set color to all strokes
   // stroke(strokeFill.r, strokeFill.g, strokeFill.b);
 
-  // Fetch the first pending and current memory
-  fetchRandomPendingMemory();
-  fetchRandomCurrentMemory();
+  // Fetch the first fresh and old memory
+  fetchRandomFreshMemory();
+  fetchRandomOldMemory();
 
   // Create left preview video
   let leftPreviewVideoProperties = {
     x: width / 4,
     y: height / 2,
-    section: `PENDING MEMORIES`,
-    instructions: `Make room for this memory.`,
+    section: `FRESH MEMORY`,
+    // instructions: `Make room for this memory.`,
+    instructions: ``,
     playIconImage: playIconImage,
-    memoryName: randomPendingMemory,
+    memoryName: randomFreshMemory,
   };
   leftPreviewVideo = new PreviewVideo(leftPreviewVideoProperties);
 
@@ -147,10 +148,11 @@ function setup() {
   let rightPreviewVideoProperties = {
     x: (width * 3) / 4,
     y: height / 2,
-    section: `CURRENT MEMORIES`,
-    instructions: `Delete memories that burden you.`,
+    section: `OLD MEMORY`,
+    // instructions: `Delete memories that burden you.`,
+    instructions: ``,
     playIconImage: playIconImage,
-    memoryName: randomCurrentMemory,
+    memoryName: randomOldMemory,
   };
   rightPreviewVideo = new PreviewVideo(rightPreviewVideoProperties);
 
@@ -161,7 +163,7 @@ function setup() {
   let deleteButtonProperties = {
     x: rightPreviewVideoProperties.x - 110,
     y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
-    memoryName: randomCurrentMemory,
+    memoryName: randomOldMemory,
   };
   deleteButton = new DeleteButton(deleteButtonProperties);
 
@@ -169,7 +171,7 @@ function setup() {
   let keepButtonProperties = {
     x: rightPreviewVideoProperties.x + 110,
     y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
-    memoryName: randomCurrentMemory,
+    memoryName: randomOldMemory,
   };
   keepButton = new KeepButton(keepButtonProperties);
 
@@ -274,14 +276,14 @@ function mousePressed() {
   }
 }
 
-// Fetch a random pending memory from memories.json
-function fetchRandomPendingMemory() {
-  randomPendingMemory = random(memoriesList.pendingMemories);
+// Fetch a random fresh memory from memories.json
+function fetchRandomFreshMemory() {
+  randomFreshMemory = random(memoriesList.freshMemories);
 }
 
-// Fetch a random current memory from memories.json
-function fetchRandomCurrentMemory() {
-  randomCurrentMemory = random(memoriesList.currentMemories);
+// Fetch a random old memory from memories.json
+function fetchRandomOldMemory() {
+  randomOldMemory = random(memoriesList.oldMemories);
 }
 
 // NOT USED YET

@@ -19,7 +19,7 @@
     "I feel good about myself.",
     "I am the best!"
   ],
-  "pendingMemories": [
+  "freshMemories": [
     {
       "previewVideoTitle": "Instagram pic",
       "memoryFileName": "MemoryInstagramPic"
@@ -41,7 +41,7 @@
       "memoryFileName": "MemoryKaraoke"
     }
   ],
-  "currentMemories": [
+  "oldMemories": [
     {
       "previewVideoTitle": "Day at the beach",
       "memoryFileName": "MemoryDayAtTheBeach"
