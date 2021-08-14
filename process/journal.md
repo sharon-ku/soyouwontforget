@@ -398,3 +398,11 @@ These buttons needed change. What I really needed was to allow the user to choos
 
 Here's how they're looking so far:
 ![Coding process: Dialog box](images/august3-dialog-box.jpg)
+
+## Saturday, August 14, 2021, at 2:50pm
+
+### Update
+
+Coding the memories was tricky because I wasn't sure how to make the dialog flow in relation to the player's interactions with the characters. I wanted the dialogs to drive the actions (e.g. in a soccer match, the character says something then I program the character to kick the ball, giving the player the option to kick the ball once in a while). But now I think that the easier method is to have the player actions drive the dialogs. For instance, when the player has the ability to kick the ball during the whole memory, and once the player kicks the ball a certain number of times, it cues the next dialog. With action-driven dialogs, I can integrate branching narratives more easily as well.
+
+Another challenge is that, having chosen p5.js as my tool, a lot of actions take time to be coded from scratch. While I get a lot of practice coding, I am slowly realizing that there may be some drawbacks with the amount of time spent on coding all the interactions.

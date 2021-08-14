@@ -109,7 +109,9 @@ class PreviewVideo extends OverlappingRectangle {
     };
   }
 
+  // Update all behaviour
   update(mouse) {
+    // Display preview video
     this.display();
 
     // When hovering on preview video, change the play icon's opacity and cursor type

@@ -10,7 +10,7 @@ class DialogBox {
     this.y = y;
     // Size of rectangle
     this.width = width - 300;
-    this.height = height / 6;
+    this.height = 200;
     // Rounded corner
     this.cornerRadius = 10;
     // Color of rectangle: white
@@ -23,28 +23,33 @@ class DialogBox {
     this.stroke = {
       weight: 5,
       fill: {
-        r: 213,
-        g: 73,
-        b: 97,
+        r: 0,
+        g: 0,
+        b: 0,
       },
     };
 
     // Colors of characters
     this.color = {
+      black: {
+        r: 0,
+        g: 0,
+        b: 0,
+      },
       lu: {
         r: 213,
         g: 73,
         b: 97,
       },
       zai: {
-        r: 0,
-        g: 73,
-        b: 97,
+        r: 154,
+        g: 243,
+        b: 84,
       },
       daddy: {
-        r: 0,
-        g: 0,
-        b: 0,
+        r: 255,
+        g: 179,
+        b: 211,
       },
     };
 
@@ -80,14 +85,16 @@ class DialogBox {
     this.text = {
       string: `hello, how are you doing? hello, how are you doing?hello, how are you doing?hello, how are you doing?hello, how are you doing?hello, how are you doing?hello, how are you doing?`,
       fill: {
-        r: 213,
-        g: 73,
-        b: 97,
+        r: 0,
+        g: 0,
+        b: 0,
       },
-      size: 24,
+      size: 30,
       // position offset from rectangle's position
       xOffset: 40,
       yOffset: 30,
+      // typing speed
+      typingSpeed: 50,
     };
   }
 
@@ -96,13 +103,13 @@ class DialogBox {
     // Display box
     this.displayBox();
 
-    // Set dialog color based on who is talking
-    this.setDialogColor();
-
     this.speaker.string =
       dialogsList.incomingMemories[0].dialogs[this.currentDialogNumber].speaker;
     this.text.string =
       dialogsList.incomingMemories[0].dialogs[this.currentDialogNumber].dialog;
+
+    // Set dialog color based on who is talking
+    this.setDialogColor();
 
     // Display box containing speaker name
     this.displaySpeakerBox(this.speaker.box);
@@ -117,16 +124,16 @@ class DialogBox {
   // Set dialog color based on who is talking
   setDialogColor() {
     if (this.speaker.string === `Lu`) {
-      this.stroke.fill = this.color.lu;
-      this.text.fill = this.color.lu;
+      this.stroke.fill = this.color.black;
+      this.text.fill = this.color.black;
       this.speaker.box.fill = this.color.lu;
     } else if (this.speaker.string === `Daddy`) {
-      this.stroke.fill = this.color.daddy;
-      this.text.fill = this.color.daddy;
+      this.stroke.fill = this.color.black;
+      this.text.fill = this.color.black;
       this.speaker.box.fill = this.color.daddy;
     } else if (this.speaker.string === `Zai`) {
-      this.stroke.fill = this.color.zai;
-      this.text.fill = this.color.zai;
+      this.stroke.fill = this.color.black;
+      this.text.fill = this.color.black;
       this.speaker.box.fill = this.color.zai;
     }
   }

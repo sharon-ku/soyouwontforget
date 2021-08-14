@@ -9,11 +9,11 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-let state = `game`;
+let state = `memory`;
 
 // Store name of current memory that is playing
-let memoryPlaying = undefined;
-// let memoryPlaying = `testMemory`;
+// let memoryPlaying = undefined;
+let memoryPlaying = `testMemory`;
 
 // Mouse positions
 let mouse = {
@@ -108,8 +108,10 @@ let dialogsList = undefined;
 let dialogBox = undefined;
 
 // Buttons in game state
-let deleteButton = undefined;
-let keepButton = undefined;
+// let deleteButton = undefined;
+// let keepButton = undefined;
+let winnerButtonIncoming = undefined;
+let winnerButtonOld = undefined;
 
 /****************
 End variables
@@ -224,21 +226,36 @@ function setUpGameObjects() {
   // // Store left and right preview videos in array
   // previewVideos.push(leftPreviewVideo, rightPreviewVideo);
 
-  // Create delete button
-  let deleteButtonProperties = {
-    x: rightPreviewVideoProperties.x - 110,
-    y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
-    memoryName: randomOldMemory,
-  };
-  deleteButton = new DeleteButton(deleteButtonProperties);
+  // // Create delete button
+  // let deleteButtonProperties = {
+  //   x: rightPreviewVideoProperties.x - 110,
+  //   y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
+  //   memoryName: randomOldMemory,
+  // };
+  // deleteButton = new DeleteButton(deleteButtonProperties);
+  //
+  // // Create keep button
+  // let keepButtonProperties = {
+  //   x: rightPreviewVideoProperties.x + 110,
+  //   y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
+  //   memoryName: randomOldMemory,
+  // };
+  // keepButton = new KeepButton(keepButtonProperties);
 
-  // Create keep button
-  let keepButtonProperties = {
-    x: rightPreviewVideoProperties.x + 110,
+  // Create winner buttons
+  let winnerButtonIncomingProperties = {
+    x: leftPreviewVideoProperties.x,
+    y: leftPreviewVideo.y + leftPreviewVideo.height / 2 + 80,
+    memoryName: randomIncomingMemory,
+  };
+  winnerButtonIncoming = new WinnerButton(winnerButtonIncomingProperties);
+
+  let winnerButtonOldProperties = {
+    x: rightPreviewVideoProperties.x,
     y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
     memoryName: randomOldMemory,
   };
-  keepButton = new KeepButton(keepButtonProperties);
+  winnerButtonOld = new WinnerButton(winnerButtonOldProperties);
 }
 
 // Fetch a random incoming memory from memories.json
@@ -372,9 +389,13 @@ function game() {
   //   previewVideos[i].update(mouse);
   // }
 
-  // Update delete and keep buttons
-  deleteButton.update(mouse);
-  keepButton.update(mouse);
+  // Update winner buttons
+  winnerButtonIncoming.update(mouse);
+  winnerButtonOld.update(mouse);
+
+  //   // Update delete and keep buttons
+  //   deleteButton.update(mouse);
+  //   keepButton.update(mouse);
 }
 
 /****************
