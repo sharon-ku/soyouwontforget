@@ -1,8 +1,9 @@
 // Preview of video memory in game state
 // Attribution: Pippin Barr helped me with the cursor hovering code
 
-class PreviewVideo {
+class PreviewVideo extends OverlappingRectangle {
   constructor({ x, y, section, instructions, playIconImage, memoryName }) {
+    super(x, y);
     // True if mouse hovering over video rectangle; sets cursor type
     this.hovered = undefined;
 
@@ -207,25 +208,11 @@ class PreviewVideo {
   // Play the memory
   playMemory() {
     state = `memory`;
-    memoryPlaying = this.memoryFileName;
+    // CORRECT CODE: uncomment when done tests
+    // memoryPlaying = this.memoryFileName;
     console.log(`playing a memory, ${memoryPlaying}`);
 
     // USED FOR TESTS
-    // memoryPlaying = `testMemory`;
-  }
-
-  // SHOULD MAKE A PARENT FOR OVERLAP METHOD
-  // Returns true if mouse overlaps preview video
-  mouseOverlapsRectangle(mouse) {
-    if (
-      mouse.x < this.x + this.width / 2 &&
-      mouse.x > this.x - this.width / 2 &&
-      mouse.y < this.y + this.height / 2 &&
-      mouse.y > this.y - this.height / 2
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    memoryPlaying = `testMemory`;
   }
 }

@@ -1,7 +1,9 @@
 // Button in game state: Delete and Keep
 
-class Button {
+class Button extends OverlappingRectangle {
   constructor({ x, y, memoryName }) {
+    super(x, y);
+
     // Positions of rectangle for preview video
     this.x = x;
     this.y = y;
@@ -94,35 +96,11 @@ class Button {
   //     cursor(`default`);
   //   }
   // }
-  //
+
   // // When mouse pressed on preview video, play the memory
   // mousePressed(mouse) {
   //   if (this.mouseOverlapsRectangle(mouse)) {
   //     this.playMemory();
   //   }
   // }
-  //
-  // // Play the memory
-  // playMemory() {
-  //   memoryPlaying = this.memoryFileName;
-  //   console.log(`playing a memory, ${memoryPlaying}`);
-  //
-  //   // USED FOR TESTS
-  //   // memoryPlaying = `testMemory`;
-  // }
-  //
-  // SHOULD MAKE A PARENT FOR OVERLAP METHOD
-  // Returns true if mouse overlaps preview video
-  mouseOverlapsRectangle(mouse) {
-    if (
-      mouse.x < this.x + this.width / 2 &&
-      mouse.x > this.x - this.width / 2 &&
-      mouse.y < this.y + this.height / 2 &&
-      mouse.y > this.y - this.height / 2
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }
