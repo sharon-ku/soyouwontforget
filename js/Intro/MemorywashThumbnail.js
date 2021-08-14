@@ -21,7 +21,6 @@ class MemorywashThumbnail {
   display() {
     push();
     imageMode(CENTER);
-    // image(100, 100, memorywashThumbnailImages[0]);
     image(this.images[this.currentIndex], this.x, this.y);
     pop();
   }

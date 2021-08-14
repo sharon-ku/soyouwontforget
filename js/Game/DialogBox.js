@@ -100,9 +100,9 @@ class DialogBox {
     this.setDialogColor();
 
     this.speaker.string =
-      dialogsList.pendingMemories[0].dialogs[this.currentDialogNumber].speaker;
+      dialogsList.incomingMemories[0].dialogs[this.currentDialogNumber].speaker;
     this.text.string =
-      dialogsList.pendingMemories[0].dialogs[this.currentDialogNumber].dialog;
+      dialogsList.incomingMemories[0].dialogs[this.currentDialogNumber].dialog;
 
     // Display box containing speaker name
     this.displaySpeakerBox(this.speaker.box);

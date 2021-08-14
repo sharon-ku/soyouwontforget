@@ -20,8 +20,8 @@ JULY:
 
 AUGUST:
 
-1. [⭐ we are here] **July 31 - Aug 6:** code --> 8h
-2. **Aug 7-13:** code, conduct midway playtest with team --> 10h
+1. ✔️ **July 31 - Aug 6:** code --> 8h
+2. [⭐ we are here] **Aug 7-13:** code, conduct midway playtest with team --> 10h
 3. **Aug 14-20:** code --> 8h
 4. **Aug 21-27:** code, refine, conduct final playtests --> 6h
 5. **Aug 28-31:** refine, write final thoughts in journal --> 2h

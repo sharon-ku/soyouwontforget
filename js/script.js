@@ -2,15 +2,14 @@
 So you won't forget
 Sharon Ku
 
-This canvas is used in the background of the game.
-Lengthier description will be provided once I actually have stuff in here!
+Player interacts with memories and chooses whether to keep an old memory or an incoming memory.
 **************************************************/
 
 "use strict";
 
 // State
 // All possibilities: intro, game, memory, end
-let state = `intro`;
+let state = `game`;
 
 // Store name of current memory that is playing
 let memoryPlaying = undefined;
@@ -22,7 +21,14 @@ let mouse = {
   y: undefined,
 };
 
-// Font
+// Stroke color
+let strokeFill = {
+  r: 213,
+  g: 73,
+  b: 97,
+};
+
+// Fonts
 let fontStyleNormal = undefined;
 let fontStyleBold = undefined;
 
@@ -55,6 +61,9 @@ let bgFill = {
   },
 };
 
+/****************
+Intro variables
+*****************/
 // Memorywash app thumbnails
 let memorywashThumbnail = undefined;
 let memorywashThumbnailImages = [];
@@ -63,12 +72,9 @@ const NUM_MEMORYWASH_THUMBNAIL_IMAGES = 2;
 // Buttons in intro state
 let downloadButton = undefined;
 
-// Stroke color
-let strokeFill = {
-  r: 213,
-  g: 73,
-  b: 97,
-};
+/****************
+Game variables
+*****************/
 
 // Line separating left and right preview videos
 let separationLine = {
@@ -76,6 +82,7 @@ let separationLine = {
   yPadding: 40,
 };
 
+// Play icon
 let playIconImage = undefined;
 
 // Preview video in game state
@@ -88,7 +95,7 @@ let rightPreviewVideo = undefined;
 // const NUM_PREVIEW_VIDEOS = 2;
 
 // Current memories displayed in game state
-let randomFreshMemory = undefined;
+let randomIncomingMemory = undefined;
 let randomOldMemory = undefined;
 
 // Store memories.json data
@@ -104,13 +111,23 @@ let dialogBox = undefined;
 let deleteButton = undefined;
 let keepButton = undefined;
 
-// preload()
+/****************
+End variables
+*****************/
+
+// preload() --------------------------------------------
 //
-// Preload assets
+// Preload all assets: fonts, images, JSON files, sounds
 function preload() {
-  // Load text font
+  // Preload fonts
   fontStyleNormal = loadFont(`assets/fonts/BalsamiqSans-Regular.ttf`);
   fontStyleBold = loadFont(`assets/fonts/BalsamiqSans-Bold.ttf`);
+
+  // Preload all images and sounds used in memory state (function found in allMemories.js file)
+  preloadMemoryAssets();
+
+  // Preload JSON files
+  preloadJSONFiles();
 
   // Load Memorywash thumbnail images
   for (let i = 0; i < NUM_MEMORYWASH_THUMBNAIL_IMAGES; i++) {
@@ -120,17 +137,20 @@ function preload() {
     memorywashThumbnailImages.push(thumbnailImage);
   }
 
+  // Load play icon image
+  playIconImage = loadImage(`assets/images/play-icon.png`);
+}
+
+// Preload all JSON files
+function preloadJSONFiles() {
   // Load memories JSON file
   memoriesList = loadJSON(`assets/data/memories.json`);
 
   // Load dialogs JSON file
   dialogsList = loadJSON(`assets/data/dialogs.json`);
-
-  // Load play icon image
-  playIconImage = loadImage(`assets/images/play-icon.png`);
 }
 
-// setup()
+// setup() --------------------------------------------
 //
 // Set up canvas and create game objects
 function setup() {
@@ -138,28 +158,54 @@ function setup() {
 
   createCanvas(1280, 720);
 
-  // Set up font for everything
-  textFont(fontStyleNormal);
-
-  // Set up all intro elements
-  setUpIntro();
-
   // // Set color to all strokes
   // stroke(strokeFill.r, strokeFill.g, strokeFill.b);
 
-  // Fetch the first fresh and old memory
-  fetchRandomFreshMemory();
+  // Set up global font
+  textFont(fontStyleNormal);
+
+  // Set up all intro objects
+  setUpIntroObjects();
+
+  // Set up all game objects
+  setUpGameObjects();
+
+  // Set up all memory objects (function found in allMemories.json)
+  setUpMemoryObjects();
+}
+
+// Set up all intro objects
+function setUpIntroObjects() {
+  // Create Memorywash thumbnail
+  memorywashThumbnail = new MemorywashThumbnail(
+    width / 2,
+    height / 2,
+    memorywashThumbnailImages
+  );
+
+  // Create download button
+  let downloadButtonProperties = {
+    x: memorywashThumbnail.x,
+    y: memorywashThumbnail.y + 200,
+  };
+  downloadButton = new DownloadButton(downloadButtonProperties);
+}
+
+// Set up all game objects
+function setUpGameObjects() {
+  // Fetch the first incoming and old memory
+  fetchRandomIncomingMemory();
   fetchRandomOldMemory();
 
   // Create left preview video
   let leftPreviewVideoProperties = {
     x: width / 4,
     y: height / 2,
-    section: `FRESH MEMORY`,
+    section: `INCOMING MEMORY`,
     // instructions: `Make room for this memory.`,
     instructions: ``,
     playIconImage: playIconImage,
-    memoryName: randomFreshMemory,
+    memoryName: randomIncomingMemory,
   };
   leftPreviewVideo = new PreviewVideo(leftPreviewVideoProperties);
 
@@ -193,32 +239,23 @@ function setup() {
     memoryName: randomOldMemory,
   };
   keepButton = new KeepButton(keepButtonProperties);
-
-  // Create all objects in memories (game state)
-  createAllMemoryObjects();
 }
 
-// Set up all intro elements
-function setUpIntro() {
-  memorywashThumbnail = new MemorywashThumbnail(
-    width / 2,
-    height / 2,
-    memorywashThumbnailImages
-  );
-
-  // Create download button
-  let downloadButtonProperties = {
-    x: memorywashThumbnail.x,
-    y: memorywashThumbnail.y + 200,
-  };
-  downloadButton = new DownloadButton(downloadButtonProperties);
+// Fetch a random incoming memory from memories.json
+function fetchRandomIncomingMemory() {
+  randomIncomingMemory = random(memoriesList.incomingMemories);
 }
 
-// draw()
+// Fetch a random old memory from memories.json
+function fetchRandomOldMemory() {
+  randomOldMemory = random(memoriesList.oldMemories);
+}
+
+// draw() --------------------------------------------
 //
-// Description of draw() goes here.
+// Set up background colors and states
 function draw() {
-  // Set backgroun color
+  // Set background color
   background(bgFill.current.r, bgFill.current.g, bgFill.current.b);
 
   // Set mouse x and mouse y
@@ -244,7 +281,11 @@ function draw() {
   cueMemory();
 }
 
-// Intro scene
+/****************
+Intro state:
+Here's where the player downloads Memorywash and views the intro video
+*****************/
+
 function intro() {
   // Update memorywash thumbnail
   memorywashThumbnail.update();
@@ -287,7 +328,11 @@ function downloadApp() {
   console.log(`App is downloading`);
 }
 
-// Here's where the player chooses their memories
+/****************
+Game state:
+Here's where the player chooses their memories
+*****************/
+
 function game() {
   // // Drawing rectangle guides
   // push();
@@ -332,8 +377,17 @@ function game() {
   keepButton.update(mouse);
 }
 
-// Here's where a memory plays
+/****************
+Memory state:
+Here's where a memory plays.
+*****************/
+
 function memory() {}
+
+/****************
+Mouse pressed:
+Handles what happens when player clicks on mouse.
+*****************/
 
 function mousePressed() {
   if (state === `intro`) {
@@ -348,16 +402,6 @@ function mousePressed() {
   } else if (state === `memory`) {
     dialogBox.mousePressed(mouse);
   }
-}
-
-// Fetch a random fresh memory from memories.json
-function fetchRandomFreshMemory() {
-  randomFreshMemory = random(memoriesList.freshMemories);
-}
-
-// Fetch a random old memory from memories.json
-function fetchRandomOldMemory() {
-  randomOldMemory = random(memoriesList.oldMemories);
 }
 
 // NOT USED YET

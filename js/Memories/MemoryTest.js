@@ -1,7 +1,7 @@
 // Memory playing in game state
 
 class MemoryTest {
-  constructor(memoryName) {
+  constructor(luImages, zaiImages) {
     // this.x = width / 2;
     // this.y = height / 2;
     // this.width = width;
@@ -13,51 +13,47 @@ class MemoryTest {
     //   b: 0,
     // };
 
+    // position
+    // this.x = x;
+    // this.y = y;
+
     this.lu = {
-      x: 30,
+      x: 50,
       y: height / 2,
-      size: 50,
-      fill: {
-        r: 255,
-        g: 0,
-        b: 0,
-      },
+      images: luImages,
+      currentIndex: 0,
     };
 
     this.zai = {
-      x: 60,
+      x: 200,
       y: height / 2,
-      size: 50,
-      fill: {
-        r: 0,
-        g: 255,
-        b: 0,
-      },
+      images: zaiImages,
+      currentIndex: 0,
     };
   }
 
   update() {
-    this.displayBlurryCircle(this.lu);
-    this.displayBlurryCircle(this.zai);
+    this.displayCharacter(this.lu);
+    this.displayCharacter(this.zai);
   }
 
-  // Display rectangle
-  display() {
-    // push();
-    // fill(this.fill.r, this.fill.g, this.fill.b);
-    // rectMode(CENTER);
-    // rect(this.x, this.y, this.width, this.height);
-    // pop();
-  }
-
-  // Display circle
-  displayBlurryCircle(character) {
+  // Display image
+  displayCharacter(character) {
     push();
-    fill(character.fill.r, character.fill.g, character.fill.b);
-    ellipse(character.x, character.y, character.size);
-    // filter(BLUR, 6);
+    imageMode(CENTER);
+    // image(100, 100, memorywashThumbnailImages[0]);
+    image(character.images[character.currentIndex], character.x, character.y);
     pop();
   }
+
+  // // Display circle
+  // displayBlurryCircle(character) {
+  //   push();
+  //   fill(character.fill.r, character.fill.g, character.fill.b);
+  //   ellipse(character.x, character.y, character.size);
+  //   // filter(BLUR, 6);
+  //   pop();
+  // }
 
   // When mouse pressed on preview video, play the memory
   mousePressed() {

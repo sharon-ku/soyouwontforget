@@ -1,4 +1,4 @@
-// Button in game state: Delete button
+// Button in intro state: download Memorywash app
 
 class DownloadButton extends Button {
   constructor({ x, y }) {
@@ -36,36 +36,12 @@ class DownloadButton extends Button {
 
   // Update all behaviour
   update(mouse) {
+    // Display button
     this.display();
 
     // When hovering on button, change cursor type
     this.hover(mouse);
   }
-  //
-  // // Display preview video
-  // display() {
-  //   // Display rectangle
-  //   push();
-  //   fill(this.fill.r, this.fill.g, this.fill.b);
-  //   rectMode(CENTER);
-  //   rect(this.x, this.y, this.width, this.height, this.cornerRadius);
-  //   pop();
-  //
-  //   // Display text containing memory name
-  //   this.displayText(this.title);
-  // }
-  //
-  // // Display text
-  // displayText(string) {
-  //   push();
-  //   fill(string.fill.r, string.fill.g, string.fill.b);
-  //   textAlign(CENTER, CENTER);
-  //   rectMode(CENTER);
-  //   textSize(string.size);
-  //   textStyle(string.style);
-  //   text(string.name, this.x + string.xOffset, this.y + string.yOffset);
-  //   pop();
-  // }
 
   // When hovering on button, change cursor type
   hover(mouse) {
@@ -88,28 +64,4 @@ class DownloadButton extends Button {
       downloadApp();
     }
   }
-  //
-  // // Play the memory
-  // playMemory() {
-  //   memoryPlaying = this.memoryFileName;
-  //   console.log(`playing a memory, ${memoryPlaying}`);
-  //
-  //   // USED FOR TESTS
-  //   // memoryPlaying = `testMemory`;
-  // }
-  //
-  // // SHOULD MAKE A PARENT FOR OVERLAP METHOD
-  // // Returns true if mouse overlaps preview video
-  // mouseOverlapsRectangle(mouse) {
-  //   if (
-  //     mouse.x < this.x + this.width / 2 &&
-  //     mouse.x > this.x - this.width / 2 &&
-  //     mouse.y < this.y + this.height / 2 &&
-  //     mouse.y > this.y - this.height / 2
-  //   ) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
 }
