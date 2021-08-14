@@ -104,9 +104,9 @@ class DialogBox {
     this.displayBox();
 
     this.speaker.string =
-      dialogsList.incomingMemories[0].dialogs[this.currentDialogNumber].speaker;
+      dialogsList.oldMemories[0].dialogs[this.currentDialogNumber].speaker;
     this.text.string =
-      dialogsList.incomingMemories[0].dialogs[this.currentDialogNumber].dialog;
+      dialogsList.oldMemories[0].dialogs[this.currentDialogNumber].dialog;
 
     // Set dialog color based on who is talking
     this.setDialogColor();

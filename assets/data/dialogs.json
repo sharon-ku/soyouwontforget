@@ -27,17 +27,17 @@
         {
           "number": 1,
           "speaker": "Me",
-          "dialog": "I want to play too!"
+          "dialog": "hi!"
         },
         {
           "number": 2,
           "speaker": "Daddy",
-          "dialog": "Lu, come join us!"
+          "dialog": "how are you doing!"
         },
         {
           "number": 3,
           "speaker": "Zai",
-          "dialog": "Lu, come to my side."
+          "dialog": "placeholder text."
         },
         {
           "number": 4,
@@ -64,6 +64,62 @@
     }
   ],
   "oldMemories": [
+    {
+      "previewVideoTitle": "Instagram pic",
+      "memoryFileName": "MemoryInstagramPic",
+      "dialogs": [
+        {
+          "number": 1,
+          "speaker": "Me",
+          "dialog": "I want to play too!"
+        },
+        {
+          "number": 2,
+          "speaker": "Daddy",
+          "dialog": "Lu, come join us!"
+        },
+        {
+          "number": 3,
+          "speaker": "Zai",
+          "dialog": "Lu, come to my side."
+        },
+        {
+          "number": 4,
+          "speaker": "Daddy",
+          "dialog": "Alright, two versus one."
+        },
+        {
+          "number": 5,
+          "speaker": "Daddy",
+          "dialog": "Nice kick!"
+        },
+        {
+          "number": 6,
+          "speaker": "Zai",
+          "dialog": "I wanna kick it!"
+        },
+        {
+          "number": 7,
+          "speaker": "Daddy",
+          "dialog": "Ok. Lu, give your brother a chance to kick the ball."
+        },
+        {
+          "number": 8,
+          "speaker": "Zai",
+          "dialog": "Hayyaaaaaaaaaaa!"
+        },
+        {
+          "number": 9,
+          "speaker": "Zai",
+          "dialog": "Scoreeeeeeeeeee!"
+        },
+        {
+          "number": 10,
+          "speaker": "Daddy",
+          "dialog": "Wa Zai, you improved!"
+        }
+      ]
+    },
     {
       "previewVideoTitle": "Day at the beach",
       "memoryFileName": "MemoryDayAtTheBeach"

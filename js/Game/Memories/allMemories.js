@@ -19,6 +19,9 @@ const NUM_LU_IMAGES = 1;
 let zaiImages = [];
 const NUM_ZAI_IMAGES = 1;
 
+// Object images ------------
+// Soccer ball
+
 // Preload images and sounds for all memories (done in preload)
 function preloadMemoryAssets() {
   // Load all character images -------------
@@ -28,17 +31,16 @@ function preloadMemoryAssets() {
     luImages.push(luImage);
   }
   // Zai
-  // Load Lu images
   for (let i = 0; i < NUM_ZAI_IMAGES; i++) {
     let zaiImage = loadImage(`assets/images/memories/characters/zai${i}.png`);
     zaiImages.push(zaiImage);
   }
+
+  // Load all object images -------------
 }
 
 // Create objects for all memories (done in setup)
 function setUpMemoryObjects() {
-  console.log(`memory objects created`);
-
   dialogBox = new DialogBox(width / 2, height - 150);
 
   // Used for test memory

@@ -17,31 +17,58 @@ class MemoryTest {
     // this.x = x;
     // this.y = y;
 
-    this.lu = {
+    // Characters in this scene ---------
+    // Lu
+    this.luProperties = {
+      images: luImages,
       x: 50,
       y: height / 2,
-      images: luImages,
       currentIndex: 0,
     };
+    this.lu = new Lu(this.luProperties);
 
-    this.zai = {
+    // Zai
+    this.zaiProperties = {
+      images: zaiImages,
       x: 200,
       y: height / 2,
-      images: zaiImages,
       currentIndex: 0,
     };
+    this.zai = new Zai(this.zaiProperties);
+
+    // Objects in this scene ---------
+
+    // this.lu = {
+    //   x: 50,
+    //   y: height / 2,
+    //   images: luImages,
+    //   currentIndex: 0,
+    // };
+    //
+    // this.zai = {
+    //   x: 200,
+    //   y: height / 2,
+    //   images: zaiImages,
+    //   currentIndex: 0,
+    // };
   }
 
+  // Update all behaviours
   update() {
-    this.displayCharacter(this.lu);
-    this.displayCharacter(this.zai);
+    // Display all characters
+    this.lu.display();
+    this.zai.display();
+
+    // Display all objects
+
+    // this.displayCharacter(this.lu);
+    // this.displayCharacter(this.zai);
   }
 
   // Display image
   displayCharacter(character) {
     push();
     imageMode(CENTER);
-    // image(100, 100, memorywashThumbnailImages[0]);
     image(character.images[character.currentIndex], character.x, character.y);
     pop();
   }
