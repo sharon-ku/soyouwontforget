@@ -2,21 +2,6 @@
 
 class MemoryTest {
   constructor(luImages, zaiImages) {
-    // this.x = width / 2;
-    // this.y = height / 2;
-    // this.width = width;
-    // this.height = height;
-    // this.memory = memoryName;
-    // this.fill = {
-    //   r: 0,
-    //   g: 0,
-    //   b: 0,
-    // };
-
-    // position
-    // this.x = x;
-    // this.y = y;
-
     // Characters in this scene ---------
     // Lu
     this.luProperties = {
@@ -37,20 +22,12 @@ class MemoryTest {
     this.zai = new Zai(this.zaiProperties);
 
     // Objects in this scene ---------
-
-    // this.lu = {
-    //   x: 50,
-    //   y: height / 2,
-    //   images: luImages,
-    //   currentIndex: 0,
-    // };
-    //
-    // this.zai = {
-    //   x: 200,
-    //   y: height / 2,
-    //   images: zaiImages,
-    //   currentIndex: 0,
-    // };
+    // Soccer ball
+    this.soccerBallProperties = {
+      x: 500,
+      y: height / 2,
+    };
+    this.soccerBall = new SoccerBall(this.soccerBallProperties);
   }
 
   // Update all behaviours
@@ -60,9 +37,7 @@ class MemoryTest {
     this.zai.display();
 
     // Display all objects
-
-    // this.displayCharacter(this.lu);
-    // this.displayCharacter(this.zai);
+    this.soccerBall.update();
   }
 
   // Display image
