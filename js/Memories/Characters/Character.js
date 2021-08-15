@@ -6,6 +6,11 @@ class Character {
     this.images = undefined;
     // current index of images array
     this.currentIndex = 0;
+    // scale (direction facing)
+    this.scale = {
+      x: undefined,
+      y: undefined,
+    };
     // position
     this.x = undefined;
     this.y = undefined;
@@ -14,6 +19,9 @@ class Character {
     this.height = undefined;
     // associated memory
     // this.memory = memoryName;
+
+    // number of soccer kicks
+    this.numSoccerKicks = 0;
   }
 
   // Update all behaviours
@@ -25,8 +33,10 @@ class Character {
   // Display image
   display() {
     push();
+    translate(this.x, this.y);
     imageMode(CENTER);
-    image(this.images[this.currentIndex], this.x, this.y);
+    scale(this.scale.x, this.scale.y);
+    image(this.images[this.currentIndex], 0, 0);
     pop();
   }
 }

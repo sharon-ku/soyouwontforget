@@ -3,29 +3,39 @@
 class MemoryTest {
   constructor(luImages, zaiImages) {
     // Characters in this scene ---------
+    // All characters
+    this.characters = [];
+
+    this.updateLuCount = false;
+    this.updateZaiCount = false;
+
     // Lu
     this.luProperties = {
       images: luImages,
-      x: 50,
-      y: height / 2,
+      x: width - 400,
+      y: height / 2 - 100,
       currentIndex: 0,
     };
     this.lu = new Lu(this.luProperties);
+    this.characters.push(this.lu);
 
     // Zai
     this.zaiProperties = {
       images: zaiImages,
-      x: 200,
-      y: height / 2,
+      x: 400,
+      y: height / 2 - 100,
       currentIndex: 0,
     };
     this.zai = new Zai(this.zaiProperties);
+
+    this.characters.push(this.zai);
+    // this.characters =[this.lu, this.zai];
 
     // Objects in this scene ---------
     // Soccer ball
     this.soccerBallProperties = {
       x: 500,
-      y: height / 2,
+      y: height / 2 - 50,
     };
     this.soccerBall = new SoccerBall(this.soccerBallProperties);
   }
@@ -33,11 +43,46 @@ class MemoryTest {
   // Update all behaviours
   update() {
     // Display all characters
-    this.lu.display();
+    this.lu.update();
     this.zai.display();
 
     // Display all objects
-    this.soccerBall.update();
+    for (let i = 0; i < this.characters.length; i++) {
+      this.soccerBall.update(this.characters[i]);
+
+      // // Returns true if Lu kicked ball
+      // if (this.soccerBall.gotKickedBy(this.characters[i])) {
+      //   console.log(this.characters[i]);
+      //   // console.log(`${this.characters[i]} kicked da ball`);
+      // } else {
+      //   // console.log(`fail`);
+      // }
+    }
+
+    if (this.soccerBall.x > this.lu.x) {
+      this.soccerBall.speed = -4;
+      this.soccerBall.acceleration = 1;
+      this.updateLuCount = true;
+      console.log(`Lu: ${this.lu.numSoccerKicks}`);
+    } else if (this.soccerBall.x < this.zai.x) {
+      this.soccerBall.speed = 4;
+      this.soccerBall.acceleration = -1;
+      this.updateZaiCount = true;
+      console.log(`Zai: ${this.zai.numSoccerKicks}`);
+    }
+
+    if (this.updateLuCount) {
+      this.lu.numSoccerKicks += 1;
+      this.updateLuCount = false;
+
+      if (this.lu.numSoccerKicks > 10) {
+        state = `game`;
+        memoryPlaying = undefined;
+      }
+    } else if (this.updateZaiCount) {
+      this.zai.numSoccerKicks += 1;
+      this.updateZaiCount = false;
+    }
   }
 
   // Display image
@@ -47,15 +92,6 @@ class MemoryTest {
     image(character.images[character.currentIndex], character.x, character.y);
     pop();
   }
-
-  // // Display circle
-  // displayBlurryCircle(character) {
-  //   push();
-  //   fill(character.fill.r, character.fill.g, character.fill.b);
-  //   ellipse(character.x, character.y, character.size);
-  //   // filter(BLUR, 6);
-  //   pop();
-  // }
 
   // When mouse pressed on preview video, play the memory
   mousePressed() {

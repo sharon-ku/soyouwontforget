@@ -37,7 +37,7 @@ function preloadMemoryAssets() {
 
 // Create objects for all memories (done in setup)
 function setUpMemoryObjects() {
-  console.log(`memory objects created`);
+  // console.log(`memory objects created`);
 
   dialogBox = new DialogBox(width / 2, height - 150);
 
@@ -60,7 +60,7 @@ function cueMemory() {
 // Play this memory
 function playTestMemory() {
   background(210, 210, 220);
-  console.log(`SUCCESSFULLY PLAYING TEST MEMORY`);
+  // console.log(`SUCCESSFULLY PLAYING TEST MEMORY`);
 
   memoryTest.update();
 

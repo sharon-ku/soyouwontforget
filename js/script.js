@@ -158,7 +158,7 @@ function preloadJSONFiles() {
 function setup() {
   // noCursor();
 
-  createCanvas(1280, 720);
+  let canvas = createCanvas(1280, 720);
 
   // // Set color to all strokes
   // stroke(strokeFill.r, strokeFill.g, strokeFill.b);
@@ -174,6 +174,11 @@ function setup() {
 
   // Set up all memory objects (function found in allMemories.json)
   setUpMemoryObjects();
+
+  // Take a screenshot of the canvas
+  // setTimeout(() => {
+  //   saveCanvas(canvas, "myCanvas", "jpg");
+  // }, 2000);
 }
 
 // Set up all intro objects

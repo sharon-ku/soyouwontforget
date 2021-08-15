@@ -7,6 +7,11 @@ class Zai extends Character {
     this.images = images;
     // current index of images array
     this.currentIndex = currentIndex;
+    // scale (direction facing)
+    this.scale = {
+      x: 1,
+      y: 1,
+    };
     // position
     this.x = x;
     this.y = y;
