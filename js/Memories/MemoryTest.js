@@ -29,7 +29,6 @@ class MemoryTest {
     this.zai = new Zai(this.zaiProperties);
 
     this.characters.push(this.zai);
-    // this.characters =[this.lu, this.zai];
 
     // Objects in this scene ---------
     // Soccer ball

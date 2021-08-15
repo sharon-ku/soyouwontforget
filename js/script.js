@@ -9,11 +9,11 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-let state = `memory`;
+let state = `game`;
 
 // Store name of current memory that is playing
-// let memoryPlaying = undefined;
-let memoryPlaying = `testMemory`;
+let memoryPlaying = undefined;
+// let memoryPlaying = `testMemory`;
 
 // Mouse positions
 let mouse = {
@@ -175,7 +175,7 @@ function setup() {
   // Set up all memory objects (function found in allMemories.json)
   setUpMemoryObjects();
 
-  // Take a screenshot of the canvas
+  // // Take a screenshot of the canvas
   // setTimeout(() => {
   //   saveCanvas(canvas, "myCanvas", "jpg");
   // }, 2000);
@@ -427,6 +427,22 @@ function mousePressed() {
     // }
   } else if (state === `memory`) {
     dialogBox.mousePressed(mouse);
+
+    if (memoryPlaying === `memoryFathersDay`) {
+      memoryFathersDay.mousePressed(mouseX, mouseY);
+    }
+  }
+}
+
+// function mousePressed() {
+//   memoryFathersDay.mousePressed(mouseX, mouseY);
+// }
+
+function mouseReleased() {
+  if (state === `memory`) {
+    if (memoryPlaying === `memoryFathersDay`) {
+      memoryFathersDay.mouseNotPressed();
+    }
   }
 }
 

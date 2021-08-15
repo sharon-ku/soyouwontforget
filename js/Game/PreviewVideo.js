@@ -215,6 +215,8 @@ class PreviewVideo extends OverlappingRectangle {
     console.log(`playing a memory, ${memoryPlaying}`);
 
     // USED FOR TESTS
-    memoryPlaying = `testMemory`;
+    // let testMemoriesList = [`testMemory`, `memoryFathersDay`];
+    // memoryPlaying = random(testMemoriesList);
+    memoryPlaying = `memoryFathersDay`;
   }
 }

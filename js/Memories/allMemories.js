@@ -19,6 +19,14 @@ const NUM_LU_IMAGES = 1;
 let zaiImages = [];
 const NUM_ZAI_IMAGES = 1;
 
+// Object images ------------
+// Father's day card & decorations
+let fathersDayCardImage = undefined;
+let singleDecorationImages = [];
+const NUM_SINGLE_DECORATION_IMAGES = 6;
+let multipleDecorationImages = [];
+const NUM_MULTIPLE_DECORATION_IMAGES = 7;
+
 // Preload images and sounds for all memories (done in preload)
 function preloadMemoryAssets() {
   // Load all character images -------------
@@ -33,6 +41,26 @@ function preloadMemoryAssets() {
     let zaiImage = loadImage(`assets/images/memories/characters/zai${i}.png`);
     zaiImages.push(zaiImage);
   }
+
+  // Load all object images -------------
+  // Father's Day card
+  fathersDayCardImage = loadImage(
+    `assets/images/memories/objects/card/card.png`
+  );
+
+  // Card decorations
+  for (let i = 0; i < NUM_SINGLE_DECORATION_IMAGES; i++) {
+    let singleDecorationImage = loadImage(
+      `assets/images/memories/objects/card/single-decorations/single-decoration${i}.png`
+    );
+    singleDecorationImages.push(singleDecorationImage);
+  }
+  for (let i = 0; i < NUM_MULTIPLE_DECORATION_IMAGES; i++) {
+    let multipleDecorationImage = loadImage(
+      `assets/images/memories/objects/card/multiple-decorations/multiple-decoration${i}.png`
+    );
+    multipleDecorationImages.push(multipleDecorationImage);
+  }
 }
 
 // Create objects for all memories (done in setup)
@@ -43,14 +71,19 @@ function setUpMemoryObjects() {
 
   // Used for test memory
   memoryTest = new MemoryTest(luImages, zaiImages);
+  memoryFathersDay = new MemoryFathersDay(
+    singleDecorationImages,
+    multipleDecorationImages,
+    fathersDayCardImage
+  );
 }
 
 // Cue memory based on the memory that is currently playing
 function cueMemory() {
   if (memoryPlaying === `testMemory`) {
     playTestMemory();
-  } else if (memoryPlaying === `game`) {
-    // game();
+  } else if (memoryPlaying === `memoryFathersDay`) {
+    playFathersDayMemory();
   } else if (memoryPlaying === `end`) {
     // end();
   }
@@ -66,4 +99,11 @@ function playTestMemory() {
 
   // Update dialog box
   dialogBox.update(dialogsList);
+}
+
+function playFathersDayMemory() {
+  background(226, 248, 249);
+  // console.log(`playing fathers day`);
+
+  memoryFathersDay.update();
 }
