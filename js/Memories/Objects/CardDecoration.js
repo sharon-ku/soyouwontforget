@@ -41,10 +41,10 @@ class CardDecoration {
 
   mousePressed(mouseX, mouseY) {
     if (
-      mouseX > this.x - this.image.width &&
-      mouseX < this.x + this.image.width &&
-      mouseY > this.y - this.image.height &&
-      mouseY < this.y + this.image.height
+      mouseX > this.x - this.image.width / 2 &&
+      mouseX < this.x + this.image.width / 2 &&
+      mouseY > this.y - this.image.height / 2 &&
+      mouseY < this.y + this.image.height / 2
     ) {
       this.dragging = true;
       this.offsetX = this.x - mouseX;
