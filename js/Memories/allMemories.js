@@ -20,6 +20,9 @@ let zaiImages = [];
 const NUM_ZAI_IMAGES = 1;
 
 // Object images ------------
+// White filter
+let whiteFilterImage = undefined;
+
 // Father's day card & decorations
 let fathersDayCardImage = undefined;
 let singleDecorationImages = [];
@@ -51,6 +54,11 @@ function preloadMemoryAssets() {
   }
 
   // Load all object images -------------
+  // White filter image
+  whiteFilterImage = loadImage(
+    `assets/images/memories/objects/white-filter.jpg`
+  );
+
   // Father's Day card
   fathersDayCardImage = loadImage(
     `assets/images/memories/objects/card/card.png`
@@ -109,7 +117,8 @@ function setUpMemoryObjects() {
     phoneImages,
     cameraButtonImage,
     heartEmojiImage,
-    instaCheckmarkImage
+    instaCheckmarkImage,
+    whiteFilterImage
   );
 }
 

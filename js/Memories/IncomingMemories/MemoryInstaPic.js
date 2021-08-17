@@ -14,7 +14,8 @@ class MemoryInstaPic {
     phoneImages,
     cameraButtonImage,
     heartEmojiImage,
-    instaCheckmarkImage
+    instaCheckmarkImage,
+    whiteFilterImage
   ) {
     // Characters in this scene ---------
     // All characters
@@ -25,6 +26,18 @@ class MemoryInstaPic {
       image: saladImage,
       x: width / 2,
       y: height / 2,
+    };
+
+    this.whiteFilter = {
+      image: whiteFilterImage,
+      x: width / 2,
+      y: height / 2,
+      opacity: {
+        current: 0,
+        max: 255,
+        change: 0.2,
+      },
+      delayToReveal: 5000,
     };
 
     // Phone
@@ -118,9 +131,38 @@ class MemoryInstaPic {
         this.numLikes += 1;
         this.framesElapsed = 0;
       }
+
+      this.revealWhiteFilter(this.whiteFilter);
+
+      // // Reveal white filter after a delay
+      // setTimeout(() => {
+      //   this.revealWhiteFilter(this.whiteFilter);
+      // }, this.whiteFilter.delayToReveal);
     }
 
     this.displayFlyingHearts();
+
+    // // Reveal white filter after a delay
+    // setTimeout(function () {
+    //   this.releaseHearts = false;
+    //   this.revealWhiteFilter(this.whiteFilter);
+    // }, this.whiteFilter.delayToReveal);
+  }
+
+  // Reveal white filter by increasing its opacity
+  revealWhiteFilter(picture) {
+    push();
+    imageMode(CENTER);
+    tint(255, picture.opacity.current);
+    image(picture.image, picture.x, picture.y);
+    pop();
+
+    if (picture.opacity.current < picture.opacity.max) {
+      picture.opacity.current += picture.opacity.change;
+    } else if (picture.opacity.current >= picture.opacity.max) {
+      state = `game`;
+      memoryPlaying = undefined;
+    }
   }
 
   // Display hearts and let them fly
