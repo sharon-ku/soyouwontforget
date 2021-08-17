@@ -29,6 +29,11 @@ const NUM_MULTIPLE_DECORATION_IMAGES = 7;
 
 // Insta pic
 let saladImage = undefined;
+let phoneImages = [];
+const NUM_PHONE_IMAGES = 3;
+let cameraButtonImage = undefined;
+let heartEmojiImage = undefined;
+let instaCheckmarkImage = undefined;
 
 // Preload images and sounds for all memories (done in preload)
 function preloadMemoryAssets() {
@@ -65,8 +70,23 @@ function preloadMemoryAssets() {
     multipleDecorationImages.push(multipleDecorationImage);
   }
 
-  // Salad pic in Insta Pic memory
+  // Insta Pic memory images
   saladImage = loadImage(`assets/images/memories/objects/insta-pic/salad.jpg`);
+  for (let i = 0; i < NUM_PHONE_IMAGES; i++) {
+    let phoneImage = loadImage(
+      `assets/images/memories/objects/insta-pic/phone${i}.png`
+    );
+    phoneImages.push(phoneImage);
+  }
+  cameraButtonImage = loadImage(
+    `assets/images/memories/objects/insta-pic/camera-button.png`
+  );
+  heartEmojiImage = loadImage(
+    `assets/images/memories/objects/insta-pic/heart-emoji.png`
+  );
+  instaCheckmarkImage = loadImage(
+    `assets/images/memories/objects/insta-pic/insta-checkmark.png`
+  );
 }
 
 // Create objects for all memories (done in setup)
@@ -84,7 +104,13 @@ function setUpMemoryObjects() {
     fathersDayCardImage
   );
 
-  memoryInstaPic = new MemoryInstaPic(saladImage);
+  memoryInstaPic = new MemoryInstaPic(
+    saladImage,
+    phoneImages,
+    cameraButtonImage,
+    heartEmojiImage,
+    instaCheckmarkImage
+  );
 }
 
 // Cue memory based on the memory that is currently playing

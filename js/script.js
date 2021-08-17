@@ -9,11 +9,11 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-let state = `game`;
+let state = `memory`;
 
 // Store name of current memory that is playing
-let memoryPlaying = undefined;
-// let memoryPlaying = `testMemory`;
+// let memoryPlaying = undefined;
+let memoryPlaying = `memoryInstaPic`;
 
 // Mouse positions
 let mouse = {

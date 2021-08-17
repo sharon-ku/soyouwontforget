@@ -1,7 +1,13 @@
 // Insta pic memory playing in memory state
 
 class MemoryInstaPic {
-  constructor(saladImage) {
+  constructor(
+    saladImage,
+    phoneImages,
+    cameraButtonImage,
+    heartEmojiImage,
+    instaCheckmarkImage
+  ) {
     // Characters in this scene ---------
     // All characters
     // this.characters = [];
@@ -13,13 +19,12 @@ class MemoryInstaPic {
       y: height / 2,
     };
 
-    // Card
-    // this.cardProperties = {
-    //   image: fathersDayCardImage,
-    //   x: width / 2,
-    //   y: height / 2,
-    // };
-    // this.card = new CardDecoration(this.cardProperties);
+    // Phone
+    this.phoneProperties = {
+      phoneImages: phoneImages,
+      cameraButtonImage: cameraButtonImage,
+    };
+    this.phone = new Phone(this.phoneProperties);
   }
 
   // Update all behaviours
@@ -31,7 +36,7 @@ class MemoryInstaPic {
     // NONE
 
     // Display all objects
-
+    this.phone.update();
     //
     // for (let i = 0; i < this.singleDecorations.length; i++) {
     //   this.singleDecorations[i].update();
