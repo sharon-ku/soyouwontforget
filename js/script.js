@@ -431,6 +431,10 @@ function mousePressed() {
     if (memoryPlaying === `memoryFathersDay`) {
       memoryFathersDay.mousePressed(mouseX, mouseY);
     }
+
+    if (memoryPlaying === `memoryInstaPic`) {
+      memoryInstaPic.mousePressed(mouseX, mouseY);
+    }
   }
 }
 

@@ -14,15 +14,20 @@ class Phone {
       image: cameraButtonImage,
       xOffset: 0,
       yOffset: 180,
+      display: true,
     };
   }
 
   // Update all behaviour
-  update() {
+  update(mouseX, mouseY) {
     // Display
     this.display();
 
-    this.displayCameraButton();
+    if (this.cameraButton.display) {
+      this.displayCameraButton();
+    }
+
+    this.mouseOverlapsWithCameraButton(mouseX, mouseY);
   }
 
   // Display phone
@@ -45,5 +50,36 @@ class Phone {
       this.cameraButton.yOffset
     );
     pop();
+  }
+
+  mousePressed(mouseX, mouseY) {
+    if (this.mouseOverlapsWithCameraButton(mouseX, mouseY)) {
+      this.currentIndex += 1;
+      // Stop displaying camera button
+      this.cameraButton.display = false;
+    }
+  }
+
+  mouseOverlapsWithCameraButton(mouseX, mouseY) {
+    if (
+      mouseX >
+        this.x +
+          this.cameraButton.xOffset -
+          this.cameraButton.image.width / 2 &&
+      mouseX <
+        this.x +
+          this.cameraButton.xOffset +
+          this.cameraButton.image.width / 2 &&
+      mouseY >
+        this.y +
+          this.cameraButton.yOffset -
+          this.cameraButton.image.height / 2 &&
+      mouseY <
+        this.y + this.cameraButton.yOffset + this.cameraButton.image.height / 2
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
