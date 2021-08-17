@@ -27,6 +27,9 @@ const NUM_SINGLE_DECORATION_IMAGES = 6;
 let multipleDecorationImages = [];
 const NUM_MULTIPLE_DECORATION_IMAGES = 7;
 
+// Insta pic
+let saladImage = undefined;
+
 // Preload images and sounds for all memories (done in preload)
 function preloadMemoryAssets() {
   // Load all character images -------------
@@ -61,6 +64,9 @@ function preloadMemoryAssets() {
     );
     multipleDecorationImages.push(multipleDecorationImage);
   }
+
+  // Salad pic in Insta Pic memory
+  saladImage = loadImage(`assets/images/memories/objects/insta-pic/salad.jpg`);
 }
 
 // Create objects for all memories (done in setup)
@@ -71,11 +77,14 @@ function setUpMemoryObjects() {
 
   // Used for test memory
   memoryTest = new MemoryTest(luImages, zaiImages);
+
   memoryFathersDay = new MemoryFathersDay(
     singleDecorationImages,
     multipleDecorationImages,
     fathersDayCardImage
   );
+
+  memoryInstaPic = new MemoryInstaPic(saladImage);
 }
 
 // Cue memory based on the memory that is currently playing
@@ -83,9 +92,9 @@ function cueMemory() {
   if (memoryPlaying === `testMemory`) {
     playTestMemory();
   } else if (memoryPlaying === `memoryFathersDay`) {
-    playFathersDayMemory();
-  } else if (memoryPlaying === `end`) {
-    // end();
+    playMemoryFathersDay();
+  } else if (memoryPlaying === `memoryInstaPic`) {
+    playMemoryInstaPic();
   }
 }
 
@@ -101,9 +110,15 @@ function playTestMemory() {
   dialogBox.update(dialogsList);
 }
 
-function playFathersDayMemory() {
+function playMemoryFathersDay() {
   background(226, 248, 249);
   // console.log(`playing fathers day`);
 
   memoryFathersDay.update();
+}
+
+function playMemoryInstaPic() {
+  background(226, 248, 249);
+
+  memoryInstaPic.update();
 }
