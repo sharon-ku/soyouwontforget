@@ -22,6 +22,33 @@ body {
   /* background: red; */
 }
 
+/* Position type caption section  */
+#type-caption {
+  /* Set font properties */
+  font-size: 1em;
+  color: grey;
+  font-family: "Balsamiq Sans", cursive;
+
+  /* Don't display until camera button is pressed */
+  display: none;
+
+  /* Hide border */
+  border-color: transparent;
+  border-style: none;
+
+  /* Set size */
+  width: 165px;
+  height: 100px;
+  /* Don't allow it to be resized */
+  resize: none;
+
+  /* Set position values */
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(calc(50vw - 50%), calc(50vh + 132%));
+}
+
 /* Download button in intro */
 /* #download-button {
   display: flex;

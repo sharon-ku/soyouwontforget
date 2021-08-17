@@ -25,9 +25,10 @@ class Phone {
 
     if (this.cameraButton.display) {
       this.displayCameraButton();
-    }
 
-    this.mouseOverlapsWithCameraButton(mouseX, mouseY);
+      // Remove overlap verification on camera button
+      // this.mouseOverlapsWithCameraButton(mouseX, mouseY);
+    }
   }
 
   // Display phone
@@ -52,11 +53,16 @@ class Phone {
     pop();
   }
 
-  mousePressed(mouseX, mouseY) {
-    if (this.mouseOverlapsWithCameraButton(mouseX, mouseY)) {
+  mousePressed(mouseX, mouseY, textField) {
+    if (
+      this.mouseOverlapsWithCameraButton(mouseX, mouseY) &&
+      this.cameraButton.display
+    ) {
       this.currentIndex += 1;
       // Stop displaying camera button
       this.cameraButton.display = false;
+      // Display caption text area
+      textField.style(`display`, `block`);
     }
   }
 

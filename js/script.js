@@ -159,6 +159,7 @@ function setup() {
   // noCursor();
 
   let canvas = createCanvas(1280, 720);
+  canvas.parent("#game-container");
 
   // // Set color to all strokes
   // stroke(strokeFill.r, strokeFill.g, strokeFill.b);

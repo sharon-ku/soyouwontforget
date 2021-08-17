@@ -1,5 +1,13 @@
 // Insta pic memory playing in memory state
 
+/**** ATTRIBUTION ------------
+The code for the flying heart emojis was copied and modified from a previous code I made for flying butterflies (used in my portfolio website!)
+******/
+
+// Used when user types caption
+let textField;
+let output;
+
 class MemoryInstaPic {
   constructor(
     saladImage,
@@ -27,20 +35,19 @@ class MemoryInstaPic {
     this.phone = new Phone(this.phoneProperties);
 
     // Heart emoji
-    this.heartemojis = [];
+    this.hearts = [];
+    // tracks whether it is time to release hearts or not
+    this.releaseHearts = false;
+    // keeping track of frames to know when to release new heart
+    this.heartFrames = {
+      elapsed: 40,
+      neededToReleaseNewHeart: 50,
+    };
+    this.heartImage = heartEmojiImage;
 
-    // TO PROGRAM FOR HEART EMOJIS
-    // for (let i = 0; i < singleDecorationImages.length; i++) {
-    //   this.singleDecorationProperties = {
-    //     image: singleDecorationImages[i],
-    //     x: random(0, width),
-    //     y: random(0, height),
-    //   };
-    //   let singleDecoration = new CardDecoration(
-    //     this.singleDecorationProperties
-    //   );
-    //   this.singleDecorations.push(singleDecoration);
-    // }
+    // Keep track of what user types in textField
+    textField = select(`#type-caption`);
+    textField.input(this.updateCaption);
 
     // Insta checkmark
     this.instaCheckmark = {
@@ -48,6 +55,39 @@ class MemoryInstaPic {
       x: width / 2 + 120,
       y: height / 2 + 230,
       display: true,
+    };
+
+    // caption
+    this.caption = {
+      string: `hello, how are you doing? hello, how are you doing?hello, how are you doing?hello, how are you doing?hello, how are you doing?hello, how are you doing?hello, how are you doing?`,
+      fill: {
+        r: 0,
+        g: 0,
+        b: 0,
+      },
+      size: 18,
+      // position offset from rectangle's position
+      xOffset: 19,
+      yOffset: 310,
+    };
+
+    // Number of likes
+    this.numLikes = 0;
+    // frames elapsed for likes animation
+    this.framesElapsed = 0;
+    this.framesBtwEachLike = 10;
+    // likes string info
+    this.likes = {
+      string: undefined,
+      fill: {
+        r: 100,
+        g: 100,
+        b: 100,
+      },
+      size: 20,
+      // position offset from rectangle's position
+      xOffset: 19,
+      yOffset: 287,
     };
   }
 
@@ -66,14 +106,91 @@ class MemoryInstaPic {
     if (this.phone.currentIndex === 1 && this.instaCheckmark.display) {
       this.displayPicture(this.instaCheckmark);
     }
-    //
-    // for (let i = 0; i < this.singleDecorations.length; i++) {
-    //   this.singleDecorations[i].update();
-    // }
-    //
-    // for (let i = 0; i < this.multipleDecorations.length; i++) {
-    //   this.multipleDecorations[i].update();
-    // }
+
+    if (this.phone.currentIndex === 2) {
+      // Display caption and number of likes
+      this.displayText(this.caption, output);
+      this.displayText(this.likes, `${this.numLikes} likes`);
+
+      // Update number of likes
+      this.framesElapsed++;
+      if (this.framesElapsed === this.framesBtwEachLike) {
+        this.numLikes += 1;
+        this.framesElapsed = 0;
+      }
+    }
+
+    this.displayFlyingHearts();
+  }
+
+  // Display hearts and let them fly
+  displayFlyingHearts() {
+    if (this.phone.currentIndex === 2) {
+      this.releaseHearts = true;
+    }
+
+    // If it's time to release hearts, create hearts at an interval of time
+    if (this.releaseHearts) {
+      // Increase frames elapsed
+      this.heartFrames.elapsed++;
+      // Once frames elapsed is equal to frames needed to switch between the images, update current wheels image
+      if (
+        this.heartFrames.elapsed === this.heartFrames.neededToReleaseNewHeart
+      ) {
+        // Create new heart
+        let heart = new HeartEmoji(this.heartImage);
+        this.hearts.push(heart);
+        // Reset frames elapsed to zero
+        this.heartFrames.elapsed = 0;
+      }
+
+      // Set releaseHearts to false to prevent more hearts from being released
+      this.releaseHearts = false;
+    }
+
+    // Display hearts and let them fly
+    // Also remove heart from array if it goes off canvas
+    for (let i = 0; i < this.hearts.length; i++) {
+      let heart = this.hearts[i];
+      // let heart fly and display it
+      heart.update();
+
+      // If heart goes off canvas, remove it from hearts array
+      if (heart.y < 0) {
+        this.hearts.splice(i, 1);
+      }
+    }
+  }
+
+  // Update output when user changes textField text
+  updateCaption() {
+    // Set text field's font color from grey to black
+    textField.style(`color`, `black`);
+
+    // Update output value
+    output = textField.value();
+  }
+
+  // Display text
+  displayText(stringProperties, string) {
+    push();
+    fill(
+      stringProperties.fill.r,
+      stringProperties.fill.g,
+      stringProperties.fill.b
+    );
+    // textAlign(CENTER);
+    rectMode(CENTER);
+    textSize(stringProperties.size);
+
+    text(
+      string,
+      this.phone.x + stringProperties.xOffset,
+      this.phone.y + stringProperties.yOffset,
+      this.phone.phoneImages[0].width - stringProperties.xOffset * 4,
+      this.phone.phoneImages[0].height - stringProperties.yOffset
+    );
+    pop();
   }
 
   // Display picture
@@ -86,14 +203,15 @@ class MemoryInstaPic {
 
   // When mouse pressed on preview video, play the memory
   mousePressed(mouseX, mouseY) {
-    this.phone.mousePressed(mouseX, mouseY);
+    this.phone.mousePressed(mouseX, mouseY, textField);
 
     if (
       this.mouseOverlapsWithInstaCheckmark(mouseX, mouseY, this.instaCheckmark)
     ) {
       this.phone.currentIndex += 1;
-      // Stop displaying checkmark
+      // Stop displaying checkmark and textField
       this.instaCheckmark.display = false;
+      textField.style(`display`, `none`);
     }
   }
 
