@@ -9,11 +9,11 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-let state = `memory`;
+let state = `game`;
 
 // Store name of current memory that is playing
-// let memoryPlaying = undefined;
-let memoryPlaying = `memoryInstaPic`;
+let memoryPlaying = undefined;
+// let memoryPlaying = `memoryInstaPic`;
 
 // Mouse positions
 let mouse = {
@@ -101,9 +101,6 @@ let randomOldMemory = undefined;
 // Store memories.json data
 let memoriesList = undefined;
 
-// Store dialogs.json data
-let dialogsList = undefined;
-
 // Dialog box in game state
 let dialogBox = undefined;
 
@@ -147,9 +144,6 @@ function preload() {
 function preloadJSONFiles() {
   // Load memories JSON file
   memoriesList = loadJSON(`assets/data/memories.json`);
-
-  // Load dialogs JSON file
-  dialogsList = loadJSON(`assets/data/dialogs.json`);
 }
 
 // setup() --------------------------------------------

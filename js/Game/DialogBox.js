@@ -99,14 +99,14 @@ class DialogBox {
   }
 
   // Update all behaviours of box
-  update(dialogsList) {
+  update(memoriesList) {
     // Display box
     this.displayBox();
 
     this.speaker.string =
-      dialogsList.oldMemories[0].dialogs[this.currentDialogNumber].speaker;
+      memoriesList.oldMemories[0].dialogs[this.currentDialogNumber].speaker;
     this.text.string =
-      dialogsList.oldMemories[0].dialogs[this.currentDialogNumber].dialog;
+      memoriesList.oldMemories[0].dialogs[this.currentDialogNumber].dialog;
 
     // Set dialog color based on who is talking
     this.setDialogColor();

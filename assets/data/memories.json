@@ -1,28 +1,31 @@
 {
-  "description": "List of pending and current memories",
-  "testingListOfNames": [
-    "wash the dishes",
-    "deliver food to tables",
-    "wipe tables",
-    "clean windows",
-    "take orders",
-    "pour water",
-    "I can do anything!",
-    "I shine as bright as a star.",
-    "I can be anything I want to be.",
-    "I will be a superstar chef one day.",
-    "I will succeed at work tomorrow.",
-    "I will make some new friends tomorrow.",
-    "I am not a failure.",
-    "Tomorrow will be an amazing day.",
-    "I will exercise tomorrow.",
-    "I feel good about myself.",
-    "I am the best!"
-  ],
+  "description": "List of incoming and old memories with their dialogs",
   "incomingMemories": [
     {
-      "previewVideoTitle": "Instagram pic",
-      "memoryFileName": "MemoryInstagramPic"
+      "previewVideoTitle": "I made a card in kindergarden.",
+      "memoryFileName": "MemoryFathersDay",
+      "dialogs": [
+        {
+          "number": 1,
+          "speaker": "Me",
+          "dialog": "hi!"
+        },
+        {
+          "number": 2,
+          "speaker": "Daddy",
+          "dialog": "how are you doing!"
+        },
+        {
+          "number": 3,
+          "speaker": "Zai",
+          "dialog": "placeholder text."
+        },
+        {
+          "number": 4,
+          "speaker": "Daddy",
+          "dialog": "Alright, two versus one."
+        }
+      ]
     },
     {
       "previewVideoTitle": "A Joke",
@@ -42,6 +45,62 @@
     }
   ],
   "oldMemories": [
+    {
+      "previewVideoTitle": "I posted a salad pic on Instagram",
+      "memoryFileName": "MemoryInstaPic",
+      "dialogs": [
+        {
+          "number": 1,
+          "speaker": "Me",
+          "dialog": "I want to play too!"
+        },
+        {
+          "number": 2,
+          "speaker": "Daddy",
+          "dialog": "Lu, come join us!"
+        },
+        {
+          "number": 3,
+          "speaker": "Zai",
+          "dialog": "Lu, come to my side."
+        },
+        {
+          "number": 4,
+          "speaker": "Daddy",
+          "dialog": "Alright, two versus one."
+        },
+        {
+          "number": 5,
+          "speaker": "Daddy",
+          "dialog": "Nice kick!"
+        },
+        {
+          "number": 6,
+          "speaker": "Zai",
+          "dialog": "I wanna kick it!"
+        },
+        {
+          "number": 7,
+          "speaker": "Daddy",
+          "dialog": "Ok. Lu, give your brother a chance to kick the ball."
+        },
+        {
+          "number": 8,
+          "speaker": "Zai",
+          "dialog": "Hayyaaaaaaaaaaa!"
+        },
+        {
+          "number": 9,
+          "speaker": "Zai",
+          "dialog": "Scoreeeeeeeeeee!"
+        },
+        {
+          "number": 10,
+          "speaker": "Daddy",
+          "dialog": "Wa Zai, you improved!"
+        }
+      ]
+    },
     {
       "previewVideoTitle": "Day at the beach",
       "memoryFileName": "MemoryDayAtTheBeach"

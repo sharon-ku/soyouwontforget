@@ -133,7 +133,7 @@ function playTestMemory() {
   memoryTest.update();
 
   // Update dialog box
-  dialogBox.update(dialogsList);
+  dialogBox.update(memoriesList);
 }
 
 function playMemoryFathersDay() {
