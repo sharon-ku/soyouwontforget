@@ -28,6 +28,7 @@ class MemoryInstaPic {
       y: height / 2,
     };
 
+    // White filter used for transition from memory to game
     this.whiteFilter = {
       image: whiteFilterImage,
       x: width / 2,
@@ -35,9 +36,9 @@ class MemoryInstaPic {
       opacity: {
         current: 0,
         max: 255,
-        change: 0.2,
       },
       delayToReveal: 5000,
+      display: false,
     };
 
     // Phone
@@ -46,17 +47,6 @@ class MemoryInstaPic {
       cameraButtonImage: cameraButtonImage,
     };
     this.phone = new Phone(this.phoneProperties);
-
-    // Heart emoji
-    this.hearts = [];
-    // tracks whether it is time to release hearts or not
-    this.releaseHearts = false;
-    // keeping track of frames to know when to release new heart
-    this.heartFrames = {
-      elapsed: 40,
-      neededToReleaseNewHeart: 50,
-    };
-    this.heartImage = heartEmojiImage;
 
     // Keep track of what user types in textField
     textField = select(`#type-caption`);
@@ -70,7 +60,7 @@ class MemoryInstaPic {
       display: true,
     };
 
-    // caption
+    // Caption
     this.caption = {
       string: `hello, how are you doing? hello, how are you doing?hello, how are you doing?hello, how are you doing?hello, how are you doing?hello, how are you doing?hello, how are you doing?`,
       fill: {
@@ -83,6 +73,15 @@ class MemoryInstaPic {
       xOffset: 19,
       yOffset: 310,
     };
+
+    // Heart emoji
+    this.hearts = [];
+    // keeping track of frames to know when to release new heart
+    this.heartFrames = {
+      elapsed: 40,
+      neededToReleaseNewHeart: 50,
+    };
+    this.heartImage = heartEmojiImage;
 
     // Number of likes
     this.numLikes = 0;
@@ -132,21 +131,14 @@ class MemoryInstaPic {
         this.framesElapsed = 0;
       }
 
-      this.revealWhiteFilter(this.whiteFilter);
+      // Display the flying hearts
+      this.displayFlyingHearts();
 
-      // // Reveal white filter after a delay
-      // setTimeout(() => {
-      //   this.revealWhiteFilter(this.whiteFilter);
-      // }, this.whiteFilter.delayToReveal);
+      // If time to show white filter, reveal it
+      if (this.whiteFilter.display) {
+        this.revealWhiteFilter(this.whiteFilter);
+      }
     }
-
-    this.displayFlyingHearts();
-
-    // // Reveal white filter after a delay
-    // setTimeout(function () {
-    //   this.releaseHearts = false;
-    //   this.revealWhiteFilter(this.whiteFilter);
-    // }, this.whiteFilter.delayToReveal);
   }
 
   // Reveal white filter by increasing its opacity
@@ -158,7 +150,7 @@ class MemoryInstaPic {
     pop();
 
     if (picture.opacity.current < picture.opacity.max) {
-      picture.opacity.current += picture.opacity.change;
+      picture.opacity.current++;
     } else if (picture.opacity.current >= picture.opacity.max) {
       state = `game`;
       memoryPlaying = undefined;
@@ -167,27 +159,16 @@ class MemoryInstaPic {
 
   // Display hearts and let them fly
   displayFlyingHearts() {
-    if (this.phone.currentIndex === 2) {
-      this.releaseHearts = true;
-    }
-
     // If it's time to release hearts, create hearts at an interval of time
-    if (this.releaseHearts) {
-      // Increase frames elapsed
-      this.heartFrames.elapsed++;
-      // Once frames elapsed is equal to frames needed to switch between the images, update current wheels image
-      if (
-        this.heartFrames.elapsed === this.heartFrames.neededToReleaseNewHeart
-      ) {
-        // Create new heart
-        let heart = new HeartEmoji(this.heartImage);
-        this.hearts.push(heart);
-        // Reset frames elapsed to zero
-        this.heartFrames.elapsed = 0;
-      }
-
-      // Set releaseHearts to false to prevent more hearts from being released
-      this.releaseHearts = false;
+    // Increase frames elapsed
+    this.heartFrames.elapsed++;
+    // Once frames elapsed is equal to frames needed to switch between the images, update current wheels image
+    if (this.heartFrames.elapsed === this.heartFrames.neededToReleaseNewHeart) {
+      // Create new heart
+      let heart = new HeartEmoji(this.heartImage);
+      this.hearts.push(heart);
+      // Reset frames elapsed to zero
+      this.heartFrames.elapsed = 0;
     }
 
     // Display hearts and let them fly
@@ -254,6 +235,11 @@ class MemoryInstaPic {
       // Stop displaying checkmark and textField
       this.instaCheckmark.display = false;
       textField.style(`display`, `none`);
+
+      // Reveal white filter after a delay
+      setTimeout(() => {
+        this.whiteFilter.display = true;
+      }, this.whiteFilter.delayToReveal);
     }
   }
 

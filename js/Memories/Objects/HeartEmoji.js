@@ -40,7 +40,7 @@ class HeartEmoji {
     push();
     imageMode(CENTER);
     // tint(random(0, 255), random(0, 255), random(0, 255));
-    tint(255, 105, random(0, 255));
+    tint(255, random(0, 125), random(0, 255));
     scale(0.8);
     image(this.image, this.x, this.y);
     pop();
