@@ -10,13 +10,27 @@ class MemoryFathersDay {
   constructor(
     singleDecorationImages,
     multipleDecorationImages,
-    fathersDayCardImage
+    fathersDayCardImage,
+    dadiCorrectSpellingSound
   ) {
+    // Sounds ------------------------
+    this.dadiCorrectSpellingSound = dadiCorrectSpellingSound;
+    // Used to keep track of how many times sound has been played
+    this.dadiCorrectSpellingSoundPlayed = false;
+
     // Characters in this scene ---------
     // All characters
     // this.characters = [];
 
     // Objects in this scene ---------
+    // "Save card" button
+    this.saveCardButtonProperties = {
+      x: width - 120,
+      y: height - 70,
+    };
+    this.saveCardButton = new SaveCardButton(this.saveCardButtonProperties);
+
+    // Card decorations
     this.singleDecorations = [];
     this.multipleDecorations = [];
     this.numMultipleDecorations = 4;
@@ -56,6 +70,9 @@ class MemoryFathersDay {
         this.multipleDecorations.push(multipleDecoration);
       }
     }
+
+    // True if dadi is spelt correctly
+    this.dadiSpelling = undefined;
   }
 
   // Update all behaviours
@@ -66,6 +83,7 @@ class MemoryFathersDay {
     // Display all objects
     this.card.update();
 
+    // Update decorations
     for (let i = 0; i < this.singleDecorations.length; i++) {
       this.singleDecorations[i].update();
     }
@@ -73,10 +91,36 @@ class MemoryFathersDay {
     for (let i = 0; i < this.multipleDecorations.length; i++) {
       this.multipleDecorations[i].update();
     }
+
+    // Check dadi spelling
+    this.checkDadiSpelling();
+
+    // If spelling of dady is correct, play congratulatory sound just once
+    if (this.dadiSpelling && !this.dadiCorrectSpellingSoundPlayed) {
+      this.dadiCorrectSpellingSound.play();
+      this.dadiCorrectSpellingSoundPlayed = true;
+    }
+
+    // Update "Save Card" button
+    this.saveCardButton.update();
+    this.saveCardButton.hover(mouse);
+  }
+
+  // Return true if Dadi is spelled correctly
+  checkDadiSpelling() {
+    for (let i = 0; i < 3; i++) {
+      if (this.singleDecorations[i].x > this.singleDecorations[i + 1].x) {
+        this.dadiSpelling = false;
+        break;
+      }
+      this.dadiSpelling = true;
+    }
   }
 
   // When mouse pressed on preview video, play the memory
   mousePressed(mouseX, mouseY) {
+    this.saveCardButton.mousePressed(mouse);
+
     for (let i = 0; i < this.singleDecorations.length; i++) {
       this.singleDecorations[i].mousePressed(mouseX, mouseY);
     }

@@ -14,7 +14,7 @@ let state = `memory`;
 
 // Store name of current memory that is playing
 // let memoryPlaying = undefined;
-let memoryPlaying = `memoryInstaPic`;
+let memoryPlaying = `memoryFathersDay`;
 
 // Mouse positions
 let mouse = {
@@ -151,6 +151,8 @@ function preloadJSONFiles() {
 //
 // Set up canvas and create game objects
 function setup() {
+  userStartAudio();
+
   // noCursor();
 
   let canvas = createCanvas(1280, 720);

@@ -38,8 +38,15 @@ let cameraButtonImage = undefined;
 let heartEmojiImage = undefined;
 let instaCheckmarkImage = undefined;
 
+// Sounds ------------
+// Dadi correct spelling
+let dadiCorrectSpellingSound = undefined;
+
 // Preload images and sounds for all memories (done in preload)
 function preloadMemoryAssets() {
+  // Load all sounds -------------
+  dadiCorrectSpellingSound = loadSound(`assets/sounds/bark.wav`);
+
   // Load all character images -------------
   // Lu
   for (let i = 0; i < NUM_LU_IMAGES; i++) {
@@ -109,7 +116,8 @@ function setUpMemoryObjects() {
   memoryFathersDay = new MemoryFathersDay(
     singleDecorationImages,
     multipleDecorationImages,
-    fathersDayCardImage
+    fathersDayCardImage,
+    dadiCorrectSpellingSound
   );
 
   memoryInstaPic = new MemoryInstaPic(
