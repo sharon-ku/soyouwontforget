@@ -14,7 +14,36 @@ let state = `memory`;
 
 // Store name of current memory that is playing
 // let memoryPlaying = undefined;
-let memoryPlaying = `memoryFathersDay`;
+let memoryPlaying = `memoryPlayingOnPhone`;
+
+// Landmark stroke color
+const LANDMARK_STROKE_FILL = {
+  r: 241,
+  g: 142,
+  b: 48,
+};
+
+// Landmark stroke weight
+const LANDMARK_STROKE_WEIGHT = 5;
+
+// Body objects inside mirror
+let mirrorHead = undefined;
+let mirrorMouth = undefined;
+let leftEye = undefined;
+let rightEye = undefined;
+
+// Used for ml5 -----------------------
+// Faceapi object
+let faceapi = undefined;
+// The user's webcam
+let video = undefined;
+// Store all detections
+let detections;
+// Modifying detection options (by default, they are set to true)
+const DETECTION_OPTIONS = {
+  withLandmarks: true,
+  withDescriptors: false,
+};
 
 // Mouse positions
 let mouse = {
@@ -158,6 +187,14 @@ function setup() {
   let canvas = createCanvas(1280, 720);
   canvas.parent("#game-container");
 
+  // load up user's video
+  video = createCapture(VIDEO);
+  video.size(width, height);
+  // Hide the video element, and just show the canvas
+  video.hide();
+  // Set up faceApi
+  faceapi = ml5.faceApi(video, DETECTION_OPTIONS, modelReady);
+
   // // Set color to all strokes
   // stroke(strokeFill.r, strokeFill.g, strokeFill.b);
 
@@ -177,6 +214,55 @@ function setup() {
   // setTimeout(() => {
   //   saveCanvas(canvas, "myCanvas", "jpg");
   // }, 2000);
+}
+
+// Start detection when model is ready
+function modelReady() {
+  console.log(faceapi);
+  faceapi.detect(gotResults);
+}
+
+// Get results
+function gotResults(err, result) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  memoryPlayingOnPhone.detections = result;
+
+  background(bgFill.current.r, bgFill.current.g, bgFill.current.b);
+
+  // Use this if I show my video capture:
+  // image(video, 0,0, width, height)
+
+  // If detections found:
+  if (memoryPlayingOnPhone.detections) {
+    if (memoryPlayingOnPhone.detections.length > 0) {
+      // Update behaviour of all body parts
+      // head + mouth
+      memoryPlayingOnPhone.mirrorHead.update(memoryPlayingOnPhone.detections);
+      memoryPlayingOnPhone.mirrorMouth.update(memoryPlayingOnPhone.detections);
+
+      // eyes
+      let leftEyePosition = memoryPlayingOnPhone.detections[0].parts.leftEye;
+      memoryPlayingOnPhone.leftEye.update(
+        memoryPlayingOnPhone.detections,
+        leftEyePosition
+      );
+
+      let rightEyePosition = memoryPlayingOnPhone.detections[0].parts.rightEye;
+      memoryPlayingOnPhone.rightEye.update(
+        memoryPlayingOnPhone.detections,
+        rightEyePosition
+      );
+
+      // eyebrows
+      memoryPlayingOnPhone.drawLandmarks(memoryPlayingOnPhone.detections);
+    }
+  } else {
+    console.log(`get your face in the camera`);
+  }
+  faceapi.detect(gotResults);
 }
 
 // Set up all intro objects
@@ -275,8 +361,10 @@ function fetchRandomOldMemory() {
 //
 // Set up background colors and states
 function draw() {
-  // Set background color
-  background(bgFill.current.r, bgFill.current.g, bgFill.current.b);
+  if (!memory === `memoryPlayingOnPhone`) {
+    // Set background color
+    background(bgFill.current.r, bgFill.current.g, bgFill.current.b);
+  }
 
   // Set mouse x and mouse y
   mouse.x = mouseX;
@@ -435,10 +523,6 @@ function mousePressed() {
     }
   }
 }
-
-// function mousePressed() {
-//   memoryFathersDay.mousePressed(mouseX, mouseY);
-// }
 
 function mouseReleased() {
   if (state === `memory`) {

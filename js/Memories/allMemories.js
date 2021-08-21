@@ -23,6 +23,10 @@ const NUM_ZAI_IMAGES = 1;
 // White filter
 let whiteFilterImage = undefined;
 
+// Bao images
+let doughImage = undefined;
+let rollingPinImage = undefined;
+
 // Father's day card & decorations
 let fathersDayCardImage = undefined;
 let singleDecorationImages = [];
@@ -64,6 +68,12 @@ function preloadMemoryAssets() {
   // White filter image
   whiteFilterImage = loadImage(
     `assets/images/memories/objects/white-filter.jpg`
+  );
+
+  // Bao images
+  doughImage = loadImage(`assets/images/memories/objects/bao/dough.png`);
+  rollingPinImage = loadImage(
+    `assets/images/memories/objects/bao/rolling-pin.png`
   );
 
   // Father's Day card
@@ -128,6 +138,10 @@ function setUpMemoryObjects() {
     instaCheckmarkImage,
     whiteFilterImage
   );
+
+  memoryMakingBao = new MemoryMakingBao(doughImage, rollingPinImage);
+
+  memoryPlayingOnPhone = new MemoryPlayingOnPhone();
 }
 
 // Cue memory based on the memory that is currently playing
@@ -138,6 +152,10 @@ function cueMemory() {
     playMemoryFathersDay();
   } else if (memoryPlaying === `memoryInstaPic`) {
     playMemoryInstaPic();
+  } else if (memoryPlaying === `memoryMakingBao`) {
+    playMemoryMakingBao();
+  } else if (memoryPlaying === `memoryPlayingOnPhone`) {
+    playMemoryPlayingOnPhone();
   }
 }
 
@@ -164,4 +182,19 @@ function playMemoryInstaPic() {
   background(226, 248, 249);
 
   memoryInstaPic.update();
+}
+
+function playMemoryMakingBao() {
+  background(226, 248, 249);
+  // console.log(`playing fathers day`);
+
+  memoryMakingBao.update();
+}
+
+function playMemoryPlayingOnPhone() {
+  // noBackground();
+  // background(226, 248, 249);
+  // console.log(`playing fathers day`);
+
+  memoryPlayingOnPhone.update();
 }
