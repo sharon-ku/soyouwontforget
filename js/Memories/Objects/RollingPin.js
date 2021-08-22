@@ -13,6 +13,7 @@ class RollingPin {
     // position
     this.x = x;
     this.y = y;
+    this.rateOfPositionChange = 0.1;
   }
 
   // Update all behaviour
@@ -34,20 +35,9 @@ class RollingPin {
 
   // Move along vertical axis based on mouseY
   move(mouseY) {
-    this.y = mouseY;
+    this.y += (mouseY - this.y) * this.rateOfPositionChange;
 
     // constrain movement
     this.y = constrain(this.y, height / 2 - 100, height / 2 + 100);
-  }
-
-  mousePressed(mouseX, mouseY) {
-    // if (
-    //   mouseX > this.x - this.image.width / 2 &&
-    //   mouseX < this.x + this.image.width / 2 &&
-    //   mouseY > this.y - this.image.height / 2 &&
-    //   mouseY < this.y + this.image.height / 2
-    // ) {
-    //
-    // }
   }
 }

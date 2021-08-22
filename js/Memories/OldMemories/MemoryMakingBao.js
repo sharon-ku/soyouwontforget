@@ -6,6 +6,8 @@ class MemoryMakingBao {
     // this.dadiCorrectSpellingSound = dadiCorrectSpellingSound;
     // // Used to keep track of how many times sound has been played
     // this.dadiCorrectSpellingSoundPlayed = false;
+    this.completedRollingDough = false;
+
     // Characters in this scene ---------
     // All characters
     // this.characters = [];
@@ -17,10 +19,13 @@ class MemoryMakingBao {
       y: height / 2,
       image: doughImage,
       scale: {
-        current: 0.1,
+        current: 0.6,
+        max: 1.2,
         increaseRate: {
-          current: 0.0001,
-          min: 0.0001,
+          current: 0.00001,
+          // min: 0.0005,
+          // max: 0.001,
+          min: 0.0005,
           max: 0.001,
         },
       },
@@ -29,11 +34,14 @@ class MemoryMakingBao {
 
     // Rolling pin
     this.rollingPinProperties = {
-      x: width / 2 + 100,
-      y: height / 2 + 50,
+      x: width / 2,
+      y: height / 2 + 100,
       image: rollingPinImage,
     };
     this.rollingPin = new RollingPin(this.rollingPinProperties);
+
+    // Dialogs
+    this.OneFourthDoneRollingDialog = 0;
 
     // // Card decorations
     // this.singleDecorations = [];
@@ -82,6 +90,7 @@ class MemoryMakingBao {
 
   // Update all behaviours
   update() {
+    noCursor();
     // Display all characters
     // NONE
 
@@ -89,7 +98,13 @@ class MemoryMakingBao {
     this.displayDough();
     this.increaseDoughSize();
 
-    this.rollingPin.update(mouseY);
+    if (!this.completedRollingDough) {
+      this.rollingPin.update(mouseY);
+    }
+
+    // if (this.OneFourthDoneRollingDialog===1) {
+    //   makingBao.dialogs.play();
+    // }
 
     //
     // // Update decorations
@@ -130,30 +145,28 @@ class MemoryMakingBao {
 
   // If rolling over dough, increase its size
   increaseDoughSize() {
-    console.log(abs(movedY));
     if (abs(movedY) > 0) {
-      this.dough.scale.increaseRate.current = map(
-        abs(movedY),
-        0,
-        3,
-        this.dough.scale.increaseRate.min,
-        this.dough.scale.increaseRate.max
-      );
+      // If dough is small, faster increase rate
+      if (this.dough.scale.current < this.dough.scale.max / 2) {
+        this.dough.scale.increaseRate.current = this.dough.scale.increaseRate.max;
+      } else {
+        this.dough.scale.increaseRate.current = this.dough.scale.increaseRate.min;
+      }
 
       this.dough.scale.current += this.dough.scale.increaseRate.current;
+
+      // If a quarter complete with the rolling
+      if (this.dough.scale.current > this.dough.scale.max / 4) {
+        this.OneFourthDoneRollingDialog += 1;
+      }
+
+      // Finished rolling
+      if (this.dough.scale.current >= this.dough.scale.max) {
+        this.completedRollingDough = true;
+        console.log(`L: I finished!`);
+      }
     }
   }
-
-  // // Return true if Dadi is spelled correctly
-  // checkDadiSpelling() {
-  //   for (let i = 0; i < 3; i++) {
-  //     if (this.singleDecorations[i].x > this.singleDecorations[i + 1].x) {
-  //       this.dadiSpelling = false;
-  //       break;
-  //     }
-  //     this.dadiSpelling = true;
-  //   }
-  // }
 
   // When mouse pressed on preview video, play the memory
   mousePressed(mouseX, mouseY) {
