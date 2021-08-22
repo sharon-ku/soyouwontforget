@@ -185,7 +185,7 @@ function playMemoryInstaPic() {
 }
 
 function playMemoryMakingBao() {
-  background(226, 248, 249);
+  background(0, 0, 0);
   // console.log(`playing fathers day`);
 
   memoryMakingBao.update();

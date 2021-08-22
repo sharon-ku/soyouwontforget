@@ -9,8 +9,8 @@ class MirrorEye extends MirrorRoundBodyPart {
     this.yOffset = yOffset;
 
     // size
-    this.width = 12;
-    this.height = 12;
+    this.width = 30;
+    this.height = 30;
 
     // color
     this.fill = {

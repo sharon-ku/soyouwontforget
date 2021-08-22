@@ -20,7 +20,7 @@ class MirrorHead extends MirrorRoundBodyPart {
     };
 
     // stroke
-    this.strokeWeight = 2;
+    this.strokeWeight = 5;
   }
 
   // Update all circle behaviour

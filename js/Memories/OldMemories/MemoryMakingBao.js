@@ -17,8 +17,12 @@ class MemoryMakingBao {
       y: height / 2,
       image: doughImage,
       scale: {
-        x: 0.3,
-        y: 0.3,
+        current: 0.1,
+        increaseRate: {
+          current: 0.0001,
+          min: 0.0001,
+          max: 0.001,
+        },
       },
       angle: 0,
     };
@@ -83,7 +87,10 @@ class MemoryMakingBao {
 
     // Display all objects
     this.displayDough();
-    this.rollingPin.update();
+    this.increaseDoughSize();
+
+    this.rollingPin.update(mouseY);
+
     //
     // // Update decorations
     // for (let i = 0; i < this.singleDecorations.length; i++) {
@@ -115,10 +122,26 @@ class MemoryMakingBao {
     imageMode(CENTER);
     rotate(this.dough.angle);
     // this.dough.angle += 0.05;
-    scale(this.dough.scale.x, this.dough.scale.y);
-
+    scale(this.dough.scale.current);
+    // scale(this.dough.scale.x, this.dough.scale.y);
     image(this.dough.image, 0, 0);
     pop();
+  }
+
+  // If rolling over dough, increase its size
+  increaseDoughSize() {
+    console.log(abs(movedY));
+    if (abs(movedY) > 0) {
+      this.dough.scale.increaseRate.current = map(
+        abs(movedY),
+        0,
+        3,
+        this.dough.scale.increaseRate.min,
+        this.dough.scale.increaseRate.max
+      );
+
+      this.dough.scale.current += this.dough.scale.increaseRate.current;
+    }
   }
 
   // // Return true if Dadi is spelled correctly

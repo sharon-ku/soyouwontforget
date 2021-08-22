@@ -14,7 +14,7 @@ let state = `memory`;
 
 // Store name of current memory that is playing
 // let memoryPlaying = undefined;
-let memoryPlaying = `memoryPlayingOnPhone`;
+let memoryPlaying = `memoryMakingBao`;
 
 // Landmark stroke color
 const LANDMARK_STROKE_FILL = {
@@ -25,12 +25,6 @@ const LANDMARK_STROKE_FILL = {
 
 // Landmark stroke weight
 const LANDMARK_STROKE_WEIGHT = 5;
-
-// Body objects inside mirror
-let mirrorHead = undefined;
-let mirrorMouth = undefined;
-let leftEye = undefined;
-let rightEye = undefined;
 
 // Used for ml5 -----------------------
 // Faceapi object
@@ -188,12 +182,16 @@ function setup() {
   canvas.parent("#game-container");
 
   // load up user's video
-  video = createCapture(VIDEO);
-  video.size(width, height);
-  // Hide the video element, and just show the canvas
-  video.hide();
-  // Set up faceApi
-  faceapi = ml5.faceApi(video, DETECTION_OPTIONS, modelReady);
+  if (memoryPlaying === `memoryPlayingOnPhone`) {
+    push();
+    video = createCapture(VIDEO);
+    video.size(width / 2, height);
+    // Hide the video element, and just show the canvas
+    video.hide();
+    // Set up faceApi
+    faceapi = ml5.faceApi(video, DETECTION_OPTIONS, modelReady);
+    pop();
+  }
 
   // // Set color to all strokes
   // stroke(strokeFill.r, strokeFill.g, strokeFill.b);
@@ -233,7 +231,7 @@ function gotResults(err, result) {
   background(bgFill.current.r, bgFill.current.g, bgFill.current.b);
 
   // Use this if I show my video capture:
-  // image(video, 0,0, width, height)
+  // image(video, 0, height / 4, width / 2, height / 2);
 
   // If detections found:
   if (memoryPlayingOnPhone.detections) {
@@ -262,7 +260,10 @@ function gotResults(err, result) {
   } else {
     console.log(`get your face in the camera`);
   }
-  faceapi.detect(gotResults);
+  setTimeout(() => {
+    faceapi.detect(gotResults);
+  }, 50);
+  // faceapi.detect(gotResults);
 }
 
 // Set up all intro objects

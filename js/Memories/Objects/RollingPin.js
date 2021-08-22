@@ -13,42 +13,41 @@ class RollingPin {
     // position
     this.x = x;
     this.y = y;
-    this.offsetX = 0;
-    this.offsetY = 0;
-
-    // dragging by mouse
-    this.dragging = false;
   }
 
   // Update all behaviour
-  update() {
+  update(mouseY) {
     // Display
     this.display();
+
+    // Move + constrain movement
+    this.move(mouseY);
   }
 
   // Display image
   display() {
     push();
-    if (this.dragging) {
-      this.x = mouseX + this.offsetX;
-      this.y = mouseY + this.offsetY;
-    }
-
     imageMode(CENTER);
     image(this.image, this.x, this.y);
     pop();
   }
 
+  // Move along vertical axis based on mouseY
+  move(mouseY) {
+    this.y = mouseY;
+
+    // constrain movement
+    this.y = constrain(this.y, height / 2 - 100, height / 2 + 100);
+  }
+
   mousePressed(mouseX, mouseY) {
-    if (
-      mouseX > this.x - this.image.width / 2 &&
-      mouseX < this.x + this.image.width / 2 &&
-      mouseY > this.y - this.image.height / 2 &&
-      mouseY < this.y + this.image.height / 2
-    ) {
-      this.dragging = true;
-      this.offsetX = this.x - mouseX;
-      this.offsetY = this.y - mouseY;
-    }
+    // if (
+    //   mouseX > this.x - this.image.width / 2 &&
+    //   mouseX < this.x + this.image.width / 2 &&
+    //   mouseY > this.y - this.image.height / 2 &&
+    //   mouseY < this.y + this.image.height / 2
+    // ) {
+    //
+    // }
   }
 }

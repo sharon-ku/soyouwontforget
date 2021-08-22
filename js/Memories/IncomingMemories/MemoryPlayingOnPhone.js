@@ -84,13 +84,13 @@ class MemoryPlayingOnPhone {
     this.mirrorMouth = new MirrorMouth();
 
     // Create new left eye
-    const LEFT_EYE_X_OFFSET = -5;
-    const LEFT_EYE_Y_OFFSET = 15;
+    const LEFT_EYE_X_OFFSET = -20;
+    const LEFT_EYE_Y_OFFSET = 70;
     this.leftEye = new MirrorEye(LEFT_EYE_X_OFFSET, LEFT_EYE_Y_OFFSET);
 
     // Create new right eye
-    const RIGHT_EYE_X_OFFSET = 5;
-    const RIGHT_EYE_Y_OFFSET = 15;
+    const RIGHT_EYE_X_OFFSET = 20;
+    const RIGHT_EYE_Y_OFFSET = 70;
     this.rightEye = new MirrorEye(RIGHT_EYE_X_OFFSET, RIGHT_EYE_Y_OFFSET);
   }
 
@@ -176,8 +176,8 @@ class MemoryPlayingOnPhone {
       // drawPart(rightEye, true);
 
       // Draw eyebrows
-      this.drawPart(leftEyeBrow, false);
-      this.drawPart(rightEyeBrow, false);
+      // this.drawPart(leftEyeBrow, false);
+      // this.drawPart(rightEyeBrow, false);
     }
   }
 
