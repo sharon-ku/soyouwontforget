@@ -133,7 +133,7 @@ function setUpMemoryObjects() {
   dialogBox = new DialogBox(width / 2, height - 150);
 
   // Used for test memory
-  memoryTest = new MemoryTest(luImages, zaiImages);
+  memorySoccer = new MemorySoccer(luImages, zaiImages);
 
   memoryFathersDay = new MemoryFathersDay(
     singleDecorationImages,
@@ -159,8 +159,8 @@ function setUpMemoryObjects() {
 
 // Cue memory based on the memory that is currently playing
 function cueMemory() {
-  if (memoryPlaying === `testMemory`) {
-    playTestMemory();
+  if (memoryPlaying === `memorySoccer`) {
+    playMemorySoccer();
   } else if (memoryPlaying === `memoryFathersDay`) {
     playMemoryFathersDay();
   } else if (memoryPlaying === `memoryInstaPic`) {
@@ -172,16 +172,14 @@ function cueMemory() {
   }
 }
 
-// USED FOR TESTS
 // Play this memory
-function playTestMemory() {
+function playMemorySoccer() {
   background(210, 210, 220);
-  // console.log(`SUCCESSFULLY PLAYING TEST MEMORY`);
 
-  memoryTest.update();
+  memorySoccer.update();
 
-  // Update dialog box
-  dialogBox.update(memoriesList);
+  // // Update dialog box
+  // dialogBox.update(memoriesList);
 }
 
 function playMemoryFathersDay() {

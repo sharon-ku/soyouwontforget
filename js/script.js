@@ -9,12 +9,15 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-// let state = `game`;
-let state = `memory`;
+let state = `game`;
+// let state = `memory`;
 
 // Store name of current memory that is playing
-// let memoryPlaying = undefined;
-let memoryPlaying = `memoryInstaPic`;
+let memoryPlaying = undefined;
+// let memoryPlaying = `memorySoccer`;
+
+// let memoryGroup = `cooking`;
+let currentMemoryGroupIndex = 0;
 
 // Landmark stroke color
 const LANDMARK_STROKE_FILL = {
@@ -293,11 +296,12 @@ function setUpGameObjects() {
   let leftPreviewVideoProperties = {
     x: width / 4,
     y: height / 2,
-    section: `INCOMING MEMORY`,
+    section: `OLD MEMORY`,
     // instructions: `Make room for this memory.`,
     instructions: ``,
     playIconImage: playIconImage,
-    memoryName: randomIncomingMemory,
+    // memoryGroup: memoryGroup,
+    memoryName: randomOldMemory,
   };
   leftPreviewVideo = new PreviewVideo(leftPreviewVideoProperties);
 
@@ -305,16 +309,14 @@ function setUpGameObjects() {
   let rightPreviewVideoProperties = {
     x: (width * 3) / 4,
     y: height / 2,
-    section: `OLD MEMORY`,
+    section: `INCOMING MEMORY`,
     // instructions: `Delete memories that burden you.`,
     instructions: ``,
     playIconImage: playIconImage,
-    memoryName: randomOldMemory,
+    // memoryGroup: memoryGroup,
+    memoryName: randomIncomingMemory,
   };
   rightPreviewVideo = new PreviewVideo(rightPreviewVideoProperties);
-
-  // // Store left and right preview videos in array
-  // previewVideos.push(leftPreviewVideo, rightPreviewVideo);
 
   // // Create delete button
   // let deleteButtonProperties = {
@@ -350,12 +352,14 @@ function setUpGameObjects() {
 
 // Fetch a random incoming memory from memories.json
 function fetchRandomIncomingMemory() {
-  randomIncomingMemory = random(memoriesList.incomingMemories);
+  // randomIncomingMemory = random(memoriesList.incomingMemories);
+  randomIncomingMemory = memoriesList.incomingMemories[currentMemoryGroupIndex];
 }
 
 // Fetch a random old memory from memories.json
 function fetchRandomOldMemory() {
-  randomOldMemory = random(memoriesList.oldMemories);
+  // randomOldMemory = random(memoriesList.oldMemories);
+  randomOldMemory = memoriesList.oldMemories[currentMemoryGroupIndex];
 }
 
 // draw() --------------------------------------------

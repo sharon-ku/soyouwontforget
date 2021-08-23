@@ -91,6 +91,8 @@ class PreviewVideo extends OverlappingRectangle {
       yOffset: -90,
     };
 
+    // this.memoryGroup = memoryGroup,
+
     // Memory to be played when video clicked
     this.memoryFileName = memoryName.memoryFileName;
 
@@ -211,13 +213,13 @@ class PreviewVideo extends OverlappingRectangle {
   playMemory() {
     state = `memory`;
     // CORRECT CODE: uncomment when done tests
-    // memoryPlaying = this.memoryFileName;
+    memoryPlaying = this.memoryFileName;
     console.log(`playing a memory, ${memoryPlaying}`);
 
     // USED FOR TESTS
     // let testMemoriesList = [`testMemory`, `memoryFathersDay`];
     // memoryPlaying = random(testMemoriesList);
-    memoryPlaying = `testMemory`;
+    // memoryPlaying = `memorySoccer`;
     // memoryPlaying = `memoryInstaPic`;
   }
 }

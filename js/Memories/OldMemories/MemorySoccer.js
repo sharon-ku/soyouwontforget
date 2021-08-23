@@ -1,6 +1,6 @@
 // Memory playing in game state
 
-class MemoryTest {
+class MemorySoccer {
   constructor(luImages, zaiImages) {
     // Characters in this scene ---------
     // All characters
@@ -99,10 +99,10 @@ class MemoryTest {
     // }
   }
 
-  // Play the memory
-  play() {
-    console.log(`playing a memory`);
-  }
+  // // Play the memory
+  // play() {
+  //   console.log(`playing a memory`);
+  // }
 
   // SHOULD MAKE A PARENT FOR OVERLAP METHOD
   // Returns true if mouse overlaps preview video

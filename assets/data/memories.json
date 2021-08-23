@@ -1,9 +1,50 @@
 {
   "description": "List of incoming and old memories with their dialogs",
+
+  "oldMemories": [
+    {
+      "previewVideoTitle": "I made bao with Daddy.",
+      "memoryFileName": "memoryMakingBao",
+      "memoryGroup": "cooking"
+    },
+    {
+      "previewVideoTitle": "I made a card in kindergarden.",
+      "memoryFileName": "memoryFathersDay",
+      "memoryGroup": "art",
+      "dialogs": [
+        {
+          "number": 1,
+          "speaker": "Me",
+          "dialog": "hi!"
+        },
+        {
+          "number": 2,
+          "speaker": "Daddy",
+          "dialog": "how are you doing!"
+        },
+        {
+          "number": 3,
+          "speaker": "Zai",
+          "dialog": "placeholder text."
+        },
+        {
+          "number": 4,
+          "speaker": "Daddy",
+          "dialog": "Alright, two versus one."
+        }
+      ]
+    },
+    {
+      "previewVideoTitle": "I played soccer at home.",
+      "memoryFileName": "memorySoccer",
+      "memoryGroup": "competition"
+    }
+  ],
   "incomingMemories": [
     {
       "previewVideoTitle": "I posted a salad pic on Instagram",
-      "memoryFileName": "MemoryInstaPic",
+      "memoryFileName": "memoryInstaPic",
+      "memoryGroup": "cooking",
       "dialogs": [
         {
           "number": 1,
@@ -57,42 +98,15 @@
         }
       ]
     },
-
     {
-      "previewVideoTitle": "I called my brother.",
-      "memoryFileName": "MemoryPlayingOnPhone"
-    }
-  ],
-  "oldMemories": [
-    {
-      "previewVideoTitle": "I made a card in kindergarden.",
-      "memoryFileName": "MemoryFathersDay",
-      "dialogs": [
-        {
-          "number": 1,
-          "speaker": "Me",
-          "dialog": "hi!"
-        },
-        {
-          "number": 2,
-          "speaker": "Daddy",
-          "dialog": "how are you doing!"
-        },
-        {
-          "number": 3,
-          "speaker": "Zai",
-          "dialog": "placeholder text."
-        },
-        {
-          "number": 4,
-          "speaker": "Daddy",
-          "dialog": "Alright, two versus one."
-        }
-      ]
+      "previewVideoTitle": "I made a flower bouquet.",
+      "memoryFileName": "memoryFlowerBouquet",
+      "memoryGroup": "art"
     },
     {
-      "previewVideoTitle": "I made bao with Daddy.",
-      "memoryFileName": "MemoryMakingBao"
+      "previewVideoTitle": "I called my brother.",
+      "memoryFileName": "memoryPlayingOnPhone",
+      "memoryGroup": "competition"
     }
   ]
 }
