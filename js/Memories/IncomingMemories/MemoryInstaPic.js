@@ -15,8 +15,12 @@ class MemoryInstaPic {
     cameraButtonImage,
     heartEmojiImage,
     instaCheckmarkImage,
-    whiteFilterImage
+    whiteFilterImage,
+    instaPicDialogs
   ) {
+    // Sounds -------------------
+    this.dialogs = instaPicDialogs;
+
     // Characters in this scene ---------
     // All characters
     // this.characters = [];
@@ -235,6 +239,7 @@ class MemoryInstaPic {
       // Stop displaying checkmark and textField
       this.instaCheckmark.display = false;
       textField.style(`display`, `none`);
+      this.dialogs[0].play();
 
       // Reveal white filter after a delay
       setTimeout(() => {

@@ -14,7 +14,7 @@ let state = `memory`;
 
 // Store name of current memory that is playing
 // let memoryPlaying = undefined;
-let memoryPlaying = `memoryMakingBao`;
+let memoryPlaying = `memoryInstaPic`;
 
 // Landmark stroke color
 const LANDMARK_STROKE_FILL = {

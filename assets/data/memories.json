@@ -2,50 +2,6 @@
   "description": "List of incoming and old memories with their dialogs",
   "incomingMemories": [
     {
-      "previewVideoTitle": "I made a card in kindergarden.",
-      "memoryFileName": "MemoryFathersDay",
-      "dialogs": [
-        {
-          "number": 1,
-          "speaker": "Me",
-          "dialog": "hi!"
-        },
-        {
-          "number": 2,
-          "speaker": "Daddy",
-          "dialog": "how are you doing!"
-        },
-        {
-          "number": 3,
-          "speaker": "Zai",
-          "dialog": "placeholder text."
-        },
-        {
-          "number": 4,
-          "speaker": "Daddy",
-          "dialog": "Alright, two versus one."
-        }
-      ]
-    },
-    {
-      "previewVideoTitle": "PlayingOnPhone",
-      "memoryFileName": "MemoryPlayingOnPhone"
-    },
-    {
-      "previewVideoTitle": "Happy song lyrics",
-      "memoryFileName": "MemoryHappySongLyrics"
-    },
-    {
-      "previewVideoTitle": "Buffet",
-      "memoryFileName": "MemoryBuffet"
-    },
-    {
-      "previewVideoTitle": "Karaoke",
-      "memoryFileName": "MemoryKaraoke"
-    }
-  ],
-  "oldMemories": [
-    {
       "previewVideoTitle": "I posted a salad pic on Instagram",
       "memoryFileName": "MemoryInstaPic",
       "dialogs": [
@@ -101,25 +57,42 @@
         }
       ]
     },
+
     {
-      "previewVideoTitle": "Making bao",
+      "previewVideoTitle": "I called my brother.",
+      "memoryFileName": "MemoryPlayingOnPhone"
+    }
+  ],
+  "oldMemories": [
+    {
+      "previewVideoTitle": "I made a card in kindergarden.",
+      "memoryFileName": "MemoryFathersDay",
+      "dialogs": [
+        {
+          "number": 1,
+          "speaker": "Me",
+          "dialog": "hi!"
+        },
+        {
+          "number": 2,
+          "speaker": "Daddy",
+          "dialog": "how are you doing!"
+        },
+        {
+          "number": 3,
+          "speaker": "Zai",
+          "dialog": "placeholder text."
+        },
+        {
+          "number": 4,
+          "speaker": "Daddy",
+          "dialog": "Alright, two versus one."
+        }
+      ]
+    },
+    {
+      "previewVideoTitle": "I made bao with Daddy.",
       "memoryFileName": "MemoryMakingBao"
-    },
-    {
-      "previewVideoTitle": "Dreaming about a special someone",
-      "memoryFileName": "MemoryDreamingAboutSpecialSomeone"
-    },
-    {
-      "previewVideoTitle": "Eating strawberries on parents' bed",
-      "memoryFileName": "MemoryEatingStrawberries"
-    },
-    {
-      "previewVideoTitle": "Looking at the clouds",
-      "memoryFileName": "MemoryLookingAtClouds"
-    },
-    {
-      "previewVideoTitle": "Playing music",
-      "memoryFileName": "MemoryPlayingMusic"
     }
   ]
 }

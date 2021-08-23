@@ -42,14 +42,26 @@ let cameraButtonImage = undefined;
 let heartEmojiImage = undefined;
 let instaCheckmarkImage = undefined;
 
-// Sounds ------------
+// Sound effects ------------
 // Dadi correct spelling
 let dadiCorrectSpellingSound = undefined;
 
+// Audio dialogs ------------
+let instaPicDialogs = [];
+const NUM_INSTA_PIC_DIALOGS = 1;
+
 // Preload images and sounds for all memories (done in preload)
 function preloadMemoryAssets() {
-  // Load all sounds -------------
+  // Load all sound effects -------------
   dadiCorrectSpellingSound = loadSound(`assets/sounds/bark.wav`);
+
+  // Load all audio dialogs ----------------
+  for (let i = 0; i < NUM_INSTA_PIC_DIALOGS; i++) {
+    let dialog = loadSound(
+      `assets/sounds/memories/incoming-memories/insta-pic/dialogs/insta-pic${i}.mp3`
+    );
+    instaPicDialogs.push(dialog);
+  }
 
   // Load all character images -------------
   // Lu
@@ -136,7 +148,8 @@ function setUpMemoryObjects() {
     cameraButtonImage,
     heartEmojiImage,
     instaCheckmarkImage,
-    whiteFilterImage
+    whiteFilterImage,
+    instaPicDialogs
   );
 
   memoryMakingBao = new MemoryMakingBao(doughImage, rollingPinImage);
