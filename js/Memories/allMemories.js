@@ -7,17 +7,18 @@ ALL CODE FOR MEMORIES TO BE PLAYED:
 
 ------------------------------------- **/
 
-// USED FOR MEMORY TEST
-let memoryTest = undefined;
-
 // Character images ------------
 // Lu
 let luImages = [];
-const NUM_LU_IMAGES = 1;
+const NUM_LU_IMAGES = 2;
 
 // Zai
 let zaiImages = [];
-const NUM_ZAI_IMAGES = 1;
+const NUM_ZAI_IMAGES = 2;
+
+// Daddy
+let daddyImages = [];
+const NUM_DADDY_IMAGES = 1;
 
 // Object images ------------
 // White filter
@@ -50,7 +51,16 @@ let dadiCorrectSpellingSound = undefined;
 let instaPicDialogs = [];
 const NUM_INSTA_PIC_DIALOGS = 1;
 
+let soccerDialogs = [];
+const NUM_SOCCER_DIALOGS = 3;
+
+let crashSound = undefined;
+
+// ======================================================================
+// preload()
+//
 // Preload images and sounds for all memories (done in preload)
+// ----------------------------------------------------------------------
 function preloadMemoryAssets() {
   // Load all sound effects -------------
   dadiCorrectSpellingSound = loadSound(`assets/sounds/bark.wav`);
@@ -58,22 +68,38 @@ function preloadMemoryAssets() {
   // Load all audio dialogs ----------------
   for (let i = 0; i < NUM_INSTA_PIC_DIALOGS; i++) {
     let dialog = loadSound(
-      `assets/sounds/memories/incoming-memories/insta-pic/dialogs/insta-pic${i}.mp3`
+      `assets/sounds/memories/incoming-memories/insta-pic/dialog${i}.mp3`
     );
     instaPicDialogs.push(dialog);
   }
 
+  for (let i = 0; i < NUM_SOCCER_DIALOGS; i++) {
+    let dialog = loadSound(
+      `assets/sounds/memories/old-memories/soccer/dialog${i}.m4a`
+    );
+    soccerDialogs.push(dialog);
+  }
+
+  crashSound = loadSound(
+    `assets/sounds/memories/old-memories/soccer/crash.wav`
+  );
+
   // Load all character images -------------
   // Lu
   for (let i = 0; i < NUM_LU_IMAGES; i++) {
-    let luImage = loadImage(`assets/images/memories/characters/lu${i}.png`);
-    luImages.push(luImage);
+    let image = loadImage(`assets/images/memories/characters/lu${i}.png`);
+    luImages.push(image);
   }
   // Zai
-  // Load Lu images
   for (let i = 0; i < NUM_ZAI_IMAGES; i++) {
-    let zaiImage = loadImage(`assets/images/memories/characters/zai${i}.png`);
-    zaiImages.push(zaiImage);
+    let image = loadImage(`assets/images/memories/characters/zai${i}.png`);
+    zaiImages.push(image);
+  }
+
+  // Daddy
+  for (let i = 0; i < NUM_DADDY_IMAGES; i++) {
+    let image = loadImage(`assets/images/memories/characters/daddy${i}.png`);
+    daddyImages.push(image);
   }
 
   // Load all object images -------------
@@ -133,7 +159,13 @@ function setUpMemoryObjects() {
   dialogBox = new DialogBox(width / 2, height - 150);
 
   // Used for test memory
-  memorySoccer = new MemorySoccer(luImages, zaiImages);
+  memorySoccer = new MemorySoccer(
+    luImages,
+    zaiImages,
+    daddyImages,
+    soccerDialogs,
+    crashSound
+  );
 
   memoryFathersDay = new MemoryFathersDay(
     singleDecorationImages,

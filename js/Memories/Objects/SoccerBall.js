@@ -1,7 +1,11 @@
 // Soccer ball in test memory
 
 class SoccerBall {
-  constructor({ x, y }) {
+  constructor({ x, y, crashSound }) {
+    // crash sound
+    this.crashSound = crashSound;
+    this.crashSoundPlayed = false;
+
     this.size = 42;
     // color: blue
     this.fill = {
@@ -33,10 +37,21 @@ class SoccerBall {
     // Let the ball roll
     this.roll(kicker);
 
+    // Crash off of canvas
+    this.crash();
+
     // if (this.changeDirection) {
     //   this.speed *= -1;
     //   this.changeDirection = false;
     // }
+  }
+
+  // Release sound when ball crashes off canvas
+  crash() {
+    if (this.x < -100 && !this.crashSoundPlayed) {
+      this.crashSound.play();
+      this.crashSoundPlayed = true;
+    }
   }
 
   // Display ellipse

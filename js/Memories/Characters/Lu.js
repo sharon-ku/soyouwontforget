@@ -12,15 +12,24 @@ class Lu extends Character {
       x: -1,
       y: 1,
     };
+
+    // Keep track of when Lu is done moving into position in intro
+    this.doneMovingIntoPosition = false;
+
     // position
     this.x = x;
     this.y = y;
+    // final position to move to in intro
+    this.xFinal = width - 100;
     // buffer from witch Lu will stop moving
     this.buffer = 10;
+
     // velocity
+    this.introSpeed = -1;
     this.vx = 0;
     this.vy = 0;
     this.speed = 2;
+
     // size
     this.width = 114;
     this.height = undefined;
@@ -35,6 +44,16 @@ class Lu extends Character {
 
     // Follow mouse
     this.followMouse();
+  }
+
+  // Move into the position in intro
+  moveIntoPosition() {
+    if (this.x > this.xFinal) {
+      this.x += this.vx;
+      this.vx = this.introSpeed;
+    } else {
+      this.doneMovingIntoPosition = true;
+    }
   }
 
   // Follow mouse
@@ -62,5 +81,8 @@ class Lu extends Character {
     } else if (this.vx < 0 || this.vx === 0) {
       this.scale.x = -1; // face left
     }
+
+    // Constrain movement of Lu!
+    this.x = constrain(this.x, width / 2, width);
   }
 }

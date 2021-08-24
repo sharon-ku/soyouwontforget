@@ -9,12 +9,12 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-let state = `game`;
-// let state = `memory`;
+// let state = `game`;
+let state = `memory`;
 
 // Store name of current memory that is playing
-let memoryPlaying = undefined;
-// let memoryPlaying = `memorySoccer`;
+// let memoryPlaying = undefined;
+let memoryPlaying = `memorySoccer`;
 
 // let memoryGroup = `cooking`;
 let currentMemoryGroupIndex = 0;
@@ -512,9 +512,11 @@ function mousePressed() {
   } else if (state === `game`) {
     leftPreviewVideo.mousePressed(mouse);
     rightPreviewVideo.mousePressed(mouse);
-    // // Update left and right preview videos
-    // for (let i = 0; i < previewVideos.length; i++) {
-    //   previewVideos[i].mousePressed(mouse);
+
+    // // If winner button clicked, update memory group
+    // if (winnerButtonOld.hover(mouse) || winnerButtonIncoming.hover(mouse)) {
+    //   this.currentMemoryGroupIndex += 1;
+    //   console.log(`winner button clicked`);
     // }
   } else if (state === `memory`) {
     dialogBox.mousePressed(mouse);
