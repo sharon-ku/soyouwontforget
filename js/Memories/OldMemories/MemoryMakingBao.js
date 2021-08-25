@@ -130,6 +130,12 @@ class MemoryMakingBao {
       this.dialogs[6].play();
       this.dialogSixPlayed = true;
     }
+
+    this.dialogs[6].onended(() => {
+      // TEMPORARILY END MEMORY HERE TO TEST WINNER BUTTON
+      state === `game`;
+      memoryPlaying = undefined;
+    });
   }
 
   // // Cue dialog: unused - not sure why it doesn't work

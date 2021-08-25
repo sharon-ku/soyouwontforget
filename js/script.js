@@ -9,12 +9,12 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-// let state = `game`;
-let state = `memory`;
+let state = `intro`;
+// let state = `memory`;
 
 // Store name of current memory that is playing
-// let memoryPlaying = undefined;
-let memoryPlaying = `memoryMakingBao`;
+let memoryPlaying = undefined;
+// let memoryPlaying = `memoryMakingBao`;
 
 // let memoryGroup = `cooking`;
 let currentMemoryGroupIndex = 0;
@@ -366,7 +366,7 @@ function fetchRandomOldMemory() {
 //
 // Set up background colors and states
 function draw() {
-  if (!memory === `memoryPlayingOnPhone`) {
+  if (memoryPlaying !== `memoryPlayingOnPhone`) {
     // Set background color
     background(bgFill.current.r, bgFill.current.g, bgFill.current.b);
   }
@@ -438,6 +438,9 @@ function intro() {
 
 // Download app
 function downloadApp() {
+  // Launch memories
+  state = `game`;
+
   console.log(`App is downloading`);
 }
 
