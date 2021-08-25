@@ -122,8 +122,8 @@ let rightPreviewVideo = undefined;
 // const NUM_PREVIEW_VIDEOS = 2;
 
 // Current memories displayed in game state
-let randomIncomingMemory = undefined;
-let randomOldMemory = undefined;
+let currentIncomingMemory = undefined;
+let currentOldMemory = undefined;
 
 // Store memories.json data
 let memoriesList = undefined;
@@ -289,8 +289,7 @@ function setUpIntroObjects() {
 // Set up all game objects
 function setUpGameObjects() {
   // Fetch the first incoming and old memory
-  fetchRandomIncomingMemory();
-  fetchRandomOldMemory();
+  getMemories();
 
   // Create left preview video
   let leftPreviewVideoProperties = {
@@ -301,7 +300,7 @@ function setUpGameObjects() {
     instructions: ``,
     playIconImage: playIconImage,
     // memoryGroup: memoryGroup,
-    memoryName: randomOldMemory,
+    memoryName: currentOldMemory,
   };
   leftPreviewVideo = new PreviewVideo(leftPreviewVideoProperties);
 
@@ -314,7 +313,7 @@ function setUpGameObjects() {
     instructions: ``,
     playIconImage: playIconImage,
     // memoryGroup: memoryGroup,
-    memoryName: randomIncomingMemory,
+    memoryName: currentIncomingMemory,
   };
   rightPreviewVideo = new PreviewVideo(rightPreviewVideoProperties);
 
@@ -335,31 +334,27 @@ function setUpGameObjects() {
   // keepButton = new KeepButton(keepButtonProperties);
 
   // Create winner buttons
-  let winnerButtonIncomingProperties = {
+  let winnerButtonOldProperties = {
     x: leftPreviewVideoProperties.x,
     y: leftPreviewVideo.y + leftPreviewVideo.height / 2 + 80,
-    memoryName: randomIncomingMemory,
-  };
-  winnerButtonIncoming = new WinnerButton(winnerButtonIncomingProperties);
-
-  let winnerButtonOldProperties = {
-    x: rightPreviewVideoProperties.x,
-    y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
-    memoryName: randomOldMemory,
+    memoryName: currentOldMemory,
   };
   winnerButtonOld = new WinnerButton(winnerButtonOldProperties);
+
+  let winnerButtonIncomingProperties = {
+    x: rightPreviewVideoProperties.x,
+    y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
+    memoryName: currentIncomingMemory,
+  };
+  winnerButtonIncoming = new WinnerButton(winnerButtonIncomingProperties);
 }
 
-// Fetch a random incoming memory from memories.json
-function fetchRandomIncomingMemory() {
-  // randomIncomingMemory = random(memoriesList.incomingMemories);
-  randomIncomingMemory = memoriesList.incomingMemories[currentMemoryGroupIndex];
-}
+// Fetch an incoming and old memory from memories.json
+function getMemories() {
+  currentIncomingMemory =
+    memoriesList.incomingMemories[currentMemoryGroupIndex];
 
-// Fetch a random old memory from memories.json
-function fetchRandomOldMemory() {
-  // randomOldMemory = random(memoriesList.oldMemories);
-  randomOldMemory = memoriesList.oldMemories[currentMemoryGroupIndex];
+  currentOldMemory = memoriesList.oldMemories[currentMemoryGroupIndex];
 }
 
 // draw() --------------------------------------------
@@ -450,6 +445,11 @@ Here's where the player chooses their memories
 *****************/
 
 function game() {
+  // Keep checking memories are updated
+  getMemories();
+
+  console.log(currentOldMemory, currentIncomingMemory);
+
   // // Drawing rectangle guides
   // push();
   // noFill();
@@ -473,8 +473,8 @@ function game() {
   pop();
 
   // Update left and right preview videos
-  leftPreviewVideo.update(mouse);
-  rightPreviewVideo.update(mouse);
+  leftPreviewVideo.update(mouse, currentOldMemory);
+  rightPreviewVideo.update(mouse, currentIncomingMemory);
 
   // Change cursor to pointer when mouse hovers over preview video
   if (leftPreviewVideo.hovered || rightPreviewVideo.hovered) {
@@ -516,11 +516,12 @@ function mousePressed() {
     leftPreviewVideo.mousePressed(mouse);
     rightPreviewVideo.mousePressed(mouse);
 
-    // // If winner button clicked, update memory group
-    // if (winnerButtonOld.hover(mouse) || winnerButtonIncoming.hover(mouse)) {
-    //   this.currentMemoryGroupIndex += 1;
-    //   console.log(`winner button clicked`);
-    // }
+    // If winner button clicked, update memory group
+    // if (winnerButtonOld.hover(mouse)) {
+    if (winnerButtonOld.hover(mouse) || winnerButtonIncoming.hover(mouse)) {
+      currentMemoryGroupIndex += 1;
+      console.log(currentMemoryGroupIndex);
+    }
   } else if (state === `memory`) {
     dialogBox.mousePressed(mouse);
 

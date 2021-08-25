@@ -112,12 +112,16 @@ class PreviewVideo extends OverlappingRectangle {
   }
 
   // Update all behaviour
-  update(mouse) {
+  update(mouse, memoryName) {
     // Display preview video
     this.display();
 
     // When hovering on preview video, change the play icon's opacity and cursor type
     this.hoverOnPreviewVideo(mouse);
+
+    // Once player clicks on "Winner" button, update text to next memory
+    this.memoryFileName = memoryName.memoryFileName;
+    this.title.name = memoryName.previewVideoTitle;
   }
 
   // Display preview video

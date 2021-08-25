@@ -88,12 +88,14 @@ class Button extends OverlappingRectangle {
       // // Increase opacity of play icon
       // this.playIcon.opacity.current = this.playIcon.opacity.max;
       // Change cursor to pointer
-      cursor(`pointer`);
+      // cursor(`pointer`);
+      return true;
     } else {
       // // Diminish opacity of play icon
       // this.playIcon.opacity.current = this.playIcon.opacity.min;
       // Change cursor to default
-      cursor(`default`);
+      // cursor(`default`);
+      return false;
     }
   }
 
