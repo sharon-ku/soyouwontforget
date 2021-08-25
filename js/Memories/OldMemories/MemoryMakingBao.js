@@ -1,21 +1,27 @@
 // Memory playing in game state
 
 class MemoryMakingBao {
-  constructor(doughImage, rollingPinImage, makingBaoDialogs) {
+  constructor(doughImage, rollingPinImage, meatImage, makingBaoDialogs) {
     // Sounds ------------------------
     this.dialogs = makingBaoDialogs;
 
-    // Used to cue dialog two
+    // Used to cue dialog 2
     this.checkThatDoughIsRolled = false;
 
+    // Used to cue dialog 7
+    this.showMeat = false;
+
+    // Used to cue salad animation and dialog 8
+    this.changeToSaladAnimation = false;
+
     // Used to keep track of how many times sound has been played
-    this.dialogZeroPlayed = false;
-    this.dialogOnePlayed = false;
-    this.dialogTwoPlayed = false;
-    this.dialogThreePlayed = false;
-    this.dialogFourPlayed = false;
-    this.dialogFivePlayed = false;
-    this.dialogSixPlayed = false;
+    this.numDialogs = 10;
+    this.dialogPlayed = [];
+
+    for (let i = 0; i < this.numDialogs; i++) {
+      let dialogPlayedState = false;
+      this.dialogPlayed.push(dialogPlayedState);
+    }
 
     this.completedRollingDough = false;
 
@@ -45,11 +51,19 @@ class MemoryMakingBao {
       image: rollingPinImage,
     };
     this.rollingPin = new RollingPin(this.rollingPinProperties);
+
+    // Meat
+    this.meatProperties = {
+      image: meatImage,
+      x: width - 100,
+      y: 100,
+    };
+    this.meat = new DraggableImage(this.meatProperties);
   }
 
   // Update all behaviours
   update() {
-    noCursor();
+    // noCursor();
     // Display all characters
     // NONE
 
@@ -62,16 +76,16 @@ class MemoryMakingBao {
     }
 
     // Play dialog 0 right away
-    if (!this.dialogZeroPlayed) {
+    if (!this.dialogPlayed[0]) {
       this.dialogs[0].play();
-      this.dialogZeroPlayed = true;
+      this.dialogPlayed[0] = true;
     }
 
     // Change to dough scene and play dialog 1
     this.dialogs[0].onended(() => {
-      if (!this.dialogOnePlayed) {
+      if (!this.dialogPlayed[1]) {
         this.dialogs[1].play();
-        this.dialogOnePlayed = true;
+        this.dialogPlayed[1] = true;
       }
     });
 
@@ -81,61 +95,119 @@ class MemoryMakingBao {
     });
 
     if (this.checkThatDoughIsRolled) {
-      if (this.dough.scale.current > this.dough.scale.min) {
-        if (!this.dialogTwoPlayed) {
+      if (this.dough.scale.current > this.dough.scale.min && movedY != 0) {
+        if (!this.dialogPlayed[2]) {
           this.dialogs[2].play();
-          this.dialogTwoPlayed = true;
+          this.dialogPlayed[2] = true;
         }
       }
     }
 
     // If 1/3 complete with the rolling, play dialog 3
     if (
-      this.dialogTwoPlayed &&
+      this.dialogPlayed[2] &&
       this.dough.scale.current >
         this.dough.scale.min +
           (this.dough.scale.max - this.dough.scale.min) / 3 &&
-      !this.dialogThreePlayed
+      !this.dialogPlayed[3]
     ) {
       this.dialogs[3].play();
-      this.dialogThreePlayed = true;
+      this.dialogPlayed[3] = true;
     }
 
     // If 1/2 of the way done, play dialog 4
     if (
-      this.dialogThreePlayed &&
+      this.dialogPlayed[3] &&
       this.dough.scale.current >
         this.dough.scale.min +
           (this.dough.scale.max - this.dough.scale.min) / 2 &&
-      !this.dialogFourPlayed
+      !this.dialogPlayed[4]
     ) {
       this.dialogs[4].play();
-      this.dialogFourPlayed = true;
+      this.dialogPlayed[4] = true;
     }
 
     // If 3/4 of the way done, play dialog 4
     if (
-      this.dialogFourPlayed &&
+      this.dialogPlayed[4] &&
       this.dough.scale.current >
         this.dough.scale.min +
           ((this.dough.scale.max - this.dough.scale.min) * 3) / 4 &&
-      !this.dialogFivePlayed
+      !this.dialogPlayed[5]
     ) {
       this.dialogs[5].play();
-      this.dialogFivePlayed = true;
+      this.dialogPlayed[5] = true;
     }
 
     // If finished rolling, cue dialog 6
-    if (this.completedRollingDough && !this.dialogSixPlayed) {
+    if (this.completedRollingDough && !this.dialogPlayed[6]) {
       this.dialogs[6].play();
-      this.dialogSixPlayed = true;
+      this.dialogPlayed[6] = true;
     }
 
+    // Show meat after dialog 6
     this.dialogs[6].onended(() => {
-      // TEMPORARILY END MEMORY HERE TO TEST WINNER BUTTON
-      state === `game`;
+      this.showMeat = true;
+    });
+
+    // Reveal meat after dialog 6
+    if (this.showMeat) {
+      this.meat.update();
+      // If dropped meat on top of bun, cue dialog 7
+      if (!this.meat.dragging) {
+        // Calculate distance between meat and dough
+        let distBtwMeatAndDough = dist(
+          this.meat.x,
+          this.meat.y,
+          this.dough.x,
+          this.dough.y
+        );
+
+        // If dist is less than the dough's radius, then meat successfully dropped!
+        if (distBtwMeatAndDough < this.dough.image.width / 2) {
+          this.meat.x = this.dough.x;
+          this.meat.y = this.dough.y;
+          console.log(`meat dropped`);
+
+          if (!this.dialogPlayed[7]) {
+            this.dialogs[7].play();
+            this.dialogPlayed[7] = true;
+          }
+        }
+
+        // cue salad animation after dialog7
+        this.dialogs[7].onended(() => {
+          this.changeToSaladAnimation = true;
+        });
+      }
+    }
+
+    // cue salad animation after dialog7
+    if (this.changeToSaladAnimation) {
+      console.log(`play salad animation bg`);
+
+      if (!this.dialogPlayed[8]) {
+        this.dialogs[8].play();
+        this.dialogPlayed[8] = true;
+      }
+    }
+
+    // When dialog 8 finished, play dialog 9
+    this.dialogs[8].onended(() => {
+      console.log(`play ding sound effect, show bao background`);
+      if (!this.dialogPlayed[9]) {
+        this.dialogs[9].play();
+        this.dialogPlayed[9] = true;
+      }
+    });
+
+    // When dialog 9 finished, switch to game
+    this.dialogs[9].onended(() => {
+      state = `game`;
       memoryPlaying = undefined;
     });
+
+    // ======
   }
 
   // // Cue dialog: unused - not sure why it doesn't work
@@ -173,26 +245,13 @@ class MemoryMakingBao {
     }
   }
 
-  // When mouse pressed on preview video, play the memory
+  // When mouse pressed on meat, drag it
   mousePressed(mouseX, mouseY) {
-    // this.saveCardButton.mousePressed(mouse);
-    //
-    // for (let i = 0; i < this.singleDecorations.length; i++) {
-    //   this.singleDecorations[i].mousePressed(mouseX, mouseY);
-    // }
-    //
-    // for (let i = 0; i < this.multipleDecorations.length; i++) {
-    //   this.multipleDecorations[i].mousePressed(mouseX, mouseY);
-    // }
+    this.meat.mousePressed(mouseX, mouseY);
   }
 
+  // When mouse released, let go of meat
   mouseNotPressed() {
-    // for (let i = 0; i < this.singleDecorations.length; i++) {
-    //   this.singleDecorations[i].dragging = false;
-    // }
-    //
-    // for (let i = 0; i < this.multipleDecorations.length; i++) {
-    //   this.multipleDecorations[i].dragging = false;
-    // }
+    this.meat.dragging = false;
   }
 }

@@ -27,6 +27,7 @@ let whiteFilterImage = undefined;
 // Bao images
 let doughImage = undefined;
 let rollingPinImage = undefined;
+let meatImage = undefined;
 
 // Father's day card & decorations
 let fathersDayCardImage = undefined;
@@ -123,6 +124,7 @@ function preloadMemoryAssets() {
   rollingPinImage = loadImage(
     `assets/images/memories/objects/bao/rolling-pin.png`
   );
+  meatImage = loadImage(`assets/images/memories/objects/bao/meat.png`);
 
   // Father's Day card
   fathersDayCardImage = loadImage(
@@ -168,7 +170,14 @@ function setUpMemoryObjects() {
 
   dialogBox = new DialogBox(width / 2, height - 150);
 
-  // Used for test memory
+  // Memories
+  memoryMakingBao = new MemoryMakingBao(
+    doughImage,
+    rollingPinImage,
+    meatImage,
+    makingBaoDialogs
+  );
+
   memorySoccer = new MemorySoccer(
     luImages,
     zaiImages,
@@ -192,12 +201,6 @@ function setUpMemoryObjects() {
     instaCheckmarkImage,
     whiteFilterImage,
     instaPicDialogs
-  );
-
-  memoryMakingBao = new MemoryMakingBao(
-    doughImage,
-    rollingPinImage,
-    makingBaoDialogs
   );
 
   memoryPlayingOnPhone = new MemoryPlayingOnPhone();

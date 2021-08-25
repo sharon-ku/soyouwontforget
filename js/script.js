@@ -525,6 +525,10 @@ function mousePressed() {
   } else if (state === `memory`) {
     dialogBox.mousePressed(mouse);
 
+    if (memoryPlaying === `memoryMakingBao`) {
+      memoryMakingBao.mousePressed(mouseX, mouseY);
+    }
+
     if (memoryPlaying === `memoryFathersDay`) {
       memoryFathersDay.mousePressed(mouseX, mouseY);
     }
@@ -537,6 +541,10 @@ function mousePressed() {
 
 function mouseReleased() {
   if (state === `memory`) {
+    if (memoryPlaying === `memoryMakingBao`) {
+      memoryMakingBao.mouseNotPressed();
+    }
+
     if (memoryPlaying === `memoryFathersDay`) {
       memoryFathersDay.mouseNotPressed();
     }
