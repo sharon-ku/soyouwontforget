@@ -14,7 +14,7 @@ let state = `memory`;
 
 // Store name of current memory that is playing
 // let memoryPlaying = undefined;
-let memoryPlaying = `memorySoccer`;
+let memoryPlaying = `memoryMakingBao`;
 
 // let memoryGroup = `cooking`;
 let currentMemoryGroupIndex = 0;

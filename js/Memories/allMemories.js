@@ -48,6 +48,9 @@ let instaCheckmarkImage = undefined;
 let dadiCorrectSpellingSound = undefined;
 
 // Audio dialogs ------------
+let makingBaoDialogs = [];
+const NUM_MAKING_BAO_DIALOGS = 10;
+
 let instaPicDialogs = [];
 const NUM_INSTA_PIC_DIALOGS = 1;
 
@@ -66,6 +69,13 @@ function preloadMemoryAssets() {
   dadiCorrectSpellingSound = loadSound(`assets/sounds/bark.wav`);
 
   // Load all audio dialogs ----------------
+  for (let i = 0; i < NUM_MAKING_BAO_DIALOGS; i++) {
+    let dialog = loadSound(
+      `assets/sounds/memories/old-memories/making-bao/dialog${i}.mp3`
+    );
+    makingBaoDialogs.push(dialog);
+  }
+
   for (let i = 0; i < NUM_INSTA_PIC_DIALOGS; i++) {
     let dialog = loadSound(
       `assets/sounds/memories/incoming-memories/insta-pic/dialog${i}.mp3`
@@ -184,7 +194,11 @@ function setUpMemoryObjects() {
     instaPicDialogs
   );
 
-  memoryMakingBao = new MemoryMakingBao(doughImage, rollingPinImage);
+  memoryMakingBao = new MemoryMakingBao(
+    doughImage,
+    rollingPinImage,
+    makingBaoDialogs
+  );
 
   memoryPlayingOnPhone = new MemoryPlayingOnPhone();
 }

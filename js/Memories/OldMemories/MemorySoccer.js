@@ -9,12 +9,12 @@ class MemorySoccer {
     this.twentyKicksDialogPlayed = 0;
 
     this.introIsPlaying = true;
+
+    this.firstDialogPlayed = false;
+
     // For final kick
     this.finalKickIsPlaying = false;
     this.daddyStopsKicking = false; // stops after Zai delivers the last kick
-
-    // Play first dialog right away
-    this.dialogs[0].play();
 
     // Characters in this scene ---------
     // All characters
@@ -85,6 +85,11 @@ class MemorySoccer {
     if (this.introIsPlaying) {
       this.lu.display();
       this.lu.moveIntoPosition();
+
+      if (!this.firstDialogPlayed) {
+        this.dialogs[0].play();
+        this.firstDialogPlayed = true;
+      }
 
       this.dialogs[0].onended(() => {
         this.introIsPlaying = false;

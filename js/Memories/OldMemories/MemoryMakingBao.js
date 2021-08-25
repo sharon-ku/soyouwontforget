@@ -1,11 +1,22 @@
 // Memory playing in game state
 
 class MemoryMakingBao {
-  constructor(doughImage, rollingPinImage) {
+  constructor(doughImage, rollingPinImage, makingBaoDialogs) {
     // Sounds ------------------------
-    // this.dadiCorrectSpellingSound = dadiCorrectSpellingSound;
-    // // Used to keep track of how many times sound has been played
-    // this.dadiCorrectSpellingSoundPlayed = false;
+    this.dialogs = makingBaoDialogs;
+
+    // Used to cue dialog two
+    this.checkThatDoughIsRolled = false;
+
+    // Used to keep track of how many times sound has been played
+    this.dialogZeroPlayed = false;
+    this.dialogOnePlayed = false;
+    this.dialogTwoPlayed = false;
+    this.dialogThreePlayed = false;
+    this.dialogFourPlayed = false;
+    this.dialogFivePlayed = false;
+    this.dialogSixPlayed = false;
+
     this.completedRollingDough = false;
 
     // Characters in this scene ---------
@@ -20,14 +31,9 @@ class MemoryMakingBao {
       image: doughImage,
       scale: {
         current: 0.6,
+        min: 0.6,
         max: 1.2,
-        increaseRate: {
-          current: 0.00001,
-          // min: 0.0005,
-          // max: 0.001,
-          min: 0.0005,
-          max: 0.001,
-        },
+        increaseRate: 0.0002, //0.0001
       },
       angle: 0,
     };
@@ -39,53 +45,6 @@ class MemoryMakingBao {
       image: rollingPinImage,
     };
     this.rollingPin = new RollingPin(this.rollingPinProperties);
-
-    // Dialogs
-    this.OneFourthDoneRollingDialog = 0;
-
-    // // Card decorations
-    // this.singleDecorations = [];
-    // this.multipleDecorations = [];
-    // this.numMultipleDecorations = 4;
-    //
-    // // Card
-    // this.cardProperties = {
-    //   image: fathersDayCardImage,
-    //   x: width / 2,
-    //   y: height / 2,
-    // };
-    // this.card = new CardDecoration(this.cardProperties);
-    //
-    // // Single decorations
-    // for (let i = 0; i < singleDecorationImages.length; i++) {
-    //   this.singleDecorationProperties = {
-    //     image: singleDecorationImages[i],
-    //     x: random(0, width),
-    //     y: random(0, height),
-    //   };
-    //   let singleDecoration = new CardDecoration(
-    //     this.singleDecorationProperties
-    //   );
-    //   this.singleDecorations.push(singleDecoration);
-    // }
-    //
-    // // Multiple decorations
-    // for (let j = 0; j < multipleDecorationImages.length; j++) {
-    //   for (let i = 0; i < this.numMultipleDecorations; i++) {
-    //     this.multipleDecorationProperties = {
-    //       image: multipleDecorationImages[j],
-    //       x: random(0, width),
-    //       y: random(0, height),
-    //     };
-    //     let multipleDecoration = new CardDecoration(
-    //       this.multipleDecorationProperties
-    //     );
-    //     this.multipleDecorations.push(multipleDecoration);
-    //   }
-    // }
-    //
-    // // True if dadi is spelt correctly
-    // this.dadiSpelling = undefined;
   }
 
   // Update all behaviours
@@ -96,39 +55,90 @@ class MemoryMakingBao {
 
     // Display all objects
     this.displayDough();
-    this.increaseDoughSize();
 
     if (!this.completedRollingDough) {
       this.rollingPin.update(mouseY);
+      this.increaseDoughSize();
     }
 
-    // if (this.OneFourthDoneRollingDialog===1) {
-    //   makingBao.dialogs.play();
-    // }
+    // Play dialog 0 right away
+    if (!this.dialogZeroPlayed) {
+      this.dialogs[0].play();
+      this.dialogZeroPlayed = true;
+    }
 
-    //
-    // // Update decorations
-    // for (let i = 0; i < this.singleDecorations.length; i++) {
-    //   this.singleDecorations[i].update();
-    // }
-    //
-    // for (let i = 0; i < this.multipleDecorations.length; i++) {
-    //   this.multipleDecorations[i].update();
-    // }
-    //
-    // // Check dadi spelling
-    // this.checkDadiSpelling();
-    //
-    // // If spelling of dady is correct, play congratulatory sound just once
-    // if (this.dadiSpelling && !this.dadiCorrectSpellingSoundPlayed) {
-    //   this.dadiCorrectSpellingSound.play();
-    //   this.dadiCorrectSpellingSoundPlayed = true;
-    // }
-    //
-    // // Update "Save Card" button
-    // this.saveCardButton.update();
-    // this.saveCardButton.hover(mouse);
+    // Change to dough scene and play dialog 1
+    this.dialogs[0].onended(() => {
+      if (!this.dialogOnePlayed) {
+        this.dialogs[1].play();
+        this.dialogOnePlayed = true;
+      }
+    });
+
+    // If started rolling, cue dialog 2
+    this.dialogs[1].onended(() => {
+      this.checkThatDoughIsRolled = true;
+    });
+
+    if (this.checkThatDoughIsRolled) {
+      if (this.dough.scale.current > this.dough.scale.min) {
+        if (!this.dialogTwoPlayed) {
+          this.dialogs[2].play();
+          this.dialogTwoPlayed = true;
+        }
+      }
+    }
+
+    // If 1/3 complete with the rolling, play dialog 3
+    if (
+      this.dialogTwoPlayed &&
+      this.dough.scale.current >
+        this.dough.scale.min +
+          (this.dough.scale.max - this.dough.scale.min) / 3 &&
+      !this.dialogThreePlayed
+    ) {
+      this.dialogs[3].play();
+      this.dialogThreePlayed = true;
+    }
+
+    // If 1/2 of the way done, play dialog 4
+    if (
+      this.dialogThreePlayed &&
+      this.dough.scale.current >
+        this.dough.scale.min +
+          (this.dough.scale.max - this.dough.scale.min) / 2 &&
+      !this.dialogFourPlayed
+    ) {
+      this.dialogs[4].play();
+      this.dialogFourPlayed = true;
+    }
+
+    // If 3/4 of the way done, play dialog 4
+    if (
+      this.dialogFourPlayed &&
+      this.dough.scale.current >
+        this.dough.scale.min +
+          ((this.dough.scale.max - this.dough.scale.min) * 3) / 4 &&
+      !this.dialogFivePlayed
+    ) {
+      this.dialogs[5].play();
+      this.dialogFivePlayed = true;
+    }
+
+    // If finished rolling, cue dialog 6
+    if (this.completedRollingDough && !this.dialogSixPlayed) {
+      this.dialogs[6].play();
+      this.dialogSixPlayed = true;
+    }
   }
+
+  // // Cue dialog: unused - not sure why it doesn't work
+  // cueDialog(dialogNumber, dialogEvent) {
+  //   if (!dialogEvent) {
+  //     this.dialogs[dialogNumber].play();
+  //     dialogEvent = true;
+  //   }
+  // }
 
   // Display image
   displayDough() {
@@ -146,19 +156,8 @@ class MemoryMakingBao {
   // If rolling over dough, increase its size
   increaseDoughSize() {
     if (abs(movedY) > 0) {
-      // If dough is small, faster increase rate
-      if (this.dough.scale.current < this.dough.scale.max / 2) {
-        this.dough.scale.increaseRate.current = this.dough.scale.increaseRate.max;
-      } else {
-        this.dough.scale.increaseRate.current = this.dough.scale.increaseRate.min;
-      }
-
-      this.dough.scale.current += this.dough.scale.increaseRate.current;
-
-      // If a quarter complete with the rolling
-      if (this.dough.scale.current > this.dough.scale.max / 4) {
-        this.OneFourthDoneRollingDialog += 1;
-      }
+      // Increase dough size
+      this.dough.scale.current += this.dough.scale.increaseRate;
 
       // Finished rolling
       if (this.dough.scale.current >= this.dough.scale.max) {
