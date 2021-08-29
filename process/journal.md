@@ -21,10 +21,10 @@ JULY:
 AUGUST:
 
 1. ✔️ **July 31 - Aug 6:** code --> 8h
-2. [⭐ we are here] **Aug 7-13:** code, conduct midway playtest with team --> 10h
-3. **Aug 14-20:** code --> 8h
-4. **Aug 21-27:** code, refine, conduct final playtests --> 6h
-5. **Aug 28-31:** refine, write final thoughts in journal --> 2h
+2. ✔️ **Aug 7-13:** code, conduct midway playtest with team --> 10h
+3. ✔️ **Aug 14-20:** code --> 8h
+4. ✔️ **Aug 21-27:** code, refine, conduct final playtests --> 6h
+5. [⭐ we are here] **Aug 28-31:** refine, write final thoughts in journal --> 2h
 
 PLUS 5 hours to place where needed
 
@@ -406,3 +406,19 @@ Here's how they're looking so far:
 Coding the memories was tricky because I wasn't sure how to make the dialog flow in relation to the player's interactions with the characters. I wanted the dialogs to drive the actions (e.g. in a soccer match, the character says something then I program the character to kick the ball, giving the player the option to kick the ball once in a while). But now I think that the easier method is to have the player actions drive the dialogs. For instance, when the player has the ability to kick the ball during the whole memory, and once the player kicks the ball a certain number of times, it cues the next dialog. With action-driven dialogs, I can integrate branching narratives more easily as well.
 
 Another challenge is that, having chosen p5.js as my tool, a lot of actions take time to be coded from scratch. While I get a lot of practice coding, I am slowly realizing that there may be some drawbacks with the amount of time spent on coding all the interactions.
+
+## Sunday, August 29, 2021, at 2:03pm
+
+### Lessons learned
+
+We have nearly reached the end. I am now 58 hours and 50 minutes into the game development and still have a lot to do, but I wanted to pause for a moment to reflect on all the things I learned.
+
+I'm sitting in front of my window now and looking at the rain fall peacefully onto the ground. I guess it reflects how I'm feeling right now, a strange sense of calm. My biggest take-away is managing tasks and learning how much time it takes for me to code. At the start, I had a hard time deciding on the game and this is where most of the time leaked away. Towards the middle of the 60 hours, I started really pinpointing what tasks were most crucial and putting a time limit to them, though I quickly realized that it's hard to set a time when I can't take into account the bugs that might spontaneously appear. As I kept coding away, I started setting more accurate time estimations for tasks. So even with all the foibles at the beginning, I'm not discouraged. I am happy with the idea that there is still a long way to go with improving my time management when coding. I am excited to find other tools to stay focused.
+
+One thing I did which was different from my previous coding projects is that I kept most of the asset-making for the end, so that I can focus on programming. Also, I've wondered since the start if I would regret choosing p5. Despite the amount of time it took to code interactions from scratch using p5, I don't regret choosing it because it helped me practice a lot. I explored many tactics for keeping my code organized.
+
+---
+
+### Dialog update
+
+Major change! I switched the text-based dialog to audio dialogs inside the memories. For text-based dialogs, I wasn't sure how to integrate it with the interactive actions. Meanwhile, the advantages of audio-based dialogs is that it has methods for cueing, it does not compete with the actions (in fact, the actions drive the dialogs), and it gives the characters another dimension. I recorded my little cousins' voices for the characters. It was a fun change of pace from clicking and clacking on my keyboard.

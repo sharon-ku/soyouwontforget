@@ -479,6 +479,9 @@ function game() {
   // Change cursor to pointer when mouse hovers over preview video
   if (leftPreviewVideo.hovered || rightPreviewVideo.hovered) {
     cursor(`pointer`);
+    setTimeout(() => {
+      cursor(`default`);
+    }, 1000);
   } else {
     cursor(`default`);
   }
