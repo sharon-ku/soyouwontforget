@@ -29,7 +29,9 @@ class RollingPin {
   display() {
     push();
     imageMode(CENTER);
-    image(this.image, this.x, this.y);
+    translate(this.x, this.y);
+    scale(1.2, 1.5);
+    image(this.image, 0, 0);
     pop();
   }
 

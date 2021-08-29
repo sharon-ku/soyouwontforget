@@ -36,9 +36,9 @@ class MemoryMakingBao {
       y: height / 2,
       image: doughImage,
       scale: {
-        current: 0.6,
-        min: 0.6,
-        max: 1.2,
+        current: 0.3, //0.6
+        min: 0.3, //0.6
+        max: 0.9, //1.2
         increaseRate: 0.0002, //0.0001
       },
       angle: 0,
@@ -236,6 +236,8 @@ class MemoryMakingBao {
     if (abs(movedY) > 0) {
       // Increase dough size
       this.dough.scale.current += this.dough.scale.increaseRate;
+
+      console.log(this.dough.scale.current);
 
       // Finished rolling
       if (this.dough.scale.current >= this.dough.scale.max) {

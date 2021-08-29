@@ -1,0 +1,84 @@
+{
+  "description": "List of Captain Nibbu's intro dialogs with corresponding image index",
+
+  "dialogs": [
+    {
+      "number": 0,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 1,
+      "dialog": "Hello and welcome to Memorywash!"
+    },
+    {
+      "number": 1,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 2,
+      "dialog": "I am the fabulous and fluffy CAPTAIN NIBBU!!!!!"
+    },
+    {
+      "number": 2,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 3,
+      "dialog": "I will help you eradicate all the unneeded, untrendy memories. Flush them right down the toilet."
+    },
+    {
+      "number": 3,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 4,
+      "dialog": "EVIL MEMORIES, YOU SHALL NOT SEE THE LIGHT AGAIN!!"
+    },
+    {
+      "number": 4,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 5,
+      "dialog": "Sorry, got a little carried away there. Alright, now that I’m done with my intro, here’s the dealio."
+    },
+    {
+      "number": 5,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 3,
+      "dialog": "I’ve already gone ahead and downloaded all your memories. What I see is that you have lots of memories, in fact, TOO MANY. Your storage is at max cap."
+    },
+    {
+      "number": 6,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 4,
+      "dialog": "It’s about to explode... KABOOM!"
+    },
+    {
+      "number": 7,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 6,
+      "dialog": "Obviously, you must already know this. That’s why you’re here. You need more memory storage. "
+    },
+    {
+      "number": 8,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 6,
+      "dialog": "Don’t look too far because this is what Memorywash is for!  The app is optimized to help you sort out the good memories from the bad."
+    },
+    {
+      "number": 9,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 3,
+      "dialog": "We will pair an older, irrelevant memory with a newer, trendier one. We can’t delete memories for you, so at the end of the day, you choose the one you want to keep."
+    },
+    {
+      "number": 10,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 7,
+      "dialog": "But remember, you can only keep ONE of the two, capisce?!!? Like this, we can cut down on the memories you don’t need."
+    },
+    {
+      "number": 11,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 3,
+      "dialog": "We’ll keep doing this until you have sufficient memory storage to live happily forever."
+    },
+    {
+      "number": 12,
+      "speaker": "Captain Nibbu",
+      "imageIndex": 4,
+      "dialog": "We are going to have a fantastic showdown!!!! Let the Memorywash begin."
+    }
+  ]
+}

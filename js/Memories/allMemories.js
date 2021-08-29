@@ -221,6 +221,13 @@ function cueMemory() {
   }
 }
 
+function playMemoryMakingBao() {
+  background(255, 255, 255);
+  // console.log(`playing fathers day`);
+
+  memoryMakingBao.update();
+}
+
 // Play this memory
 function playMemorySoccer() {
   background(210, 210, 220);
@@ -242,13 +249,6 @@ function playMemoryInstaPic() {
   background(226, 248, 249);
 
   memoryInstaPic.update();
-}
-
-function playMemoryMakingBao() {
-  background(0, 0, 0);
-  // console.log(`playing fathers day`);
-
-  memoryMakingBao.update();
 }
 
 function playMemoryPlayingOnPhone() {
