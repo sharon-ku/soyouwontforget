@@ -43,20 +43,15 @@ class DownloadButton extends Button {
     this.hover(mouse);
   }
 
-  // // When hovering on button, change cursor type
-  // hover(mouse) {
-  //   if (this.mouseOverlapsRectangle(mouse)) {
-  //     // // Increase opacity of play icon
-  //     // this.playIcon.opacity.current = this.playIcon.opacity.max;
-  //     // Change cursor to pointer
-  //     cursor(`pointer`);
-  //   } else {
-  //     // // Diminish opacity of play icon
-  //     // this.playIcon.opacity.current = this.playIcon.opacity.min;
-  //     // Change cursor to default
-  //     cursor(`default`);
-  //   }
-  // }
+  // When hovering on button, change cursor type
+  hover(mouse) {
+    if (this.mouseOverlapsRectangle(mouse)) {
+      // Change cursor to pointer
+      cursor(`pointer`);
+    } else {
+      cursor(`default`);
+    }
+  }
 
   // When mouse pressed on button, download app
   mousePressed(mouse) {

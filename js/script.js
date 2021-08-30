@@ -91,6 +91,11 @@ let bgFill = {
 /****************
 Intro variables
 *****************/
+// Store intro-dialogs.json data
+let introDialogsList = undefined;
+// Keep track of current intro dialog
+let currentIntroDialogIndex = 0;
+
 // Memorywash app thumbnails
 let memorywashThumbnail = undefined;
 let memorywashThumbnailImages = [];
@@ -98,6 +103,11 @@ const NUM_MEMORYWASH_THUMBNAIL_IMAGES = 2;
 
 // Buttons in intro state
 let downloadButton = undefined;
+
+// Captain Nibbu images
+const NUM_NIBBU_IMAGES = 7;
+let nibbuImages = [];
+let nibbuCurrentImageIndex = 0;
 
 /****************
 Game variables
@@ -163,12 +173,21 @@ function preload() {
     memorywashThumbnailImages.push(thumbnailImage);
   }
 
+  // Load Captain Nibbu images
+  for (let i = 0; i < NUM_NIBBU_IMAGES; i++) {
+    let nibbuImage = loadImage(`assets/images/intro/nibbu/nibbu${i}.png`);
+    nibbuImages.push(nibbuImage);
+  }
+
   // Load play icon image
   playIconImage = loadImage(`assets/images/play-icon.png`);
 }
 
 // Preload all JSON files
 function preloadJSONFiles() {
+  // Load intro dialog JSON file
+  introDialogsList = loadJSON(`assets/data/intro-dialogs.json`);
+
   // Load memories JSON file
   memoriesList = loadJSON(`assets/data/memories.json`);
 }
@@ -400,6 +419,15 @@ function intro() {
 
   // Update download button
   downloadButton.update(mouse);
+
+  // Display Captain Nibbu's image
+  push();
+  imageMode(CENTER);
+  // update its image index based on current dialog
+  nibbuCurrentImageIndex =
+    introDialogsList.dialogs[currentIntroDialogIndex].imageIndex;
+  image(nibbuImages[nibbuCurrentImageIndex], width / 2, 250);
+  pop();
 
   // // Display "Download" text
   // let downloadStringProperties = {
