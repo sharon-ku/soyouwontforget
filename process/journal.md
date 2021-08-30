@@ -422,3 +422,34 @@ One thing I did which was different from my previous coding projects is that I k
 ### Dialog update
 
 Major change! I switched the text-based dialog to audio dialogs inside the memories. For text-based dialogs, I wasn't sure how to integrate it with the interactive actions. Meanwhile, the advantages of audio-based dialogs is that it has methods for cueing, it does not compete with the actions (in fact, the actions drive the dialogs), and it gives the characters another dimension. I recorded my little cousins' voices for the characters. It was a fun change of pace from clicking and clacking on my keyboard.
+
+## Monday, August 30, 2021, at 9:12am
+
+### Milestone
+
+Alright folks, I have reached the end of the 60 hours! Wahoooooo!
+
+I am proud of what I've designed so far and want to acknowledge my hard work.
+
+With that said, there are still some modifications I am planning to do before my teammates playtest it. I want to at least give them a playable prototype so that the game makes sense.
+
+So my final to-dos before August 31 midnight are as follows:
+
+1. Add Daddy's audio dialogs (voiced by Bryan Ku)
+2. Finish the intro, including Captain Nibbu's speech to explain what the game is all about
+3. Complete MemoryMakingBao drawings
+4. Polish MemoryMakingBao
+5. Complete MemoryInstaPic drawings
+6. Polish MemoryInstaPic
+
+And maybeeeeeee if I want to do more, I can also:
+
+7. Add audio dialogs to MemorySoccer
+8. Complete MemorySoccer drawings
+9. Polish MemorySoccer
+10. Make end scene drawings
+11. Program the end scene
+
+### Worry about death
+
+My only concern is that I was not able to implement the theme of death yet. I wanted the theme to come towards the end of the game. And since the game is all cutesy in an ironic way, it ESPECIALLY deters from the theme. Oh well, c'est la vie.
