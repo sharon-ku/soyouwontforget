@@ -67,9 +67,9 @@ let bgFill = {
     b: undefined,
   },
   intro: {
-    r: 226,
-    g: 248,
-    b: 249,
+    r: 255,
+    g: 249,
+    b: 230,
   },
   game: {
     r: 255,
@@ -91,6 +91,12 @@ let bgFill = {
 /****************
 Intro variables
 *****************/
+
+// All possibilties: introDownload, introNibbuSpeech
+let introSubstate = `introDownload`;
+
+// Captain Nibbu's dialog box
+let introDialogBox = undefined;
 // Store intro-dialogs.json data
 let introDialogsList = undefined;
 // Keep track of current intro dialog
@@ -105,7 +111,7 @@ const NUM_MEMORYWASH_THUMBNAIL_IMAGES = 2;
 let downloadButton = undefined;
 
 // Captain Nibbu images
-const NUM_NIBBU_IMAGES = 7;
+const NUM_NIBBU_IMAGES = 8;
 let nibbuImages = [];
 let nibbuCurrentImageIndex = 0;
 
@@ -303,6 +309,9 @@ function setUpIntroObjects() {
     y: memorywashThumbnail.y + 200,
   };
   downloadButton = new DownloadButton(downloadButtonProperties);
+
+  // Captain Nibbu's dialog box
+  introDialogBox = new IntroDialogBox(width / 2, height - 200);
 }
 
 // Set up all game objects
@@ -414,20 +423,11 @@ Here's where the player downloads Memorywash and views the intro video
 *****************/
 
 function intro() {
-  // Update memorywash thumbnail
-  memorywashThumbnail.update();
-
-  // Update download button
-  downloadButton.update(mouse);
-
-  // Display Captain Nibbu's image
-  push();
-  imageMode(CENTER);
-  // update its image index based on current dialog
-  nibbuCurrentImageIndex =
-    introDialogsList.dialogs[currentIntroDialogIndex].imageIndex;
-  image(nibbuImages[nibbuCurrentImageIndex], width / 2, 250);
-  pop();
+  if (introSubstate === `introDownload`) {
+    introDownload();
+  } else if (introSubstate === `introNibbuSpeech`) {
+    introNibbuSpeech();
+  }
 
   // // Display "Download" text
   // let downloadStringProperties = {
@@ -459,12 +459,33 @@ function intro() {
 //   pop();
 // }
 
+// Show Memorywash thumbnail and download button
+function introDownload() {
+  // Update memorywash thumbnail
+  memorywashThumbnail.update();
+
+  // Update download button
+  downloadButton.update(mouse);
+}
+
+// Captain Nibbu gives a speech
+function introNibbuSpeech() {
+  // Display Captain Nibbu's image
+  push();
+  imageMode(CENTER);
+  // update its image index based on current dialog
+  nibbuCurrentImageIndex =
+    introDialogsList.dialogs[currentIntroDialogIndex].imageIndex;
+  image(nibbuImages[nibbuCurrentImageIndex], width / 2, 250);
+  pop();
+
+  // Update dialog box
+  introDialogBox.update(introDialogsList, currentIntroDialogIndex);
+}
+
 // Download app
 function downloadApp() {
-  // Launch memories
-  state = `game`;
-
-  console.log(`App is downloading`);
+  introSubstate = `introNibbuSpeech`;
 }
 
 /****************
@@ -543,6 +564,17 @@ Handles what happens when player clicks on mouse.
 function mousePressed() {
   if (state === `intro`) {
     downloadButton.mousePressed(mouse);
+
+    // Update Cap Nibbu's current dialog index when mouse pressed
+    if (introDialogBox.mousePressed(mouse)) {
+      currentIntroDialogIndex++;
+
+      // If reached last dialog, launch game
+      if (currentIntroDialogIndex >= introDialogsList.dialogs.length) {
+        // Launch memories
+        state = `game`;
+      }
+    }
   } else if (state === `game`) {
     leftPreviewVideo.mousePressed(mouse);
     rightPreviewVideo.mousePressed(mouse);
