@@ -1,7 +1,13 @@
 // Memory playing in game state
 
 class MemoryMakingBao {
-  constructor(doughImage, rollingPinImage, meatImage, makingBaoDialogs) {
+  constructor(
+    doughImage,
+    rollingPinImage,
+    meatImage,
+    baoTableImage,
+    makingBaoDialogs
+  ) {
     // Sounds ------------------------
     this.dialogs = makingBaoDialogs;
 
@@ -30,6 +36,9 @@ class MemoryMakingBao {
     // this.characters = [];
 
     // Objects in this scene ---------
+    // Table background
+    this.table = new BackgroundImage(baoTableImage);
+
     // Dough
     this.dough = {
       x: width / 2,
@@ -55,7 +64,7 @@ class MemoryMakingBao {
     // Meat
     this.meatProperties = {
       image: meatImage,
-      x: width - 100,
+      x: width - 80,
       y: 100,
     };
     this.meat = new DraggableImage(this.meatProperties);
@@ -66,6 +75,8 @@ class MemoryMakingBao {
     // noCursor();
     // Display all characters
     // NONE
+
+    this.table.update();
 
     // Display all objects
     this.displayDough();

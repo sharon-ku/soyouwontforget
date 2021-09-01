@@ -30,7 +30,7 @@ class RollingPin {
     push();
     imageMode(CENTER);
     translate(this.x, this.y);
-    scale(1.2, 1.5);
+    scale(0.9);
     image(this.image, 0, 0);
     pop();
   }

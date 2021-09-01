@@ -9,12 +9,12 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-let state = `intro`;
-// let state = `memory`;
+// let state = `intro`;
+let state = `memory`;
 
 // Store name of current memory that is playing
-let memoryPlaying = undefined;
-// let memoryPlaying = `memoryMakingBao`;
+// let memoryPlaying = undefined;
+let memoryPlaying = `memoryMakingBao`;
 
 // let memoryGroup = `cooking`;
 let currentMemoryGroupIndex = 0;

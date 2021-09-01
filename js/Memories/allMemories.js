@@ -120,6 +120,7 @@ function preloadMemoryAssets() {
   );
 
   // Bao images
+  baoTableImage = loadImage(`assets/images/memories/objects/bao/bao-table.jpg`);
   doughImage = loadImage(`assets/images/memories/objects/bao/dough.png`);
   rollingPinImage = loadImage(
     `assets/images/memories/objects/bao/rolling-pin.png`
@@ -175,6 +176,7 @@ function setUpMemoryObjects() {
     doughImage,
     rollingPinImage,
     meatImage,
+    baoTableImage,
     makingBaoDialogs
   );
 
