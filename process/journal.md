@@ -450,6 +450,30 @@ And maybeeeeeee if I want to do more, I can also:
 10. Make end scene drawings
 11. Program the end scene
 
+---
+
 ### Worry about death
 
 My only concern is that I was not able to implement the theme of death yet. I wanted the theme to come towards the end of the game. And since the game is all cutesy in an ironic way, it ESPECIALLY deters from the theme. Oh well, c'est la vie.
+
+## Friday, September 3, 2021, at 9:15pm
+
+### Letting go of incoming memories
+
+Ok ok, alright, yes, okay, ANOTHER MAJOR UPDATE.
+
+I decided to let go of the incoming memories categories.
+
+Initially, I intended for the incoming memories to serve these two purposes:
+
+1. Allow the player to have more choices (either select old or incoming memory to keep)
+2. Provide context as to how Lu is doing now, compared to her past (in other words, show how the memories of the dead has affected how she is living today)
+
+But the drawbacks of having incoming memories is that it:
+
+1. Causes confusion as to why it exists --> more choices makes it harder for the player to follow what is going on
+2. Is hard to weave a convincing and concise narrative by introducing additional, somewhat unnecessary plots in relation to the old memories
+3. Reduces the impact of the old memories
+4. Requires additional coding time, time that can be better allocated to polishing the old memories and app interface
+
+I want to place the spotlight on the old memories, and since the incoming memories are undermining them, I think it is time for me to let them go.
