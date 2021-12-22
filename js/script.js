@@ -9,12 +9,12 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-// let state = `intro`;
-let state = `memory`;
+let state = `intro`;
+// let state = `memory`;
 
 // Store name of current memory that is playing
-// let memoryPlaying = undefined;
-let memoryPlaying = `memoryMakingBao`;
+let memoryPlaying = undefined;
+// let memoryPlaying = `memoryMakingBao`;
 
 // let memoryGroup = `cooking`;
 let currentMemoryGroupIndex = 0;
@@ -68,8 +68,8 @@ let bgFill = {
   },
   intro: {
     r: 255,
-    g: 249,
-    b: 230,
+    g: 255,
+    b: 255,
   },
   game: {
     r: 255,
@@ -92,8 +92,8 @@ let bgFill = {
 Intro variables
 *****************/
 
-// All possibilties: introDownload, introNibbuSpeech
-let introSubstate = `introDownload`;
+// All possibilties: introTitle, introInstallApp, introNibbuSpeech
+let introSubstate = `introTitle`;
 
 // Captain Nibbu's dialog box
 let introDialogBox = undefined;
@@ -108,7 +108,15 @@ let memorywashThumbnailImages = [];
 const NUM_MEMORYWASH_THUMBNAIL_IMAGES = 2;
 
 // Buttons in intro state
-let downloadButton = undefined;
+let startButton = undefined;
+let installButton = undefined;
+// no longer used, but kept for reference
+// let downloadButton = undefined;
+
+let introLoadingBar = undefined;
+let introLoadingText = undefined;
+// checks if installing is true or false
+let installing = false;
 
 // Captain Nibbu images
 const NUM_NIBBU_IMAGES = 8;
@@ -162,8 +170,10 @@ End variables
 // Preload all assets: fonts, images, JSON files, sounds
 function preload() {
   // Preload fonts
-  fontStyleNormal = loadFont(`assets/fonts/BalsamiqSans-Regular.ttf`);
-  fontStyleBold = loadFont(`assets/fonts/BalsamiqSans-Bold.ttf`);
+  // fontStyleNormal = loadFont(`assets/fonts/BalsamiqSans-Regular.ttf`);
+  // fontStyleBold = loadFont(`assets/fonts/BalsamiqSans-Bold.ttf`);
+  fontStyleNormal = loadFont(`assets/fonts/Inter-Regular.ttf`);
+  fontStyleBold = loadFont(`assets/fonts/Inter-Bold.ttf`);
 
   // Preload all images and sounds used in memory state (function found in allMemories.js file)
   preloadMemoryAssets();
@@ -303,12 +313,31 @@ function setUpIntroObjects() {
     memorywashThumbnailImages
   );
 
-  // Create download button
-  let downloadButtonProperties = {
+  // no longer used but kept for reference
+  // // Create download button
+  // let downloadButtonProperties = {
+  //   x: memorywashThumbnail.x,
+  //   y: memorywashThumbnail.y + 200,
+  // };
+  // downloadButton = new DownloadButton(downloadButtonProperties);
+
+  // Create install button
+  let installButtonProperties = {
     x: memorywashThumbnail.x,
     y: memorywashThumbnail.y + 200,
   };
-  downloadButton = new DownloadButton(downloadButtonProperties);
+  installButton = new InstallButton(installButtonProperties);
+
+  // Create start button
+  let startButtonProperties = {
+    x: memorywashThumbnail.x,
+    y: memorywashThumbnail.y + 200,
+  };
+  startButton = new StartButton(startButtonProperties);
+
+  // Create intro loading bar and text
+  introLoadingBar = new IntroLoadingBar();
+  introLoadingText = new IntroLoadingText();
 
   // Captain Nibbu's dialog box
   introDialogBox = new IntroDialogBox(width / 2, height - 200);
@@ -423,9 +452,17 @@ Here's where the player downloads Memorywash and views the intro video
 *****************/
 
 function intro() {
-  if (introSubstate === `introDownload`) {
-    introDownload();
-  } else if (introSubstate === `introNibbuSpeech`) {
+  if (introSubstate === `introTitle`) {
+    introTitle();
+  } else if (introSubstate === `introInstallApp`) {
+    introInstallApp();
+    // console.log(`yes`);
+  }
+  // introDownload is no longer being used
+  // else if (introSubstate === `introDownload`) {
+  //   introDownload();
+  // }
+  else if (introSubstate === `introNibbuSpeech`) {
     introNibbuSpeech();
   }
 
@@ -459,14 +496,65 @@ function intro() {
 //   pop();
 // }
 
-// Show Memorywash thumbnail and download button
-function introDownload() {
-  // Update memorywash thumbnail
-  memorywashThumbnail.update();
+// Show title for intro
+function introTitle() {
+  background(0);
 
-  // Update download button
-  downloadButton.update(mouse);
+  push();
+  fill(255);
+  textAlign(CENTER);
+  textSize(32);
+  text(`so you won't forget`, width / 2, height / 2);
+  pop();
+
+  startButton.update(mouse);
 }
+
+// Switch states from introTitle to introDowloadApp
+function switchIntroStates() {
+  introSubstate = `introInstallApp`;
+
+  console.log(`switching states`);
+}
+
+// Download memorywash app
+function introInstallApp() {
+  // If install button hasn't been clicked yet:
+  if (!installing) {
+    // show Memorywash title
+    push();
+    fill(0);
+    textAlign(CENTER);
+    textSize(32);
+    text(`Memorywash`, width / 2, height / 2);
+    pop();
+
+    // Update install button
+    installButton.update(mouse);
+  }
+  // show loading bar once install button has been clicked
+  else {
+    introLoadingBar.update();
+    introLoadingText.update();
+  }
+}
+
+// Load different part of the app
+function loadApp() {
+  installing = true;
+  console.log(`loadapp`);
+  setInterval(introLoadingText.updateStringIndex.bind(introLoadingText), 1000);
+}
+
+// No longer used, but kept for reference
+// // Show Memorywash thumbnail and download button
+// function introDownload() {
+//   // Update memorywash thumbnail
+//   memorywashThumbnail.update();
+//
+//   // Update download button
+//   downloadButton.update(mouse);
+// }
 
 // Captain Nibbu gives a speech
 function introNibbuSpeech() {
@@ -483,10 +571,10 @@ function introNibbuSpeech() {
   introDialogBox.update(introDialogsList, currentIntroDialogIndex);
 }
 
-// Download app
-function downloadApp() {
-  introSubstate = `introNibbuSpeech`;
-}
+// // Download app
+// function downloadApp() {
+//   introSubstate = `introNibbuSpeech`;
+// }
 
 /****************
 Game state:
@@ -563,7 +651,12 @@ Handles what happens when player clicks on mouse.
 
 function mousePressed() {
   if (state === `intro`) {
-    downloadButton.mousePressed(mouse);
+    // downloadButton.mousePressed(mouse);
+    if (introSubstate === `introTitle`) {
+      startButton.mousePressed(mouse);
+    } else if (introSubstate === `introInstallApp`) {
+      installButton.mousePressed(mouse);
+    }
 
     // Update Cap Nibbu's current dialog index when mouse pressed
     if (introDialogBox.mousePressed(mouse)) {
