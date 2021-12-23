@@ -2,6 +2,10 @@
 
 class IntroLoadingBar {
   constructor() {
+    // if reached final loading message, then set to final load
+    this.finalLoad = false;
+
+    // rectangle container containing small bar
     this.bigContainer = {
       fill: 255,
       stroke: 0,
@@ -13,6 +17,7 @@ class IntroLoadingBar {
       height: 40,
     };
 
+    // small bar that moves
     this.smallBar = {
       fill: 0,
       stroke: 0,
@@ -26,7 +31,7 @@ class IntroLoadingBar {
       xMin: undefined,
       xMax: undefined,
       y: height / 2 - 100,
-      vx: 4,
+      vx: 6,
     };
 
     // setting initial x positions for small bar:
@@ -93,12 +98,29 @@ class IntroLoadingBar {
     pop();
   }
 
+  // Return true if bar reached the end of container bar
+  smallBarReachedTheEnd() {
+    if (this.smallBar.x >= this.smallBar.xMax) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // Move small bar from left to rigbt
   moveSmallBar() {
     this.smallBar.x += this.smallBar.vx;
 
     // reset small bar position to the left
-    if (this.smallBar.x >= this.smallBar.xMax) {
+    if (this.smallBarReachedTheEnd()) {
       this.smallBar.x = this.smallBar.xMin;
+
+      // if it's the final load for the loading bar:
+      if (this.finalLoad) {
+        // change state
+        state = `game`;
+        console.log(state);
+      }
     }
   }
 }

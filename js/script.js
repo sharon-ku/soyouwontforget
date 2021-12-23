@@ -117,6 +117,8 @@ let introLoadingBar = undefined;
 let introLoadingText = undefined;
 // checks if installing is true or false
 let installing = false;
+// store interval for loading messages to update
+let loadingMessageInterval = undefined;
 
 // Captain Nibbu images
 const NUM_NIBBU_IMAGES = 8;
@@ -539,11 +541,19 @@ function introInstallApp() {
   }
 }
 
-// Load different part of the app
+// Load different parts of the app
 function loadApp() {
   installing = true;
   console.log(`loadapp`);
-  setInterval(introLoadingText.updateStringIndex.bind(introLoadingText), 1000);
+  loadingMessageInterval = setInterval(
+    introLoadingText.updateStringIndex.bind(introLoadingText),
+    3000
+  );
+}
+
+// Check if loading bar reached the end
+function setFinalLoadForLoadingBar() {
+  introLoadingBar.finalLoad = true;
 }
 
 // No longer used, but kept for reference

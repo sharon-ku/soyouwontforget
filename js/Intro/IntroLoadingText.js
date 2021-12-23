@@ -34,12 +34,18 @@ class IntroLoadingText {
 
   // update string index
   updateStringIndex() {
-    this.currentStringIndex++;
-    console.log(`updating`);
-  }
+    // if we haven't gone through all messages yet
+    if (this.currentStringIndex < this.strings.length - 1) {
+      // update current string
+      this.currentStringIndex++;
+    }
+    //  else if done loading all messages:
+    else {
+      // set to final load
+      setFinalLoadForLoadingBar();
 
-  // // Switch text every few seconds
-  // switchText() {
-  //   setTimeout(this.updateIndex.bind(this), this.dslayBetweenString);
-  // }
+      // clear messages getting updateIndex
+      clearInterval(loadingMessageInterval);
+    }
+  }
 }
