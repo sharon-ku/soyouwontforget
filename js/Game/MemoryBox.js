@@ -22,7 +22,12 @@ class MemoryBox extends OverlappingRectangle {
     this.height = height / 2.5;
     // Rounded corner
     this.cornerRadius = 20;
-    // Color of rectangle: light blue
+    // Color of rectangle
+    this.fillCurrent = {
+      r: 255,
+      g: 255,
+      b: 255,
+    };
     this.fill = {
       // r: 142,
       // g: 207,
@@ -30,6 +35,12 @@ class MemoryBox extends OverlappingRectangle {
       r: 255,
       g: 255,
       b: 255,
+    };
+    // light blue
+    this.fillHover = {
+      r: 142,
+      g: 207,
+      b: 201,
     };
     // Stroke properties of rectangle
     this.stroke = {
@@ -144,7 +155,7 @@ class MemoryBox extends OverlappingRectangle {
   display() {
     // Display rectangle for preview video
     push();
-    fill(this.fill.r, this.fill.g, this.fill.b);
+    fill(this.fillCurrent.r, this.fillCurrent.g, this.fillCurrent.b);
     strokeWeight(this.stroke.weight);
     stroke(this.stroke.fill.r, this.stroke.fill.g, this.stroke.fill.b);
     rectMode(CENTER);
@@ -227,11 +238,13 @@ class MemoryBox extends OverlappingRectangle {
   // When hovering on preview video, change the play icon's opacity and cursor type
   hoverOnPreviewVideo(mouse) {
     if (this.mouseOverlapsRectangle(mouse)) {
+      this.fillCurrent = this.fillHover;
       // // Increase opacity of play icon
       // this.playIcon.opacity.current = this.playIcon.opacity.max;
       // // When hovered is true, set cursor type to pointer
       // this.hovered = true;
     } else {
+      this.fillCurrent = this.fill;
       // // Diminish opacity of play icon
       // this.playIcon.opacity.current = this.playIcon.opacity.min;
       // // Set cursor to default
