@@ -145,18 +145,31 @@ let separationLine = {
 // Play icon
 let playIconImage = undefined;
 
-// Preview video in game state
-let leftPreviewVideo = undefined;
-let rightPreviewVideo = undefined;
+// // to be deleted: kept here for reference
+// // Preview video in game state
+// let leftPreviewVideo = undefined;
+// let rightPreviewVideo = undefined;
+
+// Memory box in game state
+let leftMemoryBox = undefined;
+let rightMemoryBox = undefined;
 
 // // Store all preview videos here
 // let previewVideos = [];
 // // Total number of preview videos
 // const NUM_PREVIEW_VIDEOS = 2;
 
+// // to be deleted: kept here for ref
+// // Current memories displayed in game state
+// let currentIncomingMemory = undefined;
+// let currentOldMemory = undefined;
+
 // Current memories displayed in game state
-let currentIncomingMemory = undefined;
-let currentOldMemory = undefined;
+// let currentLeftMemory = undefined;
+// let currentRightMemory = undefined;
+let currentMemoryInfo = undefined;
+let currentLeftMemoryCategory = undefined;
+let currentRightMemoryCategory = undefined;
 
 // Store memories.json data
 let memoriesList = undefined;
@@ -373,30 +386,59 @@ function setUpGameObjects() {
   getMemories();
 
   // Create left preview video
-  let leftPreviewVideoProperties = {
+  let leftMemoryBoxProperties = {
     x: width / 4,
     y: height / 2,
     section: `OLD MEMORY`,
     // instructions: `Make room for this memory.`,
     instructions: `Which memory do you wish to trash permanently?`,
+    memoryCategory: currentLeftMemoryCategory,
     playIconImage: playIconImage,
     // memoryGroup: memoryGroup,
-    memoryName: currentOldMemory,
+    memoryName: currentMemoryInfo,
   };
-  leftPreviewVideo = new PreviewVideo(leftPreviewVideoProperties);
+  leftMemoryBox = new MemoryBox(leftMemoryBoxProperties);
 
   // Create right preview video
-  let rightPreviewVideoProperties = {
+  let rightMemoryBoxProperties = {
     x: (width * 3) / 4,
     y: height / 2,
     section: `INCOMING MEMORY`,
     // instructions: `Delete memories that burden you.`,
+    memoryCategory: currentRightMemoryCategory,
     instructions: ``,
     playIconImage: playIconImage,
     // memoryGroup: memoryGroup,
-    memoryName: currentIncomingMemory,
+    memoryName: currentMemoryInfo,
   };
-  rightPreviewVideo = new PreviewVideo(rightPreviewVideoProperties);
+  rightMemoryBox = new MemoryBox(rightMemoryBoxProperties);
+
+  // TO BE DELETED: KEPT FOR REF
+  // // Create left preview video
+  // let leftPreviewVideoProperties = {
+  //   x: width / 4,
+  //   y: height / 2,
+  //   section: `OLD MEMORY`,
+  //   // instructions: `Make room for this memory.`,
+  //   instructions: `Which memory do you wish to trash permanently?`,
+  //   playIconImage: playIconImage,
+  //   // memoryGroup: memoryGroup,
+  //   memoryName: currentOldMemory,
+  // };
+  // leftPreviewVideo = new PreviewVideo(leftPreviewVideoProperties);
+  //
+  // // Create right preview video
+  // let rightPreviewVideoProperties = {
+  //   x: (width * 3) / 4,
+  //   y: height / 2,
+  //   section: `INCOMING MEMORY`,
+  //   // instructions: `Delete memories that burden you.`,
+  //   instructions: ``,
+  //   playIconImage: playIconImage,
+  //   // memoryGroup: memoryGroup,
+  //   memoryName: currentIncomingMemory,
+  // };
+  // rightPreviewVideo = new PreviewVideo(rightPreviewVideoProperties);
 
   // // Create delete button
   // let deleteButtonProperties = {
@@ -432,10 +474,30 @@ function setUpGameObjects() {
 
 // Fetch an incoming and old memory from memories.json
 function getMemories() {
-  currentIncomingMemory =
-    memoriesList.incomingMemories[currentMemoryGroupIndex];
+  // To delete:
+  // currentIncomingMemory =
+  //   memoriesList.incomingMemories[currentMemoryGroupIndex];
+  //
+  // currentOldMemory = memoriesList.oldMemories[currentMemoryGroupIndex];
 
-  currentOldMemory = memoriesList.oldMemories[currentMemoryGroupIndex];
+  // Choose which memory goes on the left side:
+  let memoryCategories = [`happyMemory`, `sadMemory`];
+  currentLeftMemoryCategory = random(memoryCategories);
+
+  // Set the right memory
+  if (currentLeftMemoryCategory === `happyMemory`) {
+    currentRightMemoryCategory = `sadMemory`;
+  } else {
+    currentRightMemoryCategory = `happyMemory`;
+  }
+
+  // Update currentLeftMemory and currentRightMemory
+
+  currentMemoryInfo = memoriesList.memories[currentMemoryGroupIndex];
+  // currentRightMemory =
+  //   memoriesList.memories[currentMemoryGroupIndex].currentRightMemoryCategory;
+
+  console.log(currentMemoryInfo);
 }
 
 // draw() --------------------------------------------
@@ -648,8 +710,6 @@ function game() {
   // Keep checking memories are updated
   getMemories();
 
-  console.log(currentOldMemory, currentIncomingMemory);
-
   // // Drawing rectangle guides
   // push();
   // noFill();
@@ -672,19 +732,25 @@ function game() {
   );
   pop();
 
-  // Update left and right preview videos
-  leftPreviewVideo.update(mouse, currentOldMemory);
-  rightPreviewVideo.update(mouse, currentIncomingMemory);
+  // To be deleted
+  // // Update left and right preview videos
+  // leftPreviewVideo.update(mouse, currentOldMemory);
+  // rightPreviewVideo.update(mouse, currentIncomingMemory);
 
-  // Change cursor to pointer when mouse hovers over preview video
-  if (leftPreviewVideo.hovered || rightPreviewVideo.hovered) {
-    cursor(`pointer`);
-    setTimeout(() => {
-      cursor(`default`);
-    }, 1000);
-  } else {
-    cursor(`default`);
-  }
+  // Update left and right preview videos
+  leftMemoryBox.update(mouse, currentMemoryInfo);
+  rightMemoryBox.update(mouse, currentMemoryInfo);
+
+  // To delete:
+  // // Change cursor to pointer when mouse hovers over preview video
+  // if (leftPreviewVideo.hovered || rightPreviewVideo.hovered) {
+  //   cursor(`pointer`);
+  //   setTimeout(() => {
+  //     cursor(`default`);
+  //   }, 1000);
+  // } else {
+  //   cursor(`default`);
+  // }
 
   // // Update left and right preview videos
   // for (let i = 0; i < previewVideos.length; i++) {
