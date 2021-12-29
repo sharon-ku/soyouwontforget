@@ -22,7 +22,10 @@ let currentMemoryGroupIndex = 0;
 // Count number of happy and sad memories clicked
 let numHappyMemoriesClicked = 0;
 let numSadMemoriesClicked = 0;
-let numTotalMemoriesClicked = undefined;
+let numTotalMemoriesClicked = 0;
+
+// Total number of memories that need to be cleared
+let maxMemoriesToClear = 15;
 
 // Landmark stroke color
 const LANDMARK_STROKE_FILL = {
@@ -158,6 +161,9 @@ let playIconImage = undefined;
 // Memory box in game state
 let leftMemoryBox = undefined;
 let rightMemoryBox = undefined;
+
+// Keeps track of how much storage user has
+let memoryStorageBar = undefined;
 
 // // Store all preview videos here
 // let previewVideos = [];
@@ -389,6 +395,9 @@ function setUpIntroObjects() {
 function setUpGameObjects() {
   // Fetch the first incoming and old memory
   getMemories();
+
+  // Create memory storage bar
+  memoryStorageBar = new MemoryStorageBar(maxMemoriesToClear);
 
   // Create left preview video
   let leftMemoryBoxProperties = {
@@ -740,6 +749,9 @@ function game() {
   // Update left and right preview videos
   leftMemoryBox.update(mouse, currentMemoryInfo);
   rightMemoryBox.update(mouse, currentMemoryInfo);
+
+  // Update memory storage
+  memoryStorageBar.update(numTotalMemoriesClicked);
 
   // To delete:
   // // Change cursor to pointer when mouse hovers over preview video

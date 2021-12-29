@@ -258,6 +258,9 @@ class MemoryBox extends OverlappingRectangle {
       // Update counters for each memory category
       this.updateMemoryCounter();
 
+      // update the memory to be shown
+      currentMemoryGroupIndex++;
+
       // to delete; kept for reference
       // this.playMemory();
     }
