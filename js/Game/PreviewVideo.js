@@ -135,38 +135,38 @@ class PreviewVideo extends OverlappingRectangle {
     rect(this.x, this.y, this.width, this.height, this.cornerRadius);
     pop();
 
-    // Display play icon image and update its opacity based on hover
-    push();
-    tint(this.playIcon.grayValue, this.playIcon.opacity.current);
-    imageMode(CENTER);
-    image(
-      this.playIcon.image,
-      this.x + this.playIcon.xOffset,
-      this.y + this.playIcon.yOffset
-    );
-    pop();
+    // // Display play icon image and update its opacity based on hover
+    // push();
+    // tint(this.playIcon.grayValue, this.playIcon.opacity.current);
+    // imageMode(CENTER);
+    // image(
+    //   this.playIcon.image,
+    //   this.x + this.playIcon.xOffset,
+    //   this.y + this.playIcon.yOffset
+    // );
+    // pop();
 
-    // Display rectangle behind section text
-    push();
-    fill(
-      this.section.rectangle.fill.r,
-      this.section.rectangle.fill.g,
-      this.section.rectangle.fill.b
-    );
-    // strokeWeight(this.stroke.weight);
-    // stroke(this.stroke.fill.r, this.stroke.fill.g, this.stroke.fill.b);
-    rectMode(CENTER);
-    noStroke();
-    rect(
-      this.x + this.section.rectangle.xOffset,
-      this.y + this.section.rectangle.yOffset,
-      this.section.rectangle.width,
-      this.section.rectangle.height
-    );
-    pop();
+    // // Display rectangle behind section text
+    // push();
+    // fill(
+    //   this.section.rectangle.fill.r,
+    //   this.section.rectangle.fill.g,
+    //   this.section.rectangle.fill.b
+    // );
+    // // strokeWeight(this.stroke.weight);
+    // // stroke(this.stroke.fill.r, this.stroke.fill.g, this.stroke.fill.b);
+    // rectMode(CENTER);
+    // noStroke();
+    // rect(
+    //   this.x + this.section.rectangle.xOffset,
+    //   this.y + this.section.rectangle.yOffset,
+    //   this.section.rectangle.width,
+    //   this.section.rectangle.height
+    // );
+    // pop();
 
     // Display section and instructions
-    this.displayText(this.section);
+    // this.displayText(this.section);
     this.displayText(this.instructions);
 
     // Display text containing memory name
@@ -194,15 +194,15 @@ class PreviewVideo extends OverlappingRectangle {
   // When hovering on preview video, change the play icon's opacity and cursor type
   hoverOnPreviewVideo(mouse) {
     if (this.mouseOverlapsRectangle(mouse)) {
-      // Increase opacity of play icon
-      this.playIcon.opacity.current = this.playIcon.opacity.max;
-      // When hovered is true, set cursor type to pointer
-      this.hovered = true;
+      // // Increase opacity of play icon
+      // this.playIcon.opacity.current = this.playIcon.opacity.max;
+      // // When hovered is true, set cursor type to pointer
+      // this.hovered = true;
     } else {
-      // Diminish opacity of play icon
-      this.playIcon.opacity.current = this.playIcon.opacity.min;
-      // Set cursor to default
-      this.hovered = false;
+      // // Diminish opacity of play icon
+      // this.playIcon.opacity.current = this.playIcon.opacity.min;
+      // // Set cursor to default
+      // this.hovered = false;
     }
   }
 

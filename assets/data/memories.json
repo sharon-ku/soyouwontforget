@@ -1,6 +1,30 @@
 {
   "description": "List of incoming and old memories with their dialogs",
 
+  "memories": [
+    {
+      "number": 0,
+      "happyMemory": {
+        "description": "I made an amazing  breakfast.",
+        "time": "5 hours ago"
+      },
+      "sadMemory": {
+        "description": "I fell while playing tag with my friends and scraped my knees and hands.",
+        "time": "8 years old"
+      }
+    },
+    {
+      "number": 1,
+      "happyMemory": {
+        "description": "Conversation with an old high school friend that I bumped into on the bus.",
+        "time": "15 years old"
+      },
+      "sadMemory": {
+        "description": "I vomitted at school after eating popcorn.",
+        "time": "12 years old"
+      }
+    }
+  ],
   "oldMemories": [
     {
       "previewVideoTitle": "I made bao with Daddy.",

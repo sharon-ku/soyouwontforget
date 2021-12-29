@@ -9,7 +9,7 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-let state = `intro`;
+let state = `game`;
 // let state = `memory`;
 
 // Store name of current memory that is playing
@@ -138,7 +138,8 @@ Game variables
 // Line separating left and right preview videos
 let separationLine = {
   x: undefined,
-  yPadding: 40,
+  yPaddingTop: 150,
+  yPaddingBottom: 40,
 };
 
 // Play icon
@@ -166,8 +167,8 @@ let dialogBox = undefined;
 // Buttons in game state
 // let deleteButton = undefined;
 // let keepButton = undefined;
-let winnerButtonIncoming = undefined;
-let winnerButtonOld = undefined;
+// let winnerButtonIncoming = undefined;
+// let winnerButtonOld = undefined;
 
 /****************
 End variables
@@ -377,7 +378,7 @@ function setUpGameObjects() {
     y: height / 2,
     section: `OLD MEMORY`,
     // instructions: `Make room for this memory.`,
-    instructions: ``,
+    instructions: `Which memory do you wish to trash permanently?`,
     playIconImage: playIconImage,
     // memoryGroup: memoryGroup,
     memoryName: currentOldMemory,
@@ -413,20 +414,20 @@ function setUpGameObjects() {
   // };
   // keepButton = new KeepButton(keepButtonProperties);
 
-  // Create winner buttons
-  let winnerButtonOldProperties = {
-    x: leftPreviewVideoProperties.x,
-    y: leftPreviewVideo.y + leftPreviewVideo.height / 2 + 80,
-    memoryName: currentOldMemory,
-  };
-  winnerButtonOld = new WinnerButton(winnerButtonOldProperties);
-
-  let winnerButtonIncomingProperties = {
-    x: rightPreviewVideoProperties.x,
-    y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
-    memoryName: currentIncomingMemory,
-  };
-  winnerButtonIncoming = new WinnerButton(winnerButtonIncomingProperties);
+  //   // Create winner buttons
+  //   let winnerButtonOldProperties = {
+  //     x: leftPreviewVideoProperties.x,
+  //     y: leftPreviewVideo.y + leftPreviewVideo.height / 2 + 80,
+  //     memoryName: currentOldMemory,
+  //   };
+  //   winnerButtonOld = new WinnerButton(winnerButtonOldProperties);
+  //
+  //   let winnerButtonIncomingProperties = {
+  //     x: rightPreviewVideoProperties.x,
+  //     y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
+  //     memoryName: currentIncomingMemory,
+  //   };
+  //   winnerButtonIncoming = new WinnerButton(winnerButtonIncomingProperties);
 }
 
 // Fetch an incoming and old memory from memories.json
@@ -665,9 +666,9 @@ function game() {
   stroke(strokeFill.r, strokeFill.g, strokeFill.b);
   line(
     separationLine.x,
-    separationLine.yPadding,
+    separationLine.yPaddingTop,
     separationLine.x,
-    height - separationLine.yPadding
+    height - separationLine.yPaddingBottom
   );
   pop();
 
@@ -690,9 +691,9 @@ function game() {
   //   previewVideos[i].update(mouse);
   // }
 
-  // Update winner buttons
-  winnerButtonIncoming.update(mouse);
-  winnerButtonOld.update(mouse);
+  // // Update winner buttons
+  // winnerButtonIncoming.update(mouse);
+  // winnerButtonOld.update(mouse);
 
   //   // Update delete and keep buttons
   //   deleteButton.update(mouse);
@@ -734,12 +735,12 @@ function mousePressed() {
     leftPreviewVideo.mousePressed(mouse);
     rightPreviewVideo.mousePressed(mouse);
 
-    // If winner button clicked, update memory group
-    // if (winnerButtonOld.hover(mouse)) {
-    if (winnerButtonOld.hover(mouse) || winnerButtonIncoming.hover(mouse)) {
-      currentMemoryGroupIndex += 1;
-      console.log(currentMemoryGroupIndex);
-    }
+    // // If winner button clicked, update memory group
+    // // if (winnerButtonOld.hover(mouse)) {
+    // if (winnerButtonOld.hover(mouse) || winnerButtonIncoming.hover(mouse)) {
+    //   currentMemoryGroupIndex += 1;
+    //   console.log(currentMemoryGroupIndex);
+    // }
   } else if (state === `memory`) {
     dialogBox.mousePressed(mouse);
 
