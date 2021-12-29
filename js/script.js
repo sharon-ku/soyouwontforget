@@ -73,8 +73,8 @@ let bgFill = {
   },
   game: {
     r: 255,
-    g: 249,
-    b: 230,
+    g: 255,
+    b: 255,
   },
   memory: {
     r: 255,
@@ -138,8 +138,8 @@ Game variables
 // Line separating left and right preview videos
 let separationLine = {
   x: undefined,
-  yPaddingTop: 150,
-  yPaddingBottom: 40,
+  yPaddingTop: 170,
+  yPaddingBottom: 170,
 };
 
 // Play icon
@@ -491,13 +491,8 @@ function getMemories() {
     currentRightMemoryCategory = `happyMemory`;
   }
 
-  // Update currentLeftMemory and currentRightMemory
-
+  // Update currentMemoryInfo using data from memories.json
   currentMemoryInfo = memoriesList.memories[currentMemoryGroupIndex];
-  // currentRightMemory =
-  //   memoriesList.memories[currentMemoryGroupIndex].currentRightMemoryCategory;
-
-  console.log(currentMemoryInfo);
 }
 
 // draw() --------------------------------------------

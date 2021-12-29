@@ -21,68 +21,68 @@ class MemoryBox extends OverlappingRectangle {
     this.width = width / 2.5 - 40;
     this.height = height / 2.5;
     // Rounded corner
-    this.cornerRadius = 10;
+    this.cornerRadius = 20;
     // Color of rectangle: light blue
     this.fill = {
-      r: 142,
-      g: 207,
-      b: 201,
+      // r: 142,
+      // g: 207,
+      // b: 201,
+      r: 255,
+      g: 255,
+      b: 255,
     };
     // Stroke properties of rectangle
     this.stroke = {
-      weight: 5,
+      weight: 3,
       fill: {
-        r: 213,
-        g: 73,
-        b: 97,
+        r: 0,
+        g: 0,
+        b: 0,
       },
     };
 
-    // Play icon
-    this.playIcon = {
-      image: playIconImage,
-      // position offset from rectangle's position
-      xOffset: 0,
-      yOffset: 0,
-      // used in tint function
-      grayValue: 255,
-      // opacity
-      opacity: {
-        current: 120,
-        min: 120,
-        max: 255,
-      },
-    };
+    // // Play icon
+    // this.playIcon = {
+    //   image: playIconImage,
+    //   // position offset from rectangle's position
+    //   xOffset: 0,
+    //   yOffset: 0,
+    //   // used in tint function
+    //   grayValue: 255,
+    //   // opacity
+    //   opacity: {
+    //     current: 120,
+    //     min: 120,
+    //     max: 255,
+    //   },
+    // };
 
     // Section that this preview video fits under
-    this.section = {
-      name: section,
-      fill: {
-        // r: 213,
-        // g: 73,
-        // b: 97,
-        r: 255,
-        g: 255,
-        b: 255,
-      },
-      size: 20,
-      // position offset from rectangle's position
-      xOffset: 0,
-      yOffset: -140,
-      // rectangle behind the section text
-      rectangle: {
-        fill: {
-          r: 213,
-          g: 73,
-          b: 97,
-        },
-        width: 255,
-        height: 35,
-        // position offset from rectangle's position
-        xOffset: 0,
-        yOffset: -273,
-      },
-    };
+    // this.section = {
+    //   name: section,
+    //   fill: {
+    //     r: 255,
+    //     g: 255,
+    //     b: 255,
+    //   },
+    //   size: 20,
+    //   // position offset from rectangle's position
+    //   xOffset: 0,
+    //   yOffset: -140,
+    //   // rectangle behind the section text
+    //   rectangle: {
+    //     fill: {
+    //       r: 213,
+    //       g: 73,
+    //       b: 97,
+    //     },
+    //     width: 255,
+    //     height: 35,
+    //     // position offset from rectangle's position
+    //     xOffset: 0,
+    //     yOffset: -273,
+    //   },
+    // };
 
     // Instructions accompanying the video
     this.instructions = {
@@ -94,8 +94,8 @@ class MemoryBox extends OverlappingRectangle {
       },
       size: 28,
       // position offset from rectangle's position
-      xOffset: 0,
-      yOffset: -90,
+      x: width / 2,
+      y: height / 2 - 150,
     };
 
     // this.memoryGroup = memoryGroup,
@@ -108,11 +108,12 @@ class MemoryBox extends OverlappingRectangle {
     this.title = {
       name: memoryName.previewVideoTitle,
       fill: {
-        r: 213,
-        g: 73,
-        b: 97,
+        r: 0,
+        g: 0,
+        b: 0,
       },
       size: 25,
+      padding: 50,
       // position offset from rectangle's position
       xOffset: 0,
       yOffset: 50,
@@ -182,7 +183,24 @@ class MemoryBox extends OverlappingRectangle {
 
     // Display section and instructions
     // this.displayText(this.section);
-    this.displayText(this.instructions);
+    push();
+    fill(
+      this.instructions.fill.r,
+      this.instructions.fill.g,
+      this.instructions.fill.b
+    );
+    textAlign(CENTER);
+    rectMode(CENTER);
+    textSize(this.instructions.size);
+    textFont(fontStyleBold);
+    text(
+      this.instructions.name,
+      this.instructions.x,
+      this.instructions.y,
+      this.width,
+      this.height
+    );
+    pop();
 
     // Display text containing memory name
     this.displayText(this.title);
@@ -195,12 +213,12 @@ class MemoryBox extends OverlappingRectangle {
     textAlign(CENTER);
     rectMode(CENTER);
     textSize(string.size);
-    textFont(fontStyleBold);
+    // textFont(fontStyleBold);
     text(
       string.name,
       this.x + string.xOffset,
       this.y + string.yOffset,
-      this.width,
+      this.width - string.padding,
       this.height
     );
     pop();
