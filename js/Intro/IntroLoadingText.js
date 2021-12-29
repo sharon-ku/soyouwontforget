@@ -3,6 +3,7 @@
 class IntroLoadingText {
   constructor() {
     this.strings = [
+      `Scanning brain for memories`,
       `Loading all your memories`,
       `Categorizing memories`,
       `Complete!`,

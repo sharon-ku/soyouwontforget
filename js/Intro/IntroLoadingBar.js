@@ -121,6 +121,6 @@ class IntroLoadingBar {
         state = `game`;
         console.log(state);
       }
-    }
-  }
+    } // if (this.smallBarReachedTheEnd())
+  } // moveSmallBar
 }

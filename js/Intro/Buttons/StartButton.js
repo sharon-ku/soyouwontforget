@@ -59,11 +59,11 @@ class StartButton extends Button {
     }
   }
 
-  // When mouse pressed on button, download app
+  // When mouse pressed on button, play poem video
   mousePressed(mouse) {
     if (this.mouseOverlapsRectangle(mouse)) {
-      switchIntroStates();
-      console.log(`download app`);
+      // Play the poem video
+      introPlayPoem();
     }
   }
 }

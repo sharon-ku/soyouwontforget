@@ -95,6 +95,12 @@ Intro variables
 // All possibilties: introTitle, introInstallApp, introNibbuSpeech
 let introSubstate = `introTitle`;
 
+// gif with "soyouwontforget"
+let introTitleImage = undefined;
+// video of poem
+let introPoemVideo = undefined;
+let introPoemVideoPlaying = false;
+
 // Captain Nibbu's dialog box
 let introDialogBox = undefined;
 // Store intro-dialogs.json data
@@ -177,6 +183,9 @@ function preload() {
   fontStyleNormal = loadFont(`assets/fonts/Inter-Regular.ttf`);
   fontStyleBold = loadFont(`assets/fonts/Inter-Bold.ttf`);
 
+  // Preload all images and sounds in intro
+  preloadIntroAssets();
+
   // Preload all images and sounds used in memory state (function found in allMemories.js file)
   preloadMemoryAssets();
 
@@ -199,6 +208,11 @@ function preload() {
 
   // Load play icon image
   playIconImage = loadImage(`assets/images/play-icon.png`);
+}
+
+// Preload all images and sounds in intro
+function preloadIntroAssets() {
+  introTitleImage = loadImage(`assets/images/intro/title.gif`);
 }
 
 // Preload all JSON files
@@ -308,6 +322,13 @@ function gotResults(err, result) {
 
 // Set up all intro objects
 function setUpIntroObjects() {
+  // Create intro poem video
+  introPoemVideo = createVideo(`assets/images/intro/intro-poem-video.mp4`);
+  // center video
+  introPoemVideo.style("position", "absolute");
+  // hide the video initially
+  introPoemVideo.hide();
+
   // Create Memorywash thumbnail
   memorywashThumbnail = new MemorywashThumbnail(
     width / 2,
@@ -456,6 +477,9 @@ Here's where the player downloads Memorywash and views the intro video
 function intro() {
   if (introSubstate === `introTitle`) {
     introTitle();
+  } else if (introSubstate === `introPoem`) {
+    // play the intro poem
+    introPoem();
   } else if (introSubstate === `introInstallApp`) {
     introInstallApp();
     // console.log(`yes`);
@@ -502,21 +526,48 @@ function intro() {
 function introTitle() {
   background(0);
 
+  // push();
+  // fill(255);
+  // textAlign(CENTER);
+  // textSize(32);
+  // text(`so you won't forget`, width / 2, height / 2);
+  // pop();
+
   push();
-  fill(255);
-  textAlign(CENTER);
-  textSize(32);
-  text(`so you won't forget`, width / 2, height / 2);
+  imageMode(CENTER);
+  image(introTitleImage, width / 2, height / 2);
   pop();
 
   startButton.update(mouse);
 }
 
-// Switch states from introTitle to introDowloadApp
-function switchIntroStates() {
-  introSubstate = `introInstallApp`;
+// Play the poem video
+function introPlayPoem() {
+  // reveal the intro poem video
+  introPoemVideo.show();
 
-  console.log(`switching states`);
+  // if video is not already playing, play the video
+  if (!introPoemVideoPlaying) {
+    introPoemVideo.play();
+    introPoemVideoPlaying = true;
+  }
+
+  // switch intro substate
+  introSubstate = `introPoem`;
+}
+
+// Once poem is done playing, switch to installing app
+function introPoem() {
+  // if video is done playing:
+  // time() refers to time elapsed since video started playing
+  // duration() refers to video's duration
+  if (introPoemVideo.time() / introPoemVideo.duration() === 1) {
+    // hide the video
+    introPoemVideo.hide();
+
+    // switch substate
+    introSubstate = `introInstallApp`;
+  }
 }
 
 // Download memorywash app
@@ -544,7 +595,8 @@ function introInstallApp() {
 // Load different parts of the app
 function loadApp() {
   installing = true;
-  console.log(`loadapp`);
+
+  // update loading messages every few seconds
   loadingMessageInterval = setInterval(
     introLoadingText.updateStringIndex.bind(introLoadingText),
     3000
