@@ -255,21 +255,35 @@ class MemoryBox extends OverlappingRectangle {
   // When mouse pressed on preview video, play the memory
   mousePressed(mouse) {
     if (this.mouseOverlapsRectangle(mouse)) {
-      this.playMemory();
+      // Update counters for each memory category
+      this.updateMemoryCounter();
+
+      // to delete; kept for reference
+      // this.playMemory();
     }
   }
 
-  // Play the memory
-  playMemory() {
-    state = `memory`;
-    // CORRECT CODE: uncomment when done tests
-    memoryPlaying = this.memoryFileName;
-    console.log(`playing a memory, ${memoryPlaying}`);
-
-    // USED FOR TESTS
-    // let testMemoriesList = [`testMemory`, `memoryFathersDay`];
-    // memoryPlaying = random(testMemoriesList);
-    // memoryPlaying = `memorySoccer`;
-    // memoryPlaying = `memoryInstaPic`;
+  // Update memory counter
+  updateMemoryCounter() {
+    if (this.memoryCategory === `happyMemory`) {
+      numHappyMemoriesClicked++;
+    } else if (this.memoryCategory === `sadMemory`) {
+      numSadMemoriesClicked++;
+    }
   }
+
+  // To delete:
+  // // Play the memory
+  // playMemory() {
+  //   state = `memory`;
+  //   // CORRECT CODE: uncomment when done tests
+  //   memoryPlaying = this.memoryFileName;
+  //   console.log(`playing a memory, ${memoryPlaying}`);
+  //
+  //   // USED FOR TESTS
+  //   // let testMemoriesList = [`testMemory`, `memoryFathersDay`];
+  //   // memoryPlaying = random(testMemoriesList);
+  //   // memoryPlaying = `memorySoccer`;
+  //   // memoryPlaying = `memoryInstaPic`;
+  // }
 }

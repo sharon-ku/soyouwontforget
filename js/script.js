@@ -19,6 +19,11 @@ let memoryPlaying = undefined;
 // let memoryGroup = `cooking`;
 let currentMemoryGroupIndex = 0;
 
+// Count number of happy and sad memories clicked
+let numHappyMemoriesClicked = 0;
+let numSadMemoriesClicked = 0;
+let numTotalMemoriesClicked = undefined;
+
 // Landmark stroke color
 const LANDMARK_STROKE_FILL = {
   r: 241,
@@ -793,8 +798,17 @@ function mousePressed() {
       }
     }
   } else if (state === `game`) {
-    leftPreviewVideo.mousePressed(mouse);
-    rightPreviewVideo.mousePressed(mouse);
+    // to delete:
+    // leftPreviewVideo.mousePressed(mouse);
+    // rightPreviewVideo.mousePressed(mouse);
+
+    leftMemoryBox.mousePressed(mouse);
+    rightMemoryBox.mousePressed(mouse);
+
+    console.log(numHappyMemoriesClicked, numSadMemoriesClicked);
+
+    numTotalMemoriesClicked = numHappyMemoriesClicked + numSadMemoriesClicked;
+    console.log(numTotalMemoriesClicked);
 
     // // If winner button clicked, update memory group
     // // if (winnerButtonOld.hover(mouse)) {
