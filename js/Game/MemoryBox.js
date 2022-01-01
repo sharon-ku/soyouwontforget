@@ -237,7 +237,7 @@ class MemoryBox extends OverlappingRectangle {
 
   // When hovering on preview video, change the play icon's opacity and cursor type
   hoverOnPreviewVideo(mouse) {
-    if (this.mouseOverlapsRectangle(mouse)) {
+    if (this.hover(mouse)) {
       this.fillCurrent = this.fillHover;
       // // Increase opacity of play icon
       // this.playIcon.opacity.current = this.playIcon.opacity.max;
@@ -254,7 +254,7 @@ class MemoryBox extends OverlappingRectangle {
 
   // When mouse pressed on preview video, play the memory
   mousePressed(mouse) {
-    if (this.mouseOverlapsRectangle(mouse)) {
+    if (this.hover(mouse)) {
       // Update counters for each memory category
       this.updateMemoryCounter();
 

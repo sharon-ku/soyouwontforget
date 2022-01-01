@@ -12,7 +12,7 @@ class OverlappingRectangle {
   }
 
   // Returns true if mouse overlaps rectangle
-  mouseOverlapsRectangle(mouse) {
+  hover(mouse) {
     if (
       mouse.x < this.x + this.width / 2 &&
       mouse.x > this.x - this.width / 2 &&

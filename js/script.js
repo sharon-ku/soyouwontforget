@@ -384,7 +384,7 @@ function setUpIntroObjects() {
   // Create start button
   let startButtonProperties = {
     x: memorywashThumbnail.x,
-    y: memorywashThumbnail.y + 200,
+    y: memorywashThumbnail.y + 219,
   };
   startButton = new StartButton(startButtonProperties);
 
@@ -616,6 +616,13 @@ function introTitle() {
   pop();
 
   startButton.update(mouse);
+
+  // Set cursor type
+  if (startButton.hover(mouse)) {
+    cursor(`pointer`);
+  } else {
+    cursor(`default`);
+  }
 }
 
 // Play the poem video
@@ -664,6 +671,13 @@ function introInstallApp() {
 
     // Update install button
     installButton.update(mouse);
+
+    // Set cursor type on hover
+    if (installButton.hover(mouse)) {
+      cursor(`pointer`);
+    } else {
+      cursor(`default`);
+    }
   }
   // show loading bar once install button has been clicked
   else {
@@ -758,6 +772,13 @@ function game() {
   leftMemoryBox.update(mouse, currentMemoryInfo);
   rightMemoryBox.update(mouse, currentMemoryInfo);
 
+  // Set cursor type on hover
+  if (leftMemoryBox.hover(mouse) || rightMemoryBox.hover(mouse)) {
+    cursor(`pointer`);
+  } else {
+    cursor(`default`);
+  }
+
   // Update memory storage
   memoryStorageBar.update(numTotalMemoriesClicked);
 
@@ -805,6 +826,8 @@ function mousePressed() {
       startButton.mousePressed(mouse);
     } else if (introSubstate === `introInstallApp`) {
       installButton.mousePressed(mouse);
+      // Reset cursor to default
+      cursor(`default`);
     }
 
     // Update Cap Nibbu's current dialog index when mouse pressed
@@ -824,6 +847,9 @@ function mousePressed() {
 
     leftMemoryBox.mousePressed(mouse);
     rightMemoryBox.mousePressed(mouse);
+
+    // Reset cursor to default
+    cursor(`default`);
 
     console.log(numHappyMemoriesClicked, numSadMemoriesClicked);
 

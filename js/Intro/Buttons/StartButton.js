@@ -21,7 +21,7 @@ class StartButton extends Button {
 
     // Title shown under preview video
     this.title = {
-      name: `start`,
+      name: `start >`,
       fill: {
         r: 255,
         g: 255,
@@ -40,7 +40,7 @@ class StartButton extends Button {
     this.display();
 
     // When hovering on button, change cursor type
-    this.hover(mouse);
+    // this.hover(mouse);
   }
 
   // Display start text
@@ -49,19 +49,9 @@ class StartButton extends Button {
     this.displayText(this.title);
   }
 
-  // When hovering on button, change cursor type
-  hover(mouse) {
-    if (this.mouseOverlapsRectangle(mouse)) {
-      // Change cursor to pointer
-      // cursor(`pointer`);
-    } else {
-      // cursor(`default`);
-    }
-  }
-
   // When mouse pressed on button, play poem video
   mousePressed(mouse) {
-    if (this.mouseOverlapsRectangle(mouse)) {
+    if (this.hover(mouse)) {
       // Play the poem video
       introPlayPoem();
     }

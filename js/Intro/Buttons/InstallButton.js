@@ -38,24 +38,11 @@ class InstallButton extends Button {
   update(mouse) {
     // Display button
     this.display();
-
-    // When hovering on button, change cursor type
-    this.hover(mouse);
-  }
-
-  // When hovering on button, change cursor type
-  hover(mouse) {
-    if (this.mouseOverlapsRectangle(mouse)) {
-      // Change cursor to pointer
-      // cursor(`pointer`);
-    } else {
-      // cursor(`default`);
-    }
   }
 
   // When mouse pressed on button, load app
   mousePressed(mouse) {
-    if (this.mouseOverlapsRectangle(mouse)) {
+    if (this.hover(mouse)) {
       loadApp();
     }
   }

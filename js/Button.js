@@ -82,26 +82,9 @@ class Button extends OverlappingRectangle {
     pop();
   }
 
-  // When hovering on button, change cursor type
-  hover(mouse) {
-    if (this.mouseOverlapsRectangle(mouse)) {
-      // // Increase opacity of play icon
-      // this.playIcon.opacity.current = this.playIcon.opacity.max;
-      // Change cursor to pointer
-      // cursor(`pointer`);
-      return true;
-    } else {
-      // // Diminish opacity of play icon
-      // this.playIcon.opacity.current = this.playIcon.opacity.min;
-      // Change cursor to default
-      // cursor(`default`);
-      return false;
-    }
-  }
-
   // // When mouse pressed on preview video, play the memory
   // mousePressed(mouse) {
-  //   if (this.mouseOverlapsRectangle(mouse)) {
+  //   if (this.hover(mouse)) {
   //     this.playMemory();
   //   }
   // }
