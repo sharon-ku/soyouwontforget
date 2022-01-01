@@ -618,7 +618,12 @@ function introTitle() {
   startButton.update(mouse);
 
   // Set cursor type
-  if (startButton.hover(mouse)) {
+  cursorHoverChange(mouse, startButton);
+}
+
+// Change cursor to pointer when hovering over a button
+function cursorHoverChange(mouse, buttonName) {
+  if (buttonName.hover(mouse)) {
     cursor(`pointer`);
   } else {
     cursor(`default`);
@@ -673,11 +678,7 @@ function introInstallApp() {
     installButton.update(mouse);
 
     // Set cursor type on hover
-    if (installButton.hover(mouse)) {
-      cursor(`pointer`);
-    } else {
-      cursor(`default`);
-    }
+    cursorHoverChange(mouse, installButton);
   }
   // show loading bar once install button has been clicked
   else {
