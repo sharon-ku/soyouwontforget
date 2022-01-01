@@ -9,7 +9,7 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-let state = `game`;
+let state = `intro`;
 // let state = `memory`;
 
 // Store name of current memory that is playing
@@ -75,6 +75,11 @@ let bgFill = {
     b: undefined,
   },
   intro: {
+    r: 0,
+    g: 0,
+    b: 0,
+  },
+  introInstallApp: {
     r: 255,
     g: 255,
     b: 255,
@@ -644,6 +649,9 @@ function introPoem() {
 
 // Download memorywash app
 function introInstallApp() {
+  // Change background color
+  bgFill.current = bgFill.introInstallApp;
+
   // If install button hasn't been clicked yet:
   if (!installing) {
     // show Memorywash title
@@ -671,7 +679,7 @@ function loadApp() {
   // update loading messages every few seconds
   loadingMessageInterval = setInterval(
     introLoadingText.updateStringIndex.bind(introLoadingText),
-    3000
+    2000
   );
 }
 
