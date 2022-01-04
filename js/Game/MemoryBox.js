@@ -18,23 +18,21 @@ class MemoryBox extends OverlappingRectangle {
     this.x = x;
     this.y = y;
     // Size of rectangle
-    this.width = width / 2.5 - 40;
-    this.height = height / 2.5;
+    this.width = 290;
+    this.height = 270;
     // Rounded corner
-    this.cornerRadius = 20;
+    this.cornerRadius = 0;
     // Color of rectangle
     this.fillCurrent = {
       r: 255,
       g: 255,
       b: 255,
     };
+    // light grey
     this.fill = {
-      // r: 142,
-      // g: 207,
-      // b: 201,
-      r: 255,
-      g: 255,
-      b: 255,
+      r: 239,
+      g: 239,
+      b: 239,
     };
     // light blue
     this.fillHover = {
@@ -44,7 +42,7 @@ class MemoryBox extends OverlappingRectangle {
     };
     // Stroke properties of rectangle
     this.stroke = {
-      weight: 3,
+      weight: 0,
       fill: {
         r: 0,
         g: 0,
@@ -52,48 +50,35 @@ class MemoryBox extends OverlappingRectangle {
       },
     };
 
-    // // Play icon
-    // this.playIcon = {
-    //   image: playIconImage,
-    //   // position offset from rectangle's position
-    //   xOffset: 0,
-    //   yOffset: 0,
-    //   // used in tint function
-    //   grayValue: 255,
-    //   // opacity
-    //   opacity: {
-    //     current: 120,
-    //     min: 120,
-    //     max: 255,
-    //   },
-    // };
+    // Timestamp box
+    this.timestampBox = {
+      xOffset: 0,
+      yOffset: this.height / 2,
+      width: 250,
+      height: 50,
+      cornerRadius: 50,
+      // blue
+      fill: {
+        r: 73,
+        g: 170,
+        b: 200,
+      },
+    };
 
-    // Section that this preview video fits under
-    // this.section = {
-    //   name: section,
-    //   fill: {
-    //     r: 255,
-    //     g: 255,
-    //     b: 255,
-    //   },
-    //   size: 20,
-    //   // position offset from rectangle's position
-    //   xOffset: 0,
-    //   yOffset: -140,
-    //   // rectangle behind the section text
-    //   rectangle: {
-    //     fill: {
-    //       r: 213,
-    //       g: 73,
-    //       b: 97,
-    //     },
-    //     width: 255,
-    //     height: 35,
-    //     // position offset from rectangle's position
-    //     xOffset: 0,
-    //     yOffset: -273,
-    //   },
-    // };
+    // Text displaying time
+    this.time = {
+      name: `test`,
+      fill: {
+        r: 255,
+        g: 255,
+        b: 255,
+      },
+      size: 20,
+      padding: 0,
+      // position offset from rectangle's position
+      xOffset: 0,
+      yOffset: this.height / 2,
+    };
 
     // Instructions accompanying the video
     this.instructions = {
@@ -103,7 +88,7 @@ class MemoryBox extends OverlappingRectangle {
         g: 73,
         b: 97,
       },
-      size: 28,
+      size: 32,
       // position offset from rectangle's position
       x: width / 2,
       y: height / 2 - 150,
@@ -123,7 +108,7 @@ class MemoryBox extends OverlappingRectangle {
         g: 0,
         b: 0,
       },
-      size: 25,
+      size: 20,
       padding: 50,
       // position offset from rectangle's position
       xOffset: 0,
@@ -146,8 +131,10 @@ class MemoryBox extends OverlappingRectangle {
     // Update memory description text
     if (this.memoryCategory === `happyMemory`) {
       this.title.name = memoryName.happyMemory.description;
+      this.time.name = memoryName.happyMemory.time;
     } else {
       this.title.name = memoryName.sadMemory.description;
+      this.time.name = memoryName.sadMemory.time;
     }
   }
 
@@ -161,36 +148,6 @@ class MemoryBox extends OverlappingRectangle {
     rectMode(CENTER);
     rect(this.x, this.y, this.width, this.height, this.cornerRadius);
     pop();
-
-    // // Display play icon image and update its opacity based on hover
-    // push();
-    // tint(this.playIcon.grayValue, this.playIcon.opacity.current);
-    // imageMode(CENTER);
-    // image(
-    //   this.playIcon.image,
-    //   this.x + this.playIcon.xOffset,
-    //   this.y + this.playIcon.yOffset
-    // );
-    // pop();
-
-    // // Display rectangle behind section text
-    // push();
-    // fill(
-    //   this.section.rectangle.fill.r,
-    //   this.section.rectangle.fill.g,
-    //   this.section.rectangle.fill.b
-    // );
-    // // strokeWeight(this.stroke.weight);
-    // // stroke(this.stroke.fill.r, this.stroke.fill.g, this.stroke.fill.b);
-    // rectMode(CENTER);
-    // noStroke();
-    // rect(
-    //   this.x + this.section.rectangle.xOffset,
-    //   this.y + this.section.rectangle.yOffset,
-    //   this.section.rectangle.width,
-    //   this.section.rectangle.height
-    // );
-    // pop();
 
     // Display section and instructions
     // this.displayText(this.section);
@@ -215,6 +172,46 @@ class MemoryBox extends OverlappingRectangle {
 
     // Display text containing memory name
     this.displayText(this.title);
+
+    // Display timestamp box and time text
+    this.displayTime();
+  }
+
+  // Display timestamp box and time text
+  displayTime() {
+    // Display timestamp box
+    push();
+    rectMode(CENTER);
+    noStroke();
+    fill(
+      this.timestampBox.fill.r,
+      this.timestampBox.fill.g,
+      this.timestampBox.fill.b
+    );
+    rect(
+      this.x + this.timestampBox.xOffset,
+      this.y + this.timestampBox.yOffset,
+      this.timestampBox.width,
+      this.timestampBox.height,
+      this.timestampBox.cornerRadius
+    );
+    pop();
+
+    // Display time text
+    push();
+    fill(this.time.fill.r, this.time.fill.g, this.time.fill.b);
+    textAlign(CENTER);
+    rectMode(CENTER);
+    textSize(this.time.size);
+    textFont(fontStyleBold);
+    text(
+      this.time.name,
+      this.x + this.time.xOffset,
+      this.y + this.time.yOffset,
+      this.timestampBox.width - this.time.padding,
+      this.timestampBox.height - 20
+    );
+    pop();
   }
 
   // Display text

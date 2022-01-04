@@ -9,27 +9,28 @@ class MemoryStorageBar {
     this.finalLoad = false;
 
     // rectangle container containing small bar
+    // hidden from sight
     this.bigContainer = {
       fill: 255,
       stroke: 0,
       strokeWeight: 3,
-      cornerRadius: 10,
-      x: width / 2,
-      y: height - 100,
-      width: 500,
-      height: 40,
+      cornerRadius: 0,
+      x: width / 2 - 50,
+      y: height - 95,
+      width: 770,
+      height: 7,
     };
 
     // one hundred mark of the progress bar
     this.oneHundredBar = {
-      fill: 120,
+      fill: 0,
       stroke: 0,
       strokeWeight: 0,
-      cornerRadius: 10,
+      cornerRadius: 0,
       x: undefined,
-      y: height - 100,
-      width: 330,
-      height: 40,
+      y: this.bigContainer.y,
+      width: 615,
+      height: this.bigContainer.height,
     };
 
     this.oneHundredBar.x =
@@ -39,12 +40,17 @@ class MemoryStorageBar {
 
     // small bar that moves
     this.smallBar = {
-      fill: 0,
+      // dark red
+      fill: {
+        r: 205,
+        g: 76,
+        b: 62,
+      },
       stroke: 0,
       strokeWeight: 0,
-      cornerRadius: 10,
+      cornerRadius: 0,
       width: 30,
-      height: 40,
+      height: 10,
 
       // movement
       x: undefined,
@@ -61,8 +67,8 @@ class MemoryStorageBar {
   update(numTotalMemoriesClicked) {
     this.updateSmallBarWidth(numTotalMemoriesClicked);
 
-    // display progress bar
-    this.displayBigContainer();
+    // // display progress bar
+    // this.displayBigContainer();
 
     // grey bar
     this.displayOneHundredBar();
@@ -120,7 +126,7 @@ class MemoryStorageBar {
   // small bar that gets displayed
   displaySmallBar() {
     push();
-    fill(this.smallBar.fill);
+    fill(this.smallBar.fill.r, this.smallBar.fill.g, this.smallBar.fill.b);
     stroke(this.smallBar.stroke);
     strokeWeight(this.smallBar.strokeWeight);
     rectMode(CENTER);

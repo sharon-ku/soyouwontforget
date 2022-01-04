@@ -9,7 +9,7 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-let state = `intro`;
+let state = `game`;
 // let state = `memory`;
 
 // Store name of current memory that is playing
@@ -79,10 +79,11 @@ let bgFill = {
     g: 0,
     b: 0,
   },
+  // sky blue
   introInstallApp: {
-    r: 255,
-    g: 255,
-    b: 255,
+    r: 168,
+    g: 227,
+    b: 245,
   },
   game: {
     r: 255,
@@ -106,7 +107,7 @@ Intro variables
 *****************/
 
 // All possibilties: introTitle, introInstallApp, introNibbuSpeech
-let introSubstate = `introTitle`;
+let introSubstate = `introInstallApp`;
 
 // gif with "soyouwontforget"
 let introTitleImage = undefined;
@@ -125,6 +126,14 @@ let currentIntroDialogIndex = 0;
 let memorywashThumbnail = undefined;
 let memorywashThumbnailImages = [];
 const NUM_MEMORYWASH_THUMBNAIL_IMAGES = 2;
+
+let memorywashInstallImage = undefined;
+let memorywashInterfaceImage = undefined;
+let fullCapacityImage = undefined;
+
+// flashing dots in intro
+let dots = [];
+let numDots = 20;
 
 // Buttons in intro state
 let startButton = undefined;
@@ -222,13 +231,21 @@ function preload() {
   // Preload JSON files
   preloadJSONFiles();
 
-  // Load Memorywash thumbnail images
-  for (let i = 0; i < NUM_MEMORYWASH_THUMBNAIL_IMAGES; i++) {
-    let thumbnailImage = loadImage(
-      `assets/images/intro/memorywash-thumbnail${i}.png`
-    );
-    memorywashThumbnailImages.push(thumbnailImage);
-  }
+  // Load Memorywash install image
+  memorywashInstallImage = loadImage(`assets/images/intro/install.png`);
+
+  // Load Memorywash interface image
+  memorywashInterfaceImage = loadImage(`assets/images/game/interface.png`);
+  // Load Memorywash full capacity image
+  fullCapacityImage = loadImage(`assets/images/game/full-capacity.png`);
+
+  // // Load Memorywash thumbnail images
+  // for (let i = 0; i < NUM_MEMORYWASH_THUMBNAIL_IMAGES; i++) {
+  //   let thumbnailImage = loadImage(
+  //     `assets/images/intro/memorywash-thumbnail${i}.png`
+  //   );
+  //   memorywashThumbnailImages.push(thumbnailImage);
+  // }
 
   // Load Captain Nibbu images
   for (let i = 0; i < NUM_NIBBU_IMAGES; i++) {
@@ -359,6 +376,12 @@ function setUpIntroObjects() {
   // hide the video initially
   introPoemVideo.hide();
 
+  // Create a ton of dots
+  for (let i = 0; i < numDots; i++) {
+    let dot = new Dot();
+    dots.push(dot);
+  }
+
   // Create Memorywash thumbnail
   memorywashThumbnail = new MemorywashThumbnail(
     width / 2,
@@ -376,8 +399,8 @@ function setUpIntroObjects() {
 
   // Create install button
   let installButtonProperties = {
-    x: memorywashThumbnail.x,
-    y: memorywashThumbnail.y + 200,
+    x: 190,
+    y: height / 2 + 230,
   };
   installButton = new InstallButton(installButtonProperties);
 
@@ -406,11 +429,11 @@ function setUpGameObjects() {
 
   // Create left preview video
   let leftMemoryBoxProperties = {
-    x: width / 4,
-    y: height / 2,
+    x: width / 2 - 280,
+    y: height / 2 - 30,
     section: `OLD MEMORY`,
     // instructions: `Make room for this memory.`,
-    instructions: `Which memory do you wish to trash permanently?`,
+    instructions: ``,
     memoryCategory: currentLeftMemoryCategory,
     playIconImage: playIconImage,
     // memoryGroup: memoryGroup,
@@ -420,8 +443,8 @@ function setUpGameObjects() {
 
   // Create right preview video
   let rightMemoryBoxProperties = {
-    x: (width * 3) / 4,
-    y: height / 2,
+    x: width / 2 + 280,
+    y: height / 2 - 30,
     section: `INCOMING MEMORY`,
     // instructions: `Delete memories that burden you.`,
     memoryCategory: currentRightMemoryCategory,
@@ -666,13 +689,22 @@ function introInstallApp() {
 
   // If install button hasn't been clicked yet:
   if (!installing) {
-    // show Memorywash title
     push();
-    fill(0);
-    textAlign(CENTER);
-    textSize(32);
-    text(`Memorywash`, width / 2, height / 2);
+    imageMode(CENTER);
+    image(memorywashInstallImage, width / 2, height / 2);
     pop();
+
+    // for (let i = 0; i < dots.length; i++) {
+    //   dots[i].update();
+    // }
+
+    // // show Memorywash title
+    // push();
+    // fill(0);
+    // textAlign(CENTER);
+    // textSize(32);
+    // text(`Memorywash`, width / 2, height / 2);
+    // pop();
 
     // Update install button
     installButton.update(mouse);
@@ -742,6 +774,26 @@ function game() {
   // Keep checking memories are updated
   getMemories();
 
+  // Display memorywash interface image
+  push();
+  imageMode(CENTER);
+  image(memorywashInterfaceImage, width / 2, height / 2);
+  pop();
+
+  // Display "Excess memories" count
+  push();
+  fill(255);
+  textAlign(CENTER);
+  rectMode(CENTER);
+  textSize(50);
+  textFont(fontStyleBold);
+  text(
+    `${maxMemoriesToClear - numTotalMemoriesClicked}`,
+    width - 200,
+    height - 65
+  );
+  pop();
+
   // // Drawing rectangle guides
   // push();
   // noFill();
@@ -751,18 +803,18 @@ function game() {
   // rect(width / 2, 0, width / 2, height);
   // pop();
 
-  separationLine.x = width / 2;
-  // Draw separation line
-  push();
-  strokeWeight(5);
-  stroke(strokeFill.r, strokeFill.g, strokeFill.b);
-  line(
-    separationLine.x,
-    separationLine.yPaddingTop,
-    separationLine.x,
-    height - separationLine.yPaddingBottom
-  );
-  pop();
+  // separationLine.x = width / 2;
+  // // Draw separation line
+  // push();
+  // strokeWeight(5);
+  // stroke(strokeFill.r, strokeFill.g, strokeFill.b);
+  // line(
+  //   separationLine.x,
+  //   separationLine.yPaddingTop,
+  //   separationLine.x,
+  //   height - separationLine.yPaddingBottom
+  // );
+  // pop();
 
   // To be deleted
   // // Update left and right preview videos
@@ -782,6 +834,16 @@ function game() {
 
   // Update memory storage
   memoryStorageBar.update(numTotalMemoriesClicked);
+
+  // Display memorywash interface image
+  push();
+  imageMode(CENTER);
+  image(
+    fullCapacityImage,
+    memoryStorageBar.oneHundredBar.x + memoryStorageBar.oneHundredBar.width / 2,
+    memoryStorageBar.oneHundredBar.y + 17
+  );
+  pop();
 
   // To delete:
   // // Change cursor to pointer when mouse hovers over preview video

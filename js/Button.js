@@ -17,6 +17,7 @@ class Button extends OverlappingRectangle {
       r: 0,
       g: 250,
       b: 0,
+      alpha: 0,
     };
     // Stroke properties of rectangle
     this.stroke = {
@@ -58,7 +59,7 @@ class Button extends OverlappingRectangle {
   display() {
     // Display rectangle
     push();
-    fill(this.fill.r, this.fill.g, this.fill.b);
+    fill(this.fill.r, this.fill.g, this.fill.b, this.fill.alpha);
     strokeWeight(this.stroke.weight);
     stroke(this.stroke.fill.r, this.stroke.fill.g, this.stroke.fill.b);
     rectMode(CENTER);
