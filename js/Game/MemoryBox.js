@@ -11,12 +11,26 @@ class MemoryBox extends OverlappingRectangle {
     memoryName,
   }) {
     super(x, y);
-    // True if mouse hovering over video rectangle; sets cursor type
-    this.hovered = undefined;
+    // True if memory box is flying away
+    this.flying = false;
 
-    // Positions of rectangle for preview video
-    this.x = x;
-    this.y = y;
+    this.flyingSpeed = {
+      x: 20,
+      y: 10,
+    };
+    this.flyingRotation = 0.05;
+
+    // angle of rotation
+    this.angleCurrent = 0;
+    // max angle when hovering on memory box
+    this.angleHover = PI / 20;
+    this.angleNoHover = 0;
+
+    // Positions of rectangle for memory box
+    this.xInitial = x;
+    this.yInitial = y;
+    this.x = this.xInitial;
+    this.y = this.yInitial;
     // Size of rectangle
     this.width = 290;
     this.height = 270;
@@ -116,13 +130,19 @@ class MemoryBox extends OverlappingRectangle {
     };
   }
 
+  resetPosition() {
+    this.angleCurrent = 0;
+    this.x = this.xInitial;
+    this.y = this.yInitial;
+  }
+
   // Update all behaviour
   update(mouse, memoryName) {
     // Display preview video
     this.display();
 
     // When hovering on preview video, change the play icon's opacity and cursor type
-    this.hoverOnPreviewVideo(mouse);
+    this.hoverOnMemoryBox(mouse);
 
     // Once player clicks on "Winner" button, update text to next memory
     this.memoryFileName = memoryName.memoryFileName;
@@ -136,49 +156,74 @@ class MemoryBox extends OverlappingRectangle {
       this.title.name = memoryName.sadMemory.description;
       this.time.name = memoryName.sadMemory.time;
     }
+
+    if (this.flying) {
+      this.flyAway();
+    }
   }
 
-  // Display preview video
+  // Display memory box with timestamp
   display() {
-    // Display rectangle for preview video
-    push();
-    fill(this.fillCurrent.r, this.fillCurrent.g, this.fillCurrent.b);
-    strokeWeight(this.stroke.weight);
-    stroke(this.stroke.fill.r, this.stroke.fill.g, this.stroke.fill.b);
-    rectMode(CENTER);
-    rect(this.x, this.y, this.width, this.height, this.cornerRadius);
-    pop();
-
-    // Display section and instructions
-    // this.displayText(this.section);
-    push();
-    fill(
-      this.instructions.fill.r,
-      this.instructions.fill.g,
-      this.instructions.fill.b
-    );
-    textAlign(CENTER);
-    rectMode(CENTER);
-    textSize(this.instructions.size);
-    textFont(fontStyleBold);
-    text(
-      this.instructions.name,
-      this.instructions.x,
-      this.instructions.y,
-      this.width,
-      this.height
-    );
-    pop();
+    // Display rectangle
+    this.displayMemoryBox();
 
     // Display text containing memory name
     this.displayText(this.title);
 
     // Display timestamp box and time text
-    this.displayTime();
+    this.displayTimeBox();
+
+    // // Display section and instructions
+    // // this.displayText(this.section);
+    // push();
+    // fill(
+    //   this.instructions.fill.r,
+    //   this.instructions.fill.g,
+    //   this.instructions.fill.b
+    // );
+    // textAlign(CENTER);
+    // rectMode(CENTER);
+    // textSize(this.instructions.size);
+    // textFont(fontStyleBold);
+    // text(
+    //   this.instructions.name,
+    //   this.instructions.x,
+    //   this.instructions.y,
+    //   this.width,
+    //   this.height
+    // );
+    // pop();
+  }
+
+  displayMemoryBox() {
+    push();
+    fill(this.fillCurrent.r, this.fillCurrent.g, this.fillCurrent.b);
+    strokeWeight(this.stroke.weight);
+    stroke(this.stroke.fill.r, this.stroke.fill.g, this.stroke.fill.b);
+    rectMode(CENTER);
+
+    translate(this.x, this.y);
+    rotate(this.angleCurrent);
+    rect(0, 0, this.width, this.height, this.cornerRadius);
+    pop();
+  }
+
+  // Display text
+  displayText(string) {
+    push();
+    fill(string.fill.r, string.fill.g, string.fill.b);
+    textAlign(CENTER);
+    rectMode(CENTER);
+    textSize(string.size);
+    // textFont(fontStyleBold);
+    translate(this.x + string.xOffset, this.y + string.yOffset);
+    rotate(this.angleCurrent);
+    text(string.name, 0, 0, this.width - string.padding, this.height);
+    pop();
   }
 
   // Display timestamp box and time text
-  displayTime() {
+  displayTimeBox() {
     // Display timestamp box
     push();
     rectMode(CENTER);
@@ -188,9 +233,11 @@ class MemoryBox extends OverlappingRectangle {
       this.timestampBox.fill.g,
       this.timestampBox.fill.b
     );
+    translate(this.x, this.y);
+    rotate(this.angleCurrent);
     rect(
-      this.x + this.timestampBox.xOffset,
-      this.y + this.timestampBox.yOffset,
+      this.timestampBox.xOffset,
+      this.timestampBox.yOffset,
       this.timestampBox.width,
       this.timestampBox.height,
       this.timestampBox.cornerRadius
@@ -204,63 +251,89 @@ class MemoryBox extends OverlappingRectangle {
     rectMode(CENTER);
     textSize(this.time.size);
     textFont(fontStyleBold);
+    translate(this.x, this.y);
+    rotate(this.angleCurrent);
     text(
       this.time.name,
-      this.x + this.time.xOffset,
-      this.y + this.time.yOffset,
+      this.time.xOffset,
+      this.time.yOffset,
       this.timestampBox.width - this.time.padding,
       this.timestampBox.height - 20
     );
     pop();
   }
 
-  // Display text
-  displayText(string) {
-    push();
-    fill(string.fill.r, string.fill.g, string.fill.b);
-    textAlign(CENTER);
-    rectMode(CENTER);
-    textSize(string.size);
-    // textFont(fontStyleBold);
-    text(
-      string.name,
-      this.x + string.xOffset,
-      this.y + string.yOffset,
-      this.width - string.padding,
-      this.height
-    );
-    pop();
+  // When hovering on memory box, change angle of rotation
+  hoverOnMemoryBox(mouse) {
+    if (!this.flying) {
+      if (this.hover(mouse)) {
+        // this.fillCurrent = this.fillHover;
+        // change angle of rotation
+        if (this.x > width / 2) {
+          this.angleCurrent = this.angleHover;
+        } else {
+          this.angleCurrent = -this.angleHover;
+        }
+      } else {
+        // this.fillCurrent = this.fill;
+        // return angle to normal
+        this.angleCurrent = this.angleNoHover;
+      }
+    } // flying
   }
 
-  // When hovering on preview video, change the play icon's opacity and cursor type
-  hoverOnPreviewVideo(mouse) {
-    if (this.hover(mouse)) {
-      this.fillCurrent = this.fillHover;
-      // // Increase opacity of play icon
-      // this.playIcon.opacity.current = this.playIcon.opacity.max;
-      // // When hovered is true, set cursor type to pointer
-      // this.hovered = true;
+  // Make memory box fly away
+  flyAway() {
+    push();
+    translate(width / 2, height / 2);
+    rotate(this.angleCurrent);
+
+    if (this.x > width / 2) {
+      this.x += this.flyingSpeed.x;
+      this.angleCurrent += this.flyingRotation;
     } else {
-      this.fillCurrent = this.fill;
-      // // Diminish opacity of play icon
-      // this.playIcon.opacity.current = this.playIcon.opacity.min;
-      // // Set cursor to default
-      // this.hovered = false;
+      this.x += -this.flyingSpeed.x;
+      this.angleCurrent += -this.flyingRotation;
+    }
+
+    this.y -= this.flyingSpeed.y;
+    pop();
+
+    // If box is off canvas:
+    this.memoryBoxOffCanvas();
+  }
+
+  // if memory box flew off canvas
+  memoryBoxOffCanvas() {
+    if (this.x < -150 || this.x > width + 150) {
+      this.flying = false;
+
+      // move on to next memory
+      this.nextMemory();
     }
   }
 
   // When mouse pressed on preview video, play the memory
   mousePressed(mouse) {
     if (this.hover(mouse)) {
-      // Update counters for each memory category
-      this.updateMemoryCounter();
-
-      // update the memory to be shown
-      currentMemoryGroupIndex++;
+      // Memory fly away
+      this.flying = true;
 
       // to delete; kept for reference
       // this.playMemory();
     }
+  }
+
+  // Move onto next memory
+  nextMemory() {
+    // reset positions and angles of boxes
+    this.resetPosition();
+
+    // Update counters for each memory category
+    this.updateMemoryCounter();
+
+    // update the memory to be shown
+    currentMemoryGroupIndex++;
   }
 
   // Update memory counter

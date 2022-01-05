@@ -9,12 +9,12 @@ class IntroLoadingBar {
     this.bigContainer = {
       fill: 255,
       stroke: 0,
-      strokeWeight: 3,
+      strokeWeight: 0,
       cornerRadius: 10,
       x: width / 2,
-      y: height / 2 - 100,
+      y: height / 2 - 20,
       width: 500,
-      height: 40,
+      height: 10,
     };
 
     // small bar that moves
@@ -23,14 +23,14 @@ class IntroLoadingBar {
       stroke: 0,
       strokeWeight: 0,
       cornerRadius: 10,
-      width: 30,
-      height: 40,
+      width: 50,
+      height: this.bigContainer.height,
 
       // movement
       x: undefined,
       xMin: undefined,
       xMax: undefined,
-      y: height / 2 - 100,
+      y: this.bigContainer.y,
       vx: 6,
     };
 

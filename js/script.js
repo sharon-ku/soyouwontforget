@@ -25,7 +25,7 @@ let numSadMemoriesClicked = 0;
 let numTotalMemoriesClicked = 0;
 
 // Total number of memories that need to be cleared
-let maxMemoriesToClear = 15;
+let maxMemoriesToClear = 20;
 
 // Landmark stroke color
 const LANDMARK_STROKE_FILL = {
@@ -107,7 +107,7 @@ Intro variables
 *****************/
 
 // All possibilties: introTitle, introInstallApp, introNibbuSpeech
-let introSubstate = `introInstallApp`;
+let introSubstate = `introTitle`;
 
 // gif with "soyouwontforget"
 let introTitleImage = undefined;
