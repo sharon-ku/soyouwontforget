@@ -319,6 +319,9 @@ class MemoryBox extends OverlappingRectangle {
       // Memory fly away
       this.flying = true;
 
+      // Update counters for each memory category
+      this.updateMemoryCounter();
+
       // to delete; kept for reference
       // this.playMemory();
     }
@@ -326,14 +329,11 @@ class MemoryBox extends OverlappingRectangle {
 
   // Move onto next memory
   nextMemory() {
-    // reset positions and angles of boxes
-    this.resetPosition();
-
-    // Update counters for each memory category
-    this.updateMemoryCounter();
-
     // update the memory to be shown
     currentMemoryGroupIndex++;
+
+    // reset positions and angles of boxes
+    this.resetPosition();
   }
 
   // Update memory counter
@@ -343,20 +343,27 @@ class MemoryBox extends OverlappingRectangle {
     } else if (this.memoryCategory === `sadMemory`) {
       numSadMemoriesClicked++;
     }
+
+    numTotalMemoriesClicked++;
+
+    if (numTotalMemoriesClicked === maxMemoriesToClear) {
+      this.playMemory();
+    }
   }
 
   // To delete:
-  // // Play the memory
-  // playMemory() {
-  //   state = `memory`;
-  //   // CORRECT CODE: uncomment when done tests
-  //   memoryPlaying = this.memoryFileName;
-  //   console.log(`playing a memory, ${memoryPlaying}`);
-  //
-  //   // USED FOR TESTS
-  //   // let testMemoriesList = [`testMemory`, `memoryFathersDay`];
-  //   // memoryPlaying = random(testMemoriesList);
-  //   // memoryPlaying = `memorySoccer`;
-  //   // memoryPlaying = `memoryInstaPic`;
-  // }
+  // Play the memory
+  playMemory() {
+    state = `memory`;
+    // CORRECT CODE: uncomment when done tests
+    // memoryPlaying = this.memoryFileName;
+    memoryPlaying = `memoryMakingBao`;
+    console.log(`playing a memory, ${memoryPlaying}`);
+
+    // USED FOR TESTS
+    // let testMemoriesList = [`testMemory`, `memoryFathersDay`];
+    // memoryPlaying = random(testMemoriesList);
+    // memoryPlaying = `memorySoccer`;
+    // memoryPlaying = `memoryInstaPic`;
+  }
 }

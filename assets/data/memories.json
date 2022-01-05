@@ -5,23 +5,221 @@
     {
       "number": 0,
       "happyMemory": {
-        "description": "I made an amazing breakfast.",
-        "time": "5 hours ago"
+        "description": "I completed my 1h workout on the treadmill --- felt amazing after!",
+        "time": "1 week ago"
       },
       "sadMemory": {
-        "description": "I fell while playing tag with my friends and scraped my knees and hands.",
-        "time": "8 years old"
+        "description": "Daddy played indoor soccer with me and my brother Zai. I kicked the ball too hard and knocked over a vase. Mommmy got mad.",
+        "time": "9 years old"
       }
     },
     {
       "number": 1,
       "happyMemory": {
-        "description": "Conversation with an old high school friend that I bumped into on the bus.",
-        "time": "15 years old"
+        "description": "I found a rare collectible card that sells on ebay for $7000. I hid it in a  box under my bed and can't wait for its value to appreciate so I can sell it.",
+        "time": "2 months ago"
       },
       "sadMemory": {
-        "description": "I vomitted at school after eating popcorn.",
-        "time": "12 years old"
+        "description": "I was studying at midnight. Daddy came in my room and told me not to sleep so late. I was annoyed.",
+        "time": "13 years old"
+      }
+    },
+    {
+      "number": 2,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 3,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 4,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 5,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 6,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 7,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 8,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 9,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 10,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 11,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 12,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 13,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 14,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 15,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 16,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 17,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 18,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
+      }
+    },
+    {
+      "number": 19,
+      "happyMemory": {
+        "description": "",
+        "time": ""
+      },
+      "sadMemory": {
+        "description": "",
+        "time": ""
       }
     }
   ],

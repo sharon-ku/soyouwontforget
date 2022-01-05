@@ -916,9 +916,6 @@ function mousePressed() {
 
     console.log(numHappyMemoriesClicked, numSadMemoriesClicked);
 
-    numTotalMemoriesClicked = numHappyMemoriesClicked + numSadMemoriesClicked;
-    console.log(numTotalMemoriesClicked);
-
     // // If winner button clicked, update memory group
     // // if (winnerButtonOld.hover(mouse)) {
     // if (winnerButtonOld.hover(mouse) || winnerButtonIncoming.hover(mouse)) {
