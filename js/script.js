@@ -25,7 +25,7 @@ let numSadMemoriesClicked = 0;
 let numTotalMemoriesClicked = 0;
 
 // Total number of memories that need to be cleared
-let maxMemoriesToClear = 20;
+let maxMemoriesToClear = undefined;
 
 // Landmark stroke color
 const LANDMARK_STROKE_FILL = {
@@ -284,6 +284,9 @@ function setup() {
   userStartAudio();
 
   // noCursor();
+
+  // set quantity for total memories that need to be cleared
+  maxMemoriesToClear = memoriesList.memories.length;
 
   let canvas = createCanvas(1280, 720);
   canvas.parent("#game-container");
