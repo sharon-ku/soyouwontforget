@@ -5,19 +5,64 @@
     {
       "number": 0,
       "happyMemory": {
-        "description": "I completed my 1h workout on the treadmill --- felt amazing after!",
-        "time": "1 week ago"
+        "description": "The snow fell for the first time this year. I caught a snowflake on my hand. It melted into my skin instantly.",
+        "time": "12h ago"
       },
       "sadMemory": {
-        "description": "Daddy played indoor soccer with me and my brother Zai. I kicked the ball too hard and knocked over a vase. Mommmy got mad.",
-        "time": "9 years old"
+        "description": "I hummed to an old song. I tried to remember how I knew the song but the memory kept escaping me. Still, it soothed me and I kept humming it.",
+        "time": "5 min ago"
       }
     },
     {
       "number": 1,
       "happyMemory": {
-        "description": "I found a rare collectible card that sells on ebay for $7000. I hid it in a  box under my bed and can't wait for its value to appreciate so I can sell it.",
+        "description": "I bumped into an old high school friend on the bus. We spoke for a bit. He seemed to be doing well.",
+        "time": "1 day ago"
+      },
+      "sadMemory": {
+        "description": "I got a new high score in Silly Goose. It took me two weeks to beat it. Finally. Such an accomplishment.",
+        "time": "2 days ago"
+      }
+    },
+    {
+      "number": 2,
+      "happyMemory": {
+        "description": "I completed my 1h workout on the treadmill — felt amazing after!",
+        "time": "1 week ago"
+      },
+      "sadMemory": {
+        "description": "I got a 38% on my midterm. They were mostly silly mistakes.",
+        "time": "3 weeks ago"
+      }
+    },
+    {
+      "number": 3,
+      "happyMemory": {
+        "description": "I found a rare collectible card that sells on ebay for $7000. I hid it in a box under my bed and can't wait for its value to go up so I can sell it.",
         "time": "2 months ago"
+      },
+      "sadMemory": {
+        "description": "I made a scrumptious breakfast: waffles toppled with a mountain of strawberries, blueberries, bananas, and chocolate syrup. Wished someone could enjoy it with me.",
+        "time": "2 months ago"
+      }
+    },
+
+    {
+      "number": 4,
+      "happyMemory": {
+        "description": "I took a selfie with my best friend on the Ferris wheel. I looked great in the picture. We look like we were having a blast.",
+        "time": "1 year ago"
+      },
+      "sadMemory": {
+        "description": "I dropped my phone in a puddle and it didn't turn back on. Tried putting it in rice. Still didn't turn on. Bummer.",
+        "time": "18 years old"
+      }
+    },
+    {
+      "number": 5,
+      "happyMemory": {
+        "description": "I built a snow fort with my brother Zai. Then we had a snowball contest to see whose fort gets destroyed first. Nobody won because our forts were too strong.",
+        "time": "11 years old"
       },
       "sadMemory": {
         "description": "I was studying at midnight. Daddy came in my room and told me not to sleep so late. I was annoyed.",
@@ -25,113 +70,69 @@
       }
     },
     {
-      "number": 2,
-      "happyMemory": {
-        "description": "",
-        "time": ""
-      },
-      "sadMemory": {
-        "description": "",
-        "time": ""
-      }
-    },
-    {
-      "number": 3,
-      "happyMemory": {
-        "description": "",
-        "time": ""
-      },
-      "sadMemory": {
-        "description": "",
-        "time": ""
-      }
-    },
-    {
-      "number": 4,
-      "happyMemory": {
-        "description": "",
-        "time": ""
-      },
-      "sadMemory": {
-        "description": "",
-        "time": ""
-      }
-    },
-    {
-      "number": 5,
-      "happyMemory": {
-        "description": "",
-        "time": ""
-      },
-      "sadMemory": {
-        "description": "",
-        "time": ""
-      }
-    },
-    {
       "number": 6,
       "happyMemory": {
-        "description": "",
-        "time": ""
+        "description": "Daddy played indoor soccer with me and my brother Zai. I kicked the ball too hard and knocked over a vase. Mommmy got mad.",
+        "time": "9 years old"
       },
       "sadMemory": {
-        "description": "",
-        "time": ""
+        "description": "Daddy played music in the car and he sang really loudly. He sang louder than the music.",
+        "time": "10 years old"
       }
     },
     {
       "number": 7,
       "happyMemory": {
-        "description": "",
-        "time": ""
+        "description": "At recess, I fell while playing tag with my friends and scraped my knees and hands. My teacher put some band-aids on the booboo and they felt better.",
+        "time": "8 years old"
       },
       "sadMemory": {
-        "description": "",
-        "time": ""
+        "description": "After school, Zai and I lied on the floor of the living room and played Mario Kart. We played until Mommy called us for supper.",
+        "time": "8 years old"
       }
     },
     {
       "number": 8,
       "happyMemory": {
-        "description": "",
-        "time": ""
+        "description": "Under the sunlight, I saw some dust floating in the air. They looked like fairies. I tried to catch them in my hands. They disappeared every time.",
+        "time": "5 years old"
       },
       "sadMemory": {
-        "description": "",
-        "time": ""
+        "description": "In the car, I told Daddy and Mommy that the moon is following us. They both laughed and didn't take me seriously.",
+        "time": "5 years old"
       }
     },
     {
       "number": 9,
       "happyMemory": {
-        "description": "",
-        "time": ""
+        "description": "At the candy store, I wanted to be an adult so I paid the cashier with my own coins from my piggy bank. I was proud of myself.",
+        "time": "4 years old"
       },
       "sadMemory": {
-        "description": "",
-        "time": ""
+        "description": "Daddy brought me and Zai on a Ferris wheel. We were really high up. I was scared but Daddy was with me so it was not so scary. Mommy waved hello down below and we waved back.",
+        "time": "4 years old"
       }
     },
     {
       "number": 10,
       "happyMemory": {
-        "description": "",
-        "time": ""
+        "description": "I made a Father's Day card in kindergarden. I spelled 'Dadi' incorrecly but my teacher didn't tell me until I finished.",
+        "time": "6 years old"
       },
       "sadMemory": {
-        "description": "",
-        "time": ""
+        "description": "In the water park, Daddy helped me hop over a humongous wave. The water was freezing. I still had a lot of fun.",
+        "time": "5 years old"
       }
     },
     {
       "number": 11,
       "happyMemory": {
-        "description": "",
-        "time": ""
+        "description": "Mommy and Daddy put me in a unicorn costume for Halloween. I didn't stop crying so Daddy stayed with me in daycare until I stopped crying.",
+        "time": "4 years old"
       },
       "sadMemory": {
-        "description": "",
-        "time": ""
+        "description": "Daddy taught me how to make bao. I pretended to be a chef. We made a mess in the kitchen.",
+        "time": "5 years old"
       }
     },
     {

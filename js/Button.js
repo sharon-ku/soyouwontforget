@@ -11,7 +11,7 @@ class Button extends OverlappingRectangle {
     this.width = 180;
     this.height = 80;
     // Rounded corner
-    this.cornerRadius = 10;
+    this.cornerRadius = 0;
     // Color of rectangle
     this.fill = {
       r: 0,

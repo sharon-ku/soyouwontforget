@@ -1,49 +1,51 @@
-// Button in intro state: start game
+// Button in intro state: proceed to app installation
 
-class StartButton extends Button {
+class ProceedButton extends Button {
   constructor({ x, y }) {
     super({ x, y });
     // Size of rectangle
     this.width = 150;
     this.height = 50;
+    // Rounded corner
+    this.cornerRadius = 0;
     // Color of rectangle: blue
     this.fillCurrent = {
-      r: 0,
-      g: 0,
-      b: 0,
-      alpha: 100,
+      r: 73,
+      g: 170,
+      b: 200,
+      alpha: 0,
     };
     this.fill = {
-      r: 0,
-      g: 0,
-      b: 0,
-      alpha: 100,
+      r: 73,
+      g: 170,
+      b: 200,
+      alpha: 0,
     };
     this.fillHover = {
-      r: 0,
-      g: 0,
-      b: 0,
-      alpha: 255,
+      r: 73,
+      g: 170,
+      b: 200,
+      alpha: 100,
     };
     // Stroke properties of rectangle
     this.stroke = {
-      weight: 1,
+      weight: 2,
       fill: {
-        r: 255,
-        g: 255,
-        b: 255,
+        r: 0,
+        g: 0,
+        b: 0,
       },
     };
 
     // Title shown under preview video
     this.title = {
-      name: `START`,
+      name: `PROCEED`,
       fill: {
-        r: 255,
-        g: 255,
-        b: 255,
+        r: 0,
+        g: 0,
+        b: 0,
       },
-      size: 25,
+      size: 15,
       // position offset from rectangle's position
       xOffset: 0,
       yOffset: -3,
@@ -88,11 +90,11 @@ class StartButton extends Button {
     }
   }
 
-  // When mouse pressed on button, play poem video
+  // When mouse pressed on button, load app
   mousePressed(mouse) {
     if (this.hover(mouse)) {
-      // Play the poem video
-      introPlayPoem();
+      // switch substate
+      introSubstate = `introInstallApp`;
     }
   }
 }

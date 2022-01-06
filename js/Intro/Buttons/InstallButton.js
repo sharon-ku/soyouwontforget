@@ -25,7 +25,7 @@ class InstallButton extends Button {
       r: 73,
       g: 170,
       b: 200,
-      alpha: 200,
+      alpha: 100,
     };
     // Stroke properties of rectangle
     this.stroke = {

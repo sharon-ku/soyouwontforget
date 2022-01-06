@@ -56,11 +56,16 @@ class MemoryBox extends OverlappingRectangle {
     };
     // Stroke properties of rectangle
     this.stroke = {
-      weight: 0,
+      weight: {
+        current: 0,
+        noHover: 0,
+        hover: 0,
+      },
+      // dark red
       fill: {
-        r: 0,
-        g: 0,
-        b: 0,
+        r: 205,
+        g: 76,
+        b: 62,
       },
     };
 
@@ -71,11 +76,24 @@ class MemoryBox extends OverlappingRectangle {
       width: 250,
       height: 50,
       cornerRadius: 50,
+
       // blue
-      fill: {
+      fillCurrent: {
         r: 73,
         g: 170,
         b: 200,
+      },
+      // blue
+      fillNoHover: {
+        r: 73,
+        g: 170,
+        b: 200,
+      },
+      // dark red
+      fillHover: {
+        r: 205,
+        g: 76,
+        b: 62,
       },
     };
 
@@ -122,11 +140,11 @@ class MemoryBox extends OverlappingRectangle {
         g: 0,
         b: 0,
       },
-      size: 20,
+      size: 19,
       padding: 50,
       // position offset from rectangle's position
       xOffset: 0,
-      yOffset: 50,
+      yOffset: 30,
     };
   }
 
@@ -198,7 +216,7 @@ class MemoryBox extends OverlappingRectangle {
   displayMemoryBox() {
     push();
     fill(this.fillCurrent.r, this.fillCurrent.g, this.fillCurrent.b);
-    strokeWeight(this.stroke.weight);
+    strokeWeight(this.stroke.weight.current);
     stroke(this.stroke.fill.r, this.stroke.fill.g, this.stroke.fill.b);
     rectMode(CENTER);
 
@@ -212,7 +230,7 @@ class MemoryBox extends OverlappingRectangle {
   displayText(string) {
     push();
     fill(string.fill.r, string.fill.g, string.fill.b);
-    textAlign(CENTER);
+    // textAlign(CENTER);
     rectMode(CENTER);
     textSize(string.size);
     // textFont(fontStyleBold);
@@ -229,9 +247,9 @@ class MemoryBox extends OverlappingRectangle {
     rectMode(CENTER);
     noStroke();
     fill(
-      this.timestampBox.fill.r,
-      this.timestampBox.fill.g,
-      this.timestampBox.fill.b
+      this.timestampBox.fillCurrent.r,
+      this.timestampBox.fillCurrent.g,
+      this.timestampBox.fillCurrent.b
     );
     translate(this.x, this.y);
     rotate(this.angleCurrent);
@@ -258,7 +276,7 @@ class MemoryBox extends OverlappingRectangle {
       this.time.xOffset,
       this.time.yOffset,
       this.timestampBox.width - this.time.padding,
-      this.timestampBox.height - 20
+      this.timestampBox.height - 25
     );
     pop();
   }
@@ -267,6 +285,9 @@ class MemoryBox extends OverlappingRectangle {
   hoverOnMemoryBox(mouse) {
     if (!this.flying) {
       if (this.hover(mouse)) {
+        this.timestampBox.fillCurrent = this.timestampBox.fillHover;
+
+        this.stroke.weight.current = this.stroke.weight.hover;
         // this.fillCurrent = this.fillHover;
         // change angle of rotation
         if (this.x > width / 2) {
@@ -275,6 +296,9 @@ class MemoryBox extends OverlappingRectangle {
           this.angleCurrent = -this.angleHover;
         }
       } else {
+        this.timestampBox.fillCurrent = this.timestampBox.fillNoHover;
+
+        this.stroke.weight.current = this.stroke.weight.noHover;
         // this.fillCurrent = this.fill;
         // return angle to normal
         this.angleCurrent = this.angleNoHover;

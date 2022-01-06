@@ -9,7 +9,7 @@ Player interacts with memories and chooses whether to keep an old memory or an i
 
 // State
 // All possibilities: intro, game, memory, end
-let state = `game`;
+let state = `intro`;
 // let state = `memory`;
 
 // Store name of current memory that is playing
@@ -106,8 +106,8 @@ let bgFill = {
 Intro variables
 *****************/
 
-// All possibilties: introTitle, introInstallApp, introNibbuSpeech
-let introSubstate = `introTitle`;
+// All possibilties: introTitle, introNotification, introInstallApp, introNibbuSpeech
+let introSubstate = `introNotification`;
 
 // gif with "soyouwontforget"
 let introTitleImage = undefined;
@@ -137,9 +137,15 @@ let numDots = 20;
 
 // Buttons in intro state
 let startButton = undefined;
+let proceedButton = undefined;
 let installButton = undefined;
 // no longer used, but kept for reference
 // let downloadButton = undefined;
+
+// True when time to display notification
+let introNotificationDisplay = false;
+let rectScale = 1;
+let rectScaleIncrease = 0;
 
 let introLoadingBar = undefined;
 let introLoadingText = undefined;
@@ -397,6 +403,13 @@ function setUpIntroObjects() {
   // };
   // downloadButton = new DownloadButton(downloadButtonProperties);
 
+  // Create start button
+  let proceedButtonProperties = {
+    x: 470,
+    y: height / 2 + 70,
+  };
+  proceedButton = new ProceedButton(proceedButtonProperties);
+
   // Create install button
   let installButtonProperties = {
     x: 190,
@@ -406,7 +419,7 @@ function setUpIntroObjects() {
 
   // Create start button
   let startButtonProperties = {
-    x: memorywashThumbnail.x,
+    x: memorywashThumbnail.x + 40,
     y: memorywashThumbnail.y + 219,
   };
   startButton = new StartButton(startButtonProperties);
@@ -580,6 +593,9 @@ function intro() {
   } else if (introSubstate === `introPoem`) {
     // play the intro poem
     introPoem();
+  } else if (introSubstate === `introNotification`) {
+    introNotification();
+    // console.log(`yes`);
   } else if (introSubstate === `introInstallApp`) {
     introInstallApp();
     // console.log(`yes`);
@@ -678,8 +694,59 @@ function introPoem() {
     introPoemVideo.hide();
 
     // switch substate
-    introSubstate = `introInstallApp`;
+    // introSubstate = `introInstallApp`;
+    introSubstate = `introNotification`;
+    // wait 2 seconds, then display notification text
+    // setTimeout(function () {
+    //   introNotificationDisplay = true;
+    // }, 2000);
   }
+}
+
+function displayIntroNotificationText() {
+  push();
+  fill(0);
+  textSize(15);
+  text(
+    `ATTN: Lu,
+
+You have exceeded the capacity of your memory storage.
+Please immediately delete memories that are no longer relevant.`,
+    400,
+    height / 2 - 50
+  );
+  pop();
+}
+
+function introNotification() {
+  bgFill.current = bgFill.intro;
+  // Reset cursor to default
+  cursor(`default`);
+
+  push();
+  fill(168, 227, 245);
+  rectMode(CENTER);
+  translate(width / 2, height / 2);
+  scale(rectScale);
+  rect(0, 0, 700, 300);
+  pop();
+
+  if (rectScale > 1.05) {
+    rectScaleIncrease = -0.001;
+  } else if (rectScale <= 1) {
+    rectScaleIncrease = 0.001;
+  }
+
+  rectScale += rectScaleIncrease;
+
+  // if (introNotificationDisplay) {
+  displayIntroNotificationText();
+
+  proceedButton.update(mouse);
+
+  // Set cursor type
+  cursorHoverChange(mouse, proceedButton);
+  // }
 }
 
 // Download memorywash app
@@ -887,6 +954,10 @@ function mousePressed() {
     // downloadButton.mousePressed(mouse);
     if (introSubstate === `introTitle`) {
       startButton.mousePressed(mouse);
+    } else if (introSubstate === `introNotification`) {
+      proceedButton.mousePressed(mouse);
+      // Reset cursor to default
+      cursor(`default`);
     } else if (introSubstate === `introInstallApp`) {
       installButton.mousePressed(mouse);
       // Reset cursor to default
