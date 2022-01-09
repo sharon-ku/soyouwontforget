@@ -107,7 +107,7 @@ Intro variables
 *****************/
 
 // All possibilties: introTitle, introNotification, introInstallApp, introNibbuSpeech
-let introSubstate = `introNotification`;
+let introSubstate = `introTitle`;
 
 // gif with "soyouwontforget"
 let introTitleImage = undefined;
@@ -422,7 +422,7 @@ function setUpIntroObjects() {
 
   // Create start button
   let startButtonProperties = {
-    x: memorywashThumbnail.x + 40,
+    x: memorywashThumbnail.x,
     y: memorywashThumbnail.y + 219,
   };
   startButton = new StartButton(startButtonProperties);
@@ -731,7 +731,7 @@ function introNotification() {
   rectMode(CENTER);
   translate(width / 2, height / 2);
   scale(rectScale);
-  rect(0, 0, 700, 300);
+  rect(0, 0, 600, 300);
   pop();
 
   if (rectScale > 1.05) {
