@@ -52,11 +52,11 @@ let dadiCorrectSpellingSound = undefined;
 let makingBaoDialogs = [];
 const NUM_MAKING_BAO_DIALOGS = 10;
 
-let instaPicDialogs = [];
-const NUM_INSTA_PIC_DIALOGS = 1;
+// let instaPicDialogs = [];
+// const NUM_INSTA_PIC_DIALOGS = 1;
 
-let soccerDialogs = [];
-const NUM_SOCCER_DIALOGS = 3;
+// let soccerDialogs = [];
+// const NUM_SOCCER_DIALOGS = 3;
 
 let crashSound = undefined;
 
@@ -77,23 +77,23 @@ function preloadMemoryAssets() {
     makingBaoDialogs.push(dialog);
   }
 
-  for (let i = 0; i < NUM_INSTA_PIC_DIALOGS; i++) {
-    let dialog = loadSound(
-      `assets/sounds/memories/incoming-memories/insta-pic/dialog${i}.mp3`
-    );
-    instaPicDialogs.push(dialog);
-  }
+  // for (let i = 0; i < NUM_INSTA_PIC_DIALOGS; i++) {
+  //   let dialog = loadSound(
+  //     `assets/sounds/memories/incoming-memories/insta-pic/dialog${i}.mp3`
+  //   );
+  //   instaPicDialogs.push(dialog);
+  // }
 
-  for (let i = 0; i < NUM_SOCCER_DIALOGS; i++) {
-    let dialog = loadSound(
-      `assets/sounds/memories/old-memories/soccer/dialog${i}.m4a`
-    );
-    soccerDialogs.push(dialog);
-  }
-
-  crashSound = loadSound(
-    `assets/sounds/memories/old-memories/soccer/crash.wav`
-  );
+  // for (let i = 0; i < NUM_SOCCER_DIALOGS; i++) {
+  //   let dialog = loadSound(
+  //     `assets/sounds/memories/old-memories/soccer/dialog${i}.m4a`
+  //   );
+  //   soccerDialogs.push(dialog);
+  // }
+  //
+  // crashSound = loadSound(
+  //   `assets/sounds/memories/old-memories/soccer/crash.wav`
+  // );
 
   // Load all character images -------------
   // Lu
@@ -180,13 +180,13 @@ function setUpMemoryObjects() {
     makingBaoDialogs
   );
 
-  memorySoccer = new MemorySoccer(
-    luImages,
-    zaiImages,
-    daddyImages,
-    soccerDialogs,
-    crashSound
-  );
+  // memorySoccer = new MemorySoccer(
+  //   luImages,
+  //   zaiImages,
+  //   daddyImages,
+  //   soccerDialogs,
+  //   crashSound
+  // );
 
   memoryFathersDay = new MemoryFathersDay(
     singleDecorationImages,
@@ -195,15 +195,15 @@ function setUpMemoryObjects() {
     dadiCorrectSpellingSound
   );
 
-  memoryInstaPic = new MemoryInstaPic(
-    saladImage,
-    phoneImages,
-    cameraButtonImage,
-    heartEmojiImage,
-    instaCheckmarkImage,
-    whiteFilterImage,
-    instaPicDialogs
-  );
+  // memoryInstaPic = new MemoryInstaPic(
+  //   saladImage,
+  //   phoneImages,
+  //   cameraButtonImage,
+  //   heartEmojiImage,
+  //   instaCheckmarkImage,
+  //   whiteFilterImage,
+  //   instaPicDialogs
+  // );
 
   memoryPlayingOnPhone = new MemoryPlayingOnPhone();
 }
@@ -214,8 +214,8 @@ function cueMemory() {
     playMemorySoccer();
   } else if (memoryPlaying === `memoryFathersDay`) {
     playMemoryFathersDay();
-  } else if (memoryPlaying === `memoryInstaPic`) {
-    playMemoryInstaPic();
+    // } else if (memoryPlaying === `memoryInstaPic`) {
+    //   playMemoryInstaPic();
   } else if (memoryPlaying === `memoryMakingBao`) {
     playMemoryMakingBao();
   } else if (memoryPlaying === `memoryPlayingOnPhone`) {
@@ -230,15 +230,15 @@ function playMemoryMakingBao() {
   memoryMakingBao.update();
 }
 
-// Play this memory
-function playMemorySoccer() {
-  background(210, 210, 220);
-
-  memorySoccer.update();
-
-  // // Update dialog box
-  // dialogBox.update(memoriesList);
-}
+// // Play this memory
+// function playMemorySoccer() {
+//   background(210, 210, 220);
+//
+//   memorySoccer.update();
+//
+//   // // Update dialog box
+//   // dialogBox.update(memoriesList);
+// }
 
 function playMemoryFathersDay() {
   background(226, 248, 249);
@@ -247,11 +247,11 @@ function playMemoryFathersDay() {
   memoryFathersDay.update();
 }
 
-function playMemoryInstaPic() {
-  background(226, 248, 249);
-
-  memoryInstaPic.update();
-}
+// function playMemoryInstaPic() {
+//   background(226, 248, 249);
+//
+//   memoryInstaPic.update();
+// }
 
 function playMemoryPlayingOnPhone() {
   // noBackground();

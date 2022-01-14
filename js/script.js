@@ -3,6 +3,12 @@ So you won't forget
 Sharon Ku
 
 Player interacts with memories and chooses whether to keep an old memory or an incoming memory.
+
+*ATTRIBUTIONS*
+Background music:
+Going different ways by Eric Matyas
+www.soundimage.org
+
 **************************************************/
 
 "use strict";
@@ -26,6 +32,15 @@ let numTotalMemoriesClicked = 0;
 
 // Total number of memories that need to be cleared
 let maxMemoriesToClear = undefined;
+
+// SOUND-RELATED VARIABLES -------------------
+// Background music and volume
+let backgroundMusic = undefined;
+let backgroundMusicVolume = {
+  current: 0.3,
+  min: 0.2,
+  max: 0.5,
+};
 
 // Landmark stroke color
 const LANDMARK_STROKE_FILL = {
@@ -75,6 +90,11 @@ let bgFill = {
     b: undefined,
   },
   intro: {
+    r: 220,
+    g: 220,
+    b: 220,
+  },
+  black: {
     r: 0,
     g: 0,
     b: 0,
@@ -114,6 +134,9 @@ let introTitleImage = undefined;
 // video of poem
 let introPoemVideo = undefined;
 let introPoemVideoPlaying = false;
+
+let introKnockSound = undefined;
+let introKnockSoundVolume = 1;
 
 // Captain Nibbu's dialog box
 let introDialogBox = undefined;
@@ -265,6 +288,11 @@ function preload() {
 
 // Preload all images and sounds in intro
 function preloadIntroAssets() {
+  // Load background music
+  backgroundMusic = loadSound(`assets/sounds/going-different-ways-looping.mp3`);
+
+  introKnockSound = loadSound(`assets/sounds/knock.mp3`);
+
   introTitleImage = loadImage(`assets/images/intro/title.gif`);
 }
 
@@ -285,23 +313,31 @@ function setup() {
 
   // noCursor();
 
+  // Set volume of background music to current (this volume will be adjusted later on)
+  backgroundMusic.setVolume(backgroundMusicVolume.current);
+
+  introKnockSound.setVolume(introKnockSoundVolume);
+
+  // Play background music and loop it
+  tryMusic();
+
   // set quantity for total memories that need to be cleared
   maxMemoriesToClear = memoriesList.memories.length;
 
   let canvas = createCanvas(1280, 720);
   canvas.parent("#game-container");
 
-  // load up user's video
-  if (memoryPlaying === `memoryPlayingOnPhone`) {
-    push();
-    video = createCapture(VIDEO);
-    video.size(width / 2, height);
-    // Hide the video element, and just show the canvas
-    video.hide();
-    // Set up faceApi
-    faceapi = ml5.faceApi(video, DETECTION_OPTIONS, modelReady);
-    pop();
-  }
+  // // load up user's video
+  // if (memoryPlaying === `memoryPlayingOnPhone`) {
+  //   push();
+  //   video = createCapture(VIDEO);
+  //   video.size(width / 2, height);
+  //   // Hide the video element, and just show the canvas
+  //   video.hide();
+  //   // Set up faceApi
+  //   faceapi = ml5.faceApi(video, DETECTION_OPTIONS, modelReady);
+  //   pop();
+  // }
 
   // // Set color to all strokes
   // stroke(strokeFill.r, strokeFill.g, strokeFill.b);
@@ -324,57 +360,64 @@ function setup() {
   // }, 2000);
 }
 
-// Start detection when model is ready
-function modelReady() {
-  console.log(faceapi);
-  faceapi.detect(gotResults);
+// Play background music and loop it
+function tryMusic() {
+  if (!backgroundMusic.isPlaying()) {
+    backgroundMusic.loop();
+  }
 }
 
-// Get results
-function gotResults(err, result) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  memoryPlayingOnPhone.detections = result;
-
-  background(bgFill.current.r, bgFill.current.g, bgFill.current.b);
-
-  // Use this if I show my video capture:
-  // image(video, 0, height / 4, width / 2, height / 2);
-
-  // If detections found:
-  if (memoryPlayingOnPhone.detections) {
-    if (memoryPlayingOnPhone.detections.length > 0) {
-      // Update behaviour of all body parts
-      // head + mouth
-      memoryPlayingOnPhone.mirrorHead.update(memoryPlayingOnPhone.detections);
-      memoryPlayingOnPhone.mirrorMouth.update(memoryPlayingOnPhone.detections);
-
-      // eyes
-      let leftEyePosition = memoryPlayingOnPhone.detections[0].parts.leftEye;
-      memoryPlayingOnPhone.leftEye.update(
-        memoryPlayingOnPhone.detections,
-        leftEyePosition
-      );
-
-      let rightEyePosition = memoryPlayingOnPhone.detections[0].parts.rightEye;
-      memoryPlayingOnPhone.rightEye.update(
-        memoryPlayingOnPhone.detections,
-        rightEyePosition
-      );
-
-      // eyebrows
-      memoryPlayingOnPhone.drawLandmarks(memoryPlayingOnPhone.detections);
-    }
-  } else {
-    console.log(`get your face in the camera`);
-  }
-  setTimeout(() => {
-    faceapi.detect(gotResults);
-  }, 50);
-  // faceapi.detect(gotResults);
-}
+// // Start detection when model is ready
+// function modelReady() {
+//   console.log(faceapi);
+//   faceapi.detect(gotResults);
+// }
+//
+// // Get results
+// function gotResults(err, result) {
+//   if (err) {
+//     console.log(err);
+//     return;
+//   }
+//   memoryPlayingOnPhone.detections = result;
+//
+//   background(bgFill.current.r, bgFill.current.g, bgFill.current.b);
+//
+//   // Use this if I show my video capture:
+//   // image(video, 0, height / 4, width / 2, height / 2);
+//
+//   // If detections found:
+//   if (memoryPlayingOnPhone.detections) {
+//     if (memoryPlayingOnPhone.detections.length > 0) {
+//       // Update behaviour of all body parts
+//       // head + mouth
+//       memoryPlayingOnPhone.mirrorHead.update(memoryPlayingOnPhone.detections);
+//       memoryPlayingOnPhone.mirrorMouth.update(memoryPlayingOnPhone.detections);
+//
+//       // eyes
+//       let leftEyePosition = memoryPlayingOnPhone.detections[0].parts.leftEye;
+//       memoryPlayingOnPhone.leftEye.update(
+//         memoryPlayingOnPhone.detections,
+//         leftEyePosition
+//       );
+//
+//       let rightEyePosition = memoryPlayingOnPhone.detections[0].parts.rightEye;
+//       memoryPlayingOnPhone.rightEye.update(
+//         memoryPlayingOnPhone.detections,
+//         rightEyePosition
+//       );
+//
+//       // eyebrows
+//       memoryPlayingOnPhone.drawLandmarks(memoryPlayingOnPhone.detections);
+//     }
+//   } else {
+//     console.log(`get your face in the camera`);
+//   }
+//   setTimeout(() => {
+//     faceapi.detect(gotResults);
+//   }, 50);
+//   // faceapi.detect(gotResults);
+// }
 
 // Set up all intro objects
 function setUpIntroObjects() {
@@ -470,64 +513,6 @@ function setUpGameObjects() {
     memoryName: currentMemoryInfo,
   };
   rightMemoryBox = new MemoryBox(rightMemoryBoxProperties);
-
-  // TO BE DELETED: KEPT FOR REF
-  // // Create left preview video
-  // let leftPreviewVideoProperties = {
-  //   x: width / 4,
-  //   y: height / 2,
-  //   section: `OLD MEMORY`,
-  //   // instructions: `Make room for this memory.`,
-  //   instructions: `Which memory do you wish to trash permanently?`,
-  //   playIconImage: playIconImage,
-  //   // memoryGroup: memoryGroup,
-  //   memoryName: currentOldMemory,
-  // };
-  // leftPreviewVideo = new PreviewVideo(leftPreviewVideoProperties);
-  //
-  // // Create right preview video
-  // let rightPreviewVideoProperties = {
-  //   x: (width * 3) / 4,
-  //   y: height / 2,
-  //   section: `INCOMING MEMORY`,
-  //   // instructions: `Delete memories that burden you.`,
-  //   instructions: ``,
-  //   playIconImage: playIconImage,
-  //   // memoryGroup: memoryGroup,
-  //   memoryName: currentIncomingMemory,
-  // };
-  // rightPreviewVideo = new PreviewVideo(rightPreviewVideoProperties);
-
-  // // Create delete button
-  // let deleteButtonProperties = {
-  //   x: rightPreviewVideoProperties.x - 110,
-  //   y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
-  //   memoryName: randomOldMemory,
-  // };
-  // deleteButton = new DeleteButton(deleteButtonProperties);
-  //
-  // // Create keep button
-  // let keepButtonProperties = {
-  //   x: rightPreviewVideoProperties.x + 110,
-  //   y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
-  //   memoryName: randomOldMemory,
-  // };
-  // keepButton = new KeepButton(keepButtonProperties);
-
-  //   // Create winner buttons
-  //   let winnerButtonOldProperties = {
-  //     x: leftPreviewVideoProperties.x,
-  //     y: leftPreviewVideo.y + leftPreviewVideo.height / 2 + 80,
-  //     memoryName: currentOldMemory,
-  //   };
-  //   winnerButtonOld = new WinnerButton(winnerButtonOldProperties);
-  //
-  //   let winnerButtonIncomingProperties = {
-  //     x: rightPreviewVideoProperties.x,
-  //     y: rightPreviewVideo.y + rightPreviewVideo.height / 2 + 80,
-  //     memoryName: currentIncomingMemory,
-  //   };
-  //   winnerButtonIncoming = new WinnerButton(winnerButtonIncomingProperties);
 }
 
 // Fetch an incoming and old memory from memories.json
@@ -689,12 +674,21 @@ function introPlayPoem() {
 
 // Once poem is done playing, switch to installing app
 function introPoem() {
-  // if video is done playing:
+  // play knock sound after 24 seconds
   // time() refers to time elapsed since video started playing
   // duration() refers to video's duration
+  if (introPoemVideo.time() > 24.5) {
+    playKnockSound();
+  }
+
+  // if video is done playing:
   if (introPoemVideo.time() / introPoemVideo.duration() === 1) {
     // hide the video
     introPoemVideo.hide();
+    backgroundMusic.stop();
+
+    // change window background to black
+    $(`body`).css(`background`, `black`);
 
     // switch substate
     // introSubstate = `introInstallApp`;
@@ -703,6 +697,12 @@ function introPoem() {
     // setTimeout(function () {
     //   introNotificationDisplay = true;
     // }, 2000);
+  }
+}
+
+function playKnockSound() {
+  if (!introKnockSound.isPlaying()) {
+    introKnockSound.play();
   }
 }
 
@@ -722,7 +722,7 @@ Please immediately delete memories that are no longer relevant.`,
 }
 
 function introNotification() {
-  bgFill.current = bgFill.intro;
+  bgFill.current = bgFill.black;
   // Reset cursor to default
   cursor(`default`);
 
@@ -886,11 +886,6 @@ function game() {
   // );
   // pop();
 
-  // To be deleted
-  // // Update left and right preview videos
-  // leftPreviewVideo.update(mouse, currentOldMemory);
-  // rightPreviewVideo.update(mouse, currentIncomingMemory);
-
   // Update left and right preview videos
   leftMemoryBox.update(mouse, currentMemoryInfo);
   rightMemoryBox.update(mouse, currentMemoryInfo);
@@ -957,6 +952,9 @@ function mousePressed() {
     // downloadButton.mousePressed(mouse);
     if (introSubstate === `introTitle`) {
       startButton.mousePressed(mouse);
+
+      // Play background music and loop it
+      tryMusic();
     } else if (introSubstate === `introNotification`) {
       proceedButton.mousePressed(mouse);
       // Reset cursor to default
@@ -1007,9 +1005,9 @@ function mousePressed() {
       memoryFathersDay.mousePressed(mouseX, mouseY);
     }
 
-    if (memoryPlaying === `memoryInstaPic`) {
-      memoryInstaPic.mousePressed(mouseX, mouseY);
-    }
+    // if (memoryPlaying === `memoryInstaPic`) {
+    //   memoryInstaPic.mousePressed(mouseX, mouseY);
+    // }
   }
 }
 

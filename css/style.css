@@ -18,7 +18,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: black;
+  /* light grey */
+  background: #dcdcdc;
   /* background: red; */
 }
 
