@@ -37,9 +37,9 @@ let maxMemoriesToClear = undefined;
 // Background music and volume
 let backgroundMusic = undefined;
 let backgroundMusicVolume = {
-  current: 0.3,
-  min: 0.2,
-  max: 0.5,
+  current: 0.02, //0.3
+  min: undefined, //0.2
+  max: undefined, //0.5
 };
 
 // Landmark stroke color
@@ -136,7 +136,7 @@ let introPoemVideo = undefined;
 let introPoemVideoPlaying = false;
 
 let introKnockSound = undefined;
-let introKnockSoundVolume = 1;
+let introKnockSoundVolume = 0.05;
 
 // Captain Nibbu's dialog box
 let introDialogBox = undefined;

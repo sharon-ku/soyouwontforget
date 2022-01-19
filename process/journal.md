@@ -24,9 +24,11 @@ AUGUST:
 2. ✔️ **Aug 7-13:** code, conduct midway playtest with team --> 10h
 3. ✔️ **Aug 14-20:** code --> 8h
 4. ✔️ **Aug 21-27:** code, refine, conduct final playtests --> 6h
-5. [⭐ we are here] **Aug 28-31:** refine, write final thoughts in journal --> 2h
+5. ✔️ **Aug 28-31:** refine, write final thoughts in journal --> 2h
 
 PLUS 5 hours to place where needed
+
+[Doing more work now for the fun of it.]
 
 ## Wednesday, July 7, 2021, at 4pm-ish
 
